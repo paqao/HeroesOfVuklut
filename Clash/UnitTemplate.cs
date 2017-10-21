@@ -6,4 +6,15 @@ public class UnitTemplate {
     AvailableUnits = availableUnits;
     Unit = unit;
   }
+  
+  public ClashUnit CreateUnit(){
+    if(AvailableUnits == 0)
+      return null;
+    
+    AvailableUnits--;
+    
+    return new ClashUnit {
+      Template = Unit 
+    };
+  }
 }
