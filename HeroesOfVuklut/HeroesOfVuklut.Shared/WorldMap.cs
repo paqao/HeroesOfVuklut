@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class WorldMap {
   public Castle OwnCastle { get; set; }
   public IList<Place> Places { get; }

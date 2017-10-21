@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class ClashState {
   public IList<ClashFaction> Factions { get; protected set; }
   

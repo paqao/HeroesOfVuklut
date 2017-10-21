@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>c463a4dd-5fcb-47f2-bb15-75c56d24e47d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>HeroesOfVuklut.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BuildingBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Castle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ClashManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashFaction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitTemplate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mission.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MissionPlace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Place.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WorldMap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,13 +1,15 @@
-public class Game {
+using System.Collections.Generic;
+
+public class HeroesGame {
   public Castle Castle { get; set; }
   public IList<Hero> Heroes { get; }
   
-  public Game(){
+  public HeroesGame(){
    Heroes = new List<Hero>(); 
   }
   
-  public Clear() {
+  public void Clear() {
     Castle = new Castle(); 
-    Heroes.clear();
+    Heroes.Clear();
   }
 }

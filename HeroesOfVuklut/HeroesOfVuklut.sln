@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroesOfVuklut.Windows", "HeroesOfVuklut.Windows\HeroesOfVuklut.Windows.csproj", "{6106F7AE-D06C-4599-B1E7-00162F91DDF1}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HeroesOfVuklut.Shared", "HeroesOfVuklut.Shared\HeroesOfVuklut.Shared.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HeroesOfVuklut.Shared\HeroesOfVuklut.Shared.projitems*{6106f7ae-d06c-4599-b1e7-00162f91ddf1}*SharedItemsImports = 4
+		HeroesOfVuklut.Shared\HeroesOfVuklut.Shared.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6106F7AE-D06C-4599-B1E7-00162F91DDF1}.Debug|x86.ActiveCfg = Debug|x86
+		{6106F7AE-D06C-4599-B1E7-00162F91DDF1}.Debug|x86.Build.0 = Debug|x86
+		{6106F7AE-D06C-4599-B1E7-00162F91DDF1}.Release|x86.ActiveCfg = Release|x86
+		{6106F7AE-D06C-4599-B1E7-00162F91DDF1}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
