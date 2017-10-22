@@ -1,3 +1,3 @@
-public class WorldSceneManager : SceneManager {
+public class WorldSceneManager : SceneManager<WorldSceneManager>, IScene {
   
 }

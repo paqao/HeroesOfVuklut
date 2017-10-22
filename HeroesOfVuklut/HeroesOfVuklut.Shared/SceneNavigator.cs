@@ -1,9 +1,23 @@
+using System;
+
 public class SceneNavigator : ISceneNavigator {
-  public SceneManager CurrentScene { get; set; }
-  
-  public void GotoScene<T>(T scene, SceneParameter<T> sceneParameter) where T : SceneManager {
-    this.SceneManager = scene;
-    
-    this.SceneManager.BeginScene(sceneParameter);
-  }
+    public IScene CurrentScene { get; set; }
+    public SceneTree Scenes { get; set; }
+
+    public SceneNavigator()
+    {
+        Scenes = new SceneTree();
+    }
+
+    public void CanNavigateTo<T>(T scene) where T : SceneManager<T>, IScene
+    {
+        throw new NotImplementedException();
+    }
+
+    public void GotoScene<T, U>(T scene, SceneManager<T>.SceneParameter<U> sceneParameter)
+        where T : SceneManager<T>, IScene
+        where U : T
+    {
+
+    }
 }

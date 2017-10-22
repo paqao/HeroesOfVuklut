@@ -12,22 +12,32 @@
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)BuildingBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Castle.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ClashManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Castle\BuildingBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Castle\Castle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Castle\CastleSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashFaction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashSceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashSceneParamater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashTileBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitTemplate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ISceneNavigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Menu\MenuSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mission.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MissionPlace.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Place.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WorldMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\BanditHideoutPlace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\MissionPlace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Place.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\WorldMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\WorldSceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb">

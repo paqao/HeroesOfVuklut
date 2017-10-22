@@ -11,11 +11,13 @@ namespace HeroesOfVuklut.Windows
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        ISceneNavigator SceneNavigator;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            SceneNavigator = new SceneNavigator();
         }
 
         /// <summary>

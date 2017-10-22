@@ -1,3 +1,3 @@
-public class ClashSceneParameter : SceneParameter<ClashSceneManager> {
+public class ClashSceneParameter : SceneManager<ClashSceneManager>.SceneParameter<ClashSceneManager> {
   
 }
