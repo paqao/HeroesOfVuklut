@@ -4,4 +4,8 @@ public class ClashSceneManager : SceneManager {
   public void PrepareClash(ClashState state){
     _currentClash = state; 
   }
+  
+  public override BeginScene(ClashSceneParameter clashSceneParameter){
+     
+  }
 }
