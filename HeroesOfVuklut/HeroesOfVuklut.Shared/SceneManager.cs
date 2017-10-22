@@ -1,27 +1,59 @@
-public abstract class SceneManager<T> : IScene
+using System;
+
+public abstract class SceneManager<T> : SceneManager
 {
 
-    public virtual void BeginScene(SceneParameter<T> sceneParameter){
-
+    protected ISceneNavigator SceneNavigator { get; }
+    public SceneManager(ISceneNavigator sceneNavigator)
+    {
+        SceneNavigator = sceneNavigator;
     }
 
-    public virtual void Update(decimal step)
+
+    public virtual SceneParameter<T> GetDefault(){
+        return null;
+    } 
+
+    public virtual void BeginScene(SceneParameter<T> sceneParameter)
     {
 
     }
-    public virtual void Draw()
-    {
 
+    public override void BeginScene(SceneParameter sceneParameter)
+    {
+        var myParameter = sceneParameter as SceneParameter<T>;
+
+        BeginScene(myParameter);
     }
 
-    public class SceneParameter<U> where U : T
+    public abstract class SceneParameter<U> : SceneParameter where U : T
     {
 
     }
 }
 
-public interface IScene
+public abstract class SceneManager
 {
-    void Update(decimal step);
-    void Draw();
+
+    public abstract Type GetSceneType();
+    public virtual SceneParameter DefaultParameter { get; } = null;
+
+    public virtual void BeginScene(SceneParameter sceneParameter)
+    {
+
+    }
+
+    public virtual void Draw()
+    {
+
+    }
+
+    public abstract class SceneParameter
+    {
+
+    }
+
+    public virtual void Update(TimeSpan elapsedGameTime)
+    {
+    }
 }

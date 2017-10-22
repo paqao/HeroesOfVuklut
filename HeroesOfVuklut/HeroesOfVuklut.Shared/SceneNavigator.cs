@@ -1,7 +1,7 @@
 using System;
 
 public class SceneNavigator : ISceneNavigator {
-    public IScene CurrentScene { get; set; }
+    public SceneManager CurrentScene { get; set; }
     public SceneTree Scenes { get; set; }
 
     public SceneNavigator()
@@ -9,15 +9,19 @@ public class SceneNavigator : ISceneNavigator {
         Scenes = new SceneTree();
     }
 
-    public void CanNavigateTo<T>(T scene) where T : SceneManager<T>, IScene
+    public void CanNavigateTo<T>(T scene) where T : SceneManager<T>
     {
         throw new NotImplementedException();
     }
 
-    public void GotoScene<T, U>(T scene, SceneManager<T>.SceneParameter<U> sceneParameter)
-        where T : SceneManager<T>, IScene
+    public void GotoScene<T, U>(Type scene, SceneManager<T>.SceneParameter<U> sceneParameter)
+        where T : SceneManager<T>
         where U : T
     {
+        var newScene = Scenes.DefinedScenes[scene];
 
+        CurrentScene = newScene;
+
+        CurrentScene.BeginScene(sceneParameter);
     }
 }

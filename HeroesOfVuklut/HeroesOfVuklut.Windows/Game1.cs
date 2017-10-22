@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using HeroesOfVuklut.Shared.Menu;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -31,6 +33,23 @@ namespace HeroesOfVuklut.Windows
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            PrepareScenes();
+
+
+        }
+
+        private void PrepareScenes()
+        {
+            var scene = new MenuSceneManager(SceneNavigator);
+            SceneNavigator.Scenes.AddScene(scene);
+            SceneNavigator.Scenes.SetDefault(scene);
+
+            SceneNavigator.GotoScene(scene.GetSceneType(), scene.GetDefault());
+
+            var worldMapScene = new WorldSceneManager(SceneNavigator);
+
+            SceneNavigator.Scenes.AddScene(worldMapScene);
+            SceneNavigator.Scenes.AddSceneTransition(scene, worldMapScene);
         }
 
         /// <summary>
@@ -65,6 +84,8 @@ namespace HeroesOfVuklut.Windows
                 Exit();
 
             // TODO: Add your update logic here
+
+            SceneNavigator.CurrentScene.Update(gameTime.ElapsedGameTime);
 
             base.Update(gameTime);
         }
