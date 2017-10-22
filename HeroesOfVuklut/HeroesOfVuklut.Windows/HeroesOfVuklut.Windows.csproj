@@ -42,6 +42,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
+    <Compile Include="GraphicInterface.cs" />
+    <Compile Include="InputInterface.cs" />
+    <Compile Include="InputProcessor\KeyboardProcessor.cs" />
+    <Compile Include="InputProcessor\IInputProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

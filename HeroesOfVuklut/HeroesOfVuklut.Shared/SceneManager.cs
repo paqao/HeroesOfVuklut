@@ -1,14 +1,21 @@
+using HeroesOfVuklut.Shared;
 using System;
 
 public abstract class SceneManager<T> : SceneManager
 {
-
+    protected IInputInterface InputInterface { get; }
     protected ISceneNavigator SceneNavigator { get; }
+
+    public SceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface)
+    {
+        SceneNavigator = sceneNavigator;
+        InputInterface = inputInterface;
+    }
+
     public SceneManager(ISceneNavigator sceneNavigator)
     {
         SceneNavigator = sceneNavigator;
     }
-
 
     public virtual SceneParameter<T> GetDefault(){
         return null;
@@ -56,4 +63,6 @@ public abstract class SceneManager
     public virtual void Update(TimeSpan elapsedGameTime)
     {
     }
+
+    public abstract void ProcessInput();
 }

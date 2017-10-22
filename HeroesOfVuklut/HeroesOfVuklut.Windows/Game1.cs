@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using HeroesOfVuklut.Shared.Menu;
+using HeroesOfVuklut.Windows.InputProcessor;
+using HeroesOfVuklut.Shared;
+using HeroesOfVuklut.Shared.Input;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -14,6 +17,8 @@ namespace HeroesOfVuklut.Windows
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         ISceneNavigator SceneNavigator;
+        private KeyboardProcessorImpl _inputProce;
+        private InputInterface _inputInterface;
 
         public Game1()
         {
@@ -33,23 +38,35 @@ namespace HeroesOfVuklut.Windows
             // TODO: Add your initialization logic here
 
             base.Initialize();
-            PrepareScenes();
 
+
+            var keyState = Keyboard.GetState();
+            _inputProce = new KeyboardProcessorImpl();
+            _inputProce.RegisterKey("exit", Keys.Escape);
+
+            _inputInterface = new InputInterface();
+            _inputInterface.AddProcessor(_inputProce);
+
+            PrepareScenes();
 
         }
 
         private void PrepareScenes()
         {
-            var scene = new MenuSceneManager(SceneNavigator);
+            var scene = new MenuSceneManager(SceneNavigator, _inputInterface);
             SceneNavigator.Scenes.AddScene(scene);
             SceneNavigator.Scenes.SetDefault(scene);
 
             SceneNavigator.GotoScene(scene.GetSceneType(), scene.GetDefault());
 
-            var worldMapScene = new WorldSceneManager(SceneNavigator);
+            var worldMapScene = new WorldSceneManager(SceneNavigator, _inputInterface);
+            var clashScene = new ClashSceneManager(SceneNavigator, _inputInterface);
 
             SceneNavigator.Scenes.AddScene(worldMapScene);
+            SceneNavigator.Scenes.AddScene(clashScene);
+
             SceneNavigator.Scenes.AddSceneTransition(scene, worldMapScene);
+            SceneNavigator.Scenes.AddSceneTransition(worldMapScene, clashScene);
         }
 
         /// <summary>
@@ -80,9 +97,15 @@ namespace HeroesOfVuklut.Windows
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            _inputProce.Refresh(Keyboard.GetState());
 
+            if(_inputProce.GetButtonState("exit") == ButtonStateValue.OnClick)
+            {
+                Exit();
+            }
+
+            SceneNavigator.CurrentScene.ProcessInput();
+            
             // TODO: Add your update logic here
 
             SceneNavigator.CurrentScene.Update(gameTime.ElapsedGameTime);

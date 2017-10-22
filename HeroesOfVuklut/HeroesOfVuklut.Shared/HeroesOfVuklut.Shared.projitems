@@ -18,7 +18,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashFaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashSceneManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashSceneParamater.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashTileBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashUnit.cs" />
@@ -27,6 +26,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IGraphicsInterface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IInputInterface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\ButtonState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\IState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ISceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menu\MenuSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mission.cs" />

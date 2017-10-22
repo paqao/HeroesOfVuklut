@@ -6,7 +6,7 @@ namespace HeroesOfVuklut.Shared.Menu
 {
     public class MenuSceneManager : SceneManager<MenuSceneManager>
     {
-        public MenuSceneManager(ISceneNavigator sceneNavigator) : base(sceneNavigator)
+        public MenuSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface) : base(sceneNavigator, inputInterface)
         {
         }
 
@@ -18,6 +18,11 @@ namespace HeroesOfVuklut.Shared.Menu
         public override Type GetSceneType()
         {
             return typeof(MenuSceneManager);
+        }
+
+        public override void ProcessInput()
+        {
+
         }
 
         public override void Update(TimeSpan elapsedGameTime)
