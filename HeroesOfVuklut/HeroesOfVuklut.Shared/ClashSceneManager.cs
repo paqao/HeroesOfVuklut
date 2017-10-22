@@ -1,4 +1,4 @@
-public class ClashManager {
+public class ClashSceneManager : SceneManager {
   private ClashState _currentClash;
   
   public void PrepareClash(ClashState state){
