@@ -6,6 +6,7 @@ using HeroesOfVuklut.Shared.Menu;
 using HeroesOfVuklut.Windows.InputProcessor;
 using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Shared.Input;
+using HeroesOfVuklut.Windows.Resources;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -19,6 +20,8 @@ namespace HeroesOfVuklut.Windows
         ISceneNavigator SceneNavigator;
         private KeyboardProcessorImpl _inputProce;
         private InputInterface _inputInterface;
+        private GraphicInterface graphInterface = new GraphicInterface();
+        private IResourceProvider resourceProvider = new ResourceProvider();
 
         public Game1()
         {
@@ -53,14 +56,14 @@ namespace HeroesOfVuklut.Windows
 
         private void PrepareScenes()
         {
-            var scene = new MenuSceneManager(SceneNavigator, _inputInterface);
+            var scene = new MenuSceneManager(SceneNavigator, _inputInterface, graphInterface);
             SceneNavigator.Scenes.AddScene(scene);
             SceneNavigator.Scenes.SetDefault(scene);
 
             SceneNavigator.GotoScene(scene.GetSceneType(), scene.GetDefault());
 
-            var worldMapScene = new WorldSceneManager(SceneNavigator, _inputInterface);
-            var clashScene = new ClashSceneManager(SceneNavigator, _inputInterface);
+            var worldMapScene = new WorldSceneManager(SceneNavigator, _inputInterface, graphInterface);
+            var clashScene = new ClashSceneManager(SceneNavigator, _inputInterface, graphInterface);
 
             SceneNavigator.Scenes.AddScene(worldMapScene);
             SceneNavigator.Scenes.AddScene(clashScene);
@@ -78,6 +81,10 @@ namespace HeroesOfVuklut.Windows
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            graphInterface.Batch = spriteBatch;
+            graphInterface.ResourceProvider = resourceProvider;
+
+            resourceProvider.LoadTextures(Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -119,11 +126,15 @@ namespace HeroesOfVuklut.Windows
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            SceneNavigator.CurrentScene.Draw();
 
             // TODO: Add your drawing code here
 
-            base.Draw(gameTime);
+            spriteBatch.End();
+            
         }
     }
 }

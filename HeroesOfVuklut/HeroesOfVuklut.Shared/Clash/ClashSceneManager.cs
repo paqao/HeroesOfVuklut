@@ -4,7 +4,7 @@ using System;
 public class ClashSceneManager : SceneManager<ClashSceneManager> {
     private ClashState _currentClash;
 
-    public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface) : base(sceneNavigator, inputInterface)
+    public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface) : base(sceneNavigator, inputInterface, graphicsInterface)
     {
     }
 
@@ -27,7 +27,7 @@ public class ClashSceneManager : SceneManager<ClashSceneManager> {
 
     public override void Draw()
     {
-
+        GraphicsInterface.Draw(0, 0, 32, 32, "grass");
     }
 
     public override Type GetSceneType()

@@ -3,7 +3,7 @@ using System;
 
 public class CastleSceneManager : SceneManager<CastleSceneManager>
 {
-    public CastleSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface) : base(sceneNavigator, inputInterface)
+    public CastleSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface) : base(sceneNavigator, inputInterface, graphicsInterface)
     {
     }
 

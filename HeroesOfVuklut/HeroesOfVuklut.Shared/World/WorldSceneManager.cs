@@ -3,7 +3,7 @@ using System;
 
 public class WorldSceneManager : SceneManager<WorldSceneManager>
 {
-    public WorldSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface) : base(sceneNavigator, inputInterface)
+    public WorldSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface) : base(sceneNavigator, inputInterface, graphicsInterface)
     {
     }
 

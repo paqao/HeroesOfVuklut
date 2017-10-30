@@ -5,11 +5,13 @@ public abstract class SceneManager<T> : SceneManager
 {
     protected IInputInterface InputInterface { get; }
     protected ISceneNavigator SceneNavigator { get; }
+    protected IGraphicsInterface GraphicsInterface { get; }
 
-    public SceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface)
+    public SceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface)
     {
         SceneNavigator = sceneNavigator;
         InputInterface = inputInterface;
+        GraphicsInterface = graphicsInterface;
     }
 
     public SceneManager(ISceneNavigator sceneNavigator)

@@ -6,7 +6,7 @@ namespace HeroesOfVuklut.Shared.Menu
 {
     public class MenuSceneManager : SceneManager<MenuSceneManager>
     {
-        public MenuSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface) : base(sceneNavigator, inputInterface)
+        public MenuSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface) : base(sceneNavigator, inputInterface, graphicsInterface)
         {
         }
 

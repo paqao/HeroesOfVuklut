@@ -1,0 +1,13 @@
+﻿{
+  "Sprites": [
+    {
+      "Name": "grass",
+      "Families": [
+        "overworld",
+        "plains",
+        "overworld/plains"
+      ],
+      "ContentPath": "Sprites/grass"
+    }
+  ]
+}
