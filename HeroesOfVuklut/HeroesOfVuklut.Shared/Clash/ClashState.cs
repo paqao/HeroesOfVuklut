@@ -6,6 +6,6 @@ public class ClashState {
 
   public ClashState(){
     Factions = new List<ClashFaction>();
-    MapClash = new ClashMap(24,24);
+    MapClash = new ClashMap(16,16);
   }
 }

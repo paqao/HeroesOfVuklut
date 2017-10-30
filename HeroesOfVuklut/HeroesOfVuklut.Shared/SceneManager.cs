@@ -66,5 +66,10 @@ public abstract class SceneManager
     {
     }
 
+    public virtual void ClearScene()
+    {
+
+    }
+
     public abstract void ProcessInput();
 }

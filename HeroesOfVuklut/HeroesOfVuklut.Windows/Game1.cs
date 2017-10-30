@@ -19,6 +19,8 @@ namespace HeroesOfVuklut.Windows
         SpriteBatch spriteBatch;
         ISceneNavigator SceneNavigator;
         private KeyboardProcessorImpl _inputProce;
+
+        private MouseProcessorImpl _mouseProce;
         private InputInterface _inputInterface;
         private GraphicInterface graphInterface = new GraphicInterface();
         private IResourceProvider resourceProvider = new ResourceProvider();
@@ -26,6 +28,10 @@ namespace HeroesOfVuklut.Windows
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
+            this.graphics.PreferredBackBufferWidth = 800;
+            this.graphics.PreferredBackBufferHeight = 600;
+
             Content.RootDirectory = "Content";
             SceneNavigator = new SceneNavigator();
         }
@@ -47,8 +53,11 @@ namespace HeroesOfVuklut.Windows
             _inputProce = new KeyboardProcessorImpl();
             _inputProce.RegisterKey("exit", Keys.Escape);
 
+            _mouseProce = new MouseProcessorImpl();
+
             _inputInterface = new InputInterface();
             _inputInterface.AddProcessor(_inputProce);
+            _inputInterface.AddProcessor(_mouseProce);
 
             PrepareScenes();
 
@@ -81,6 +90,9 @@ namespace HeroesOfVuklut.Windows
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
+            // this.graphics.IsFullScreen = true;
+
             graphInterface.Batch = spriteBatch;
             graphInterface.ResourceProvider = resourceProvider;
 
@@ -104,7 +116,10 @@ namespace HeroesOfVuklut.Windows
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            SceneNavigator.CurrentScene.ClearScene();
+
             _inputProce.Refresh(Keyboard.GetState());
+            _mouseProce.Refresh(Mouse.GetState());
 
             if(_inputProce.GetButtonState("exit") == ButtonStateValue.OnClick)
             {
