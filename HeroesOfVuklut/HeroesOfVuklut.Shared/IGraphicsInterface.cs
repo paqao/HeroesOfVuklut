@@ -7,5 +7,6 @@ namespace HeroesOfVuklut.Shared
     public interface IGraphicsInterface
     {
         void Draw(int x, int y, int w, int h, string resourceKey);
+        void Draw(int x, int y, int w, int h, string resourceKey, string frame);
     }
 }

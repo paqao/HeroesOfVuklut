@@ -4,6 +4,10 @@ using System;
 public class ClashSceneManager : SceneManager<ClashSceneManager> {
     private ClashState _currentClash;
     private IClashResourceManager clashResourceManager;
+    private CursorPosition _cursor;
+
+    private int offsetX;
+    private int offsetY;
 
     public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface) : base(sceneNavigator, inputInterface, graphicsInterface)
     {
@@ -12,6 +16,9 @@ public class ClashSceneManager : SceneManager<ClashSceneManager> {
 
     public void PrepareClash(ClashState state) {
         _currentClash = state;
+
+        offsetX = (800 - state.MapClash.Width * 32) / 2;
+        offsetY = (600 - state.MapClash.Heigth * 32) / 4;
     }
 
     public override void BeginScene(SceneParameter<ClashSceneManager> sceneParameter)
@@ -22,6 +29,8 @@ public class ClashSceneManager : SceneManager<ClashSceneManager> {
         var clashState = new ClashState();
 
         PrepareClash(clashState);
+
+        ProcessInput();
     }
 
     public override void Update(TimeSpan step)
@@ -36,13 +45,18 @@ public class ClashSceneManager : SceneManager<ClashSceneManager> {
             {
                 var tile = _currentClash.MapClash.Tiles[j][i];
 
-                if (!tile.Hover)
+                string style = "Idle";
+                if (tile.Hover)
                 {
-                    var resourceName = clashResourceManager.GetGroundResource(tile.GroundId);
-                    GraphicsInterface.Draw(i * 32, j * 32, 32, 32, resourceName);
+                    style = "Hover";
                 }
+                var resourceName = clashResourceManager.GetGroundResource(tile.GroundId);
+                GraphicsInterface.Draw(offsetX + i * 32, offsetY + j * 32, 32, 32, resourceName, style);
             }
         }
+
+
+        GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
     }
 
     public override Type GetSceneType()
@@ -66,8 +80,8 @@ public class ClashSceneManager : SceneManager<ClashSceneManager> {
     {
         var cursor = InputInterface.GetCursor();
         
-        int itemX = cursor.PositionX / 32;
-        int itemY = cursor.PositionY / 32;
+        int itemX = (cursor.PositionX - offsetX) / 32;
+        int itemY = (cursor.PositionY - offsetY) / 32;
 
         if(itemX >= 0 && itemY >= 0 && itemX < _currentClash.MapClash.Width && itemY < _currentClash.MapClash.Heigth)
         {
@@ -75,6 +89,8 @@ public class ClashSceneManager : SceneManager<ClashSceneManager> {
 
             tile.Hover = true;
         }
+
+        _cursor = cursor;
     }
 
     public class ClashSceneParameter : SceneParameter<ClashSceneManager>

@@ -2,11 +2,6 @@
 using HeroesOfVuklut.Windows.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -17,8 +12,14 @@ namespace HeroesOfVuklut.Windows
 
         public void Draw(int x, int y, int w, int h, string resourceKey)
         {
-            Texture2D texture = ResourceProvider.GetTexture(resourceKey);
-            Batch.Draw(texture, new Rectangle(x, y, w, h), Color.White);
+            TextureInfo texture = ResourceProvider.GetTexture(resourceKey);
+            Batch.Draw(texture.Texture, new Rectangle(x, y, w, h), Color.White);
+        }
+
+        public void Draw(int x, int y, int w, int h, string resourceKey, string frame)
+        {
+            TextureInfo texture = ResourceProvider.GetTextureFrame(resourceKey, frame);
+            Batch.Draw(texture.Texture, new Rectangle(x, y, w, h), new Rectangle(texture.OffsetX, texture.OffsetY, texture.Width, texture.Heigth), Color.White);
         }
     }
 }

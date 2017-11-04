@@ -7,7 +7,29 @@
         "plains",
         "overworld/plains"
       ],
-      "ContentPath": "Sprites/grass"
+      "FrameSizeX": 32,
+      "FrameSizeY": 32,
+      "ContentPath": "Sprites/grass",
+      "Frames": [
+        {
+          "Name": "Idle",
+          "PositionX": 0,
+          "PositionY": 0
+        },
+        {
+          "Name": "Hover",
+          "PositionX": 0,
+          "PositionY": 1
+        }
+      ]
+
+    },
+    {
+      "Name": "cursor",
+      "Families": [
+        "ui"
+      ],
+      "ContentPath": "Sprites/cursor"
     }
   ]
 }

@@ -11,23 +11,51 @@ namespace HeroesOfVuklut.Windows.Resources
     public class ResourceProvider : IResourceProvider
     {
         private ResourceDictionary _resourceDictionary = new ResourceDictionary();
-        public Texture2D GetTexture(string resourceName)
+        public TextureInfo GetTexture(string resourceName)
         {
             var texture = _resourceDictionary.Textures.FirstOrDefault(x => String.Compare(resourceName.ToLower(), x.Key.Name.ToLower()) == 0);
-            return texture.Value != null ? texture.Value : null;
+            if(texture.Value == null)
+            {
+                return null;
+            }
+
+            var textureInfo = new TextureInfo
+            {
+                Texture = texture.Value
+            };
+
+            return textureInfo;
         }
 
-        public Texture2D GetTexture(string resourceName, string familyName)
+        public TextureInfo GetTexture(string resourceName, string familyName)
         {
             throw new NotImplementedException();
         }
 
-        public Texture2D GetTextureFrame(string resourceName, string frame)
+        public TextureInfo GetTextureFrame(string resourceName, string frame)
         {
-            throw new NotImplementedException();
+            var texture = _resourceDictionary.Textures.FirstOrDefault(x => String.Compare(resourceName.ToLower(), x.Key.Name.ToLower()) == 0);
+
+            if (texture.Value == null)
+            {
+                return null;
+            }
+
+            var spriteInfo = texture.Key.Frames.First(x => x.Name == frame);
+            var textureInfo = new TextureInfo
+            {
+                Texture = texture.Value,
+                Heigth = texture.Key.FrameSizeY,
+                Width = texture.Key.FrameSizeX,
+                OffsetX = texture.Key.FrameSizeX * spriteInfo.PositionX,
+                OffsetY = texture.Key.FrameSizeY * spriteInfo.PositionY
+            };
+
+
+            return textureInfo;
         }
 
-        public Texture2D GetTextureFrame(string resourceName, string familyName, string frame)
+        public TextureInfo GetTextureFrame(string resourceName, string familyName, string frame)
         {
             throw new NotImplementedException();
         }
@@ -61,6 +89,16 @@ namespace HeroesOfVuklut.Windows.Resources
         public string Name { get; set; }
         public string[] Families { get; set; }
         public string ContentPath { get; set; }
+        public int FrameSizeX { get; set; }
+        public int FrameSizeY { get; set; }
+        public ICollection<SpriteFrameConfiguration> Frames { get; set; } = new List<SpriteFrameConfiguration>();
+    }
+
+    internal class SpriteFrameConfiguration
+    {
+        public string Name { get; set; }
+        public int PositionX { get; set; }
+        public int PositionY { get; set; }
     }
 
     internal class ResourceDictionary
@@ -81,9 +119,18 @@ namespace HeroesOfVuklut.Windows.Resources
     {
         void LoadTextures(ContentManager content);
 
-        Texture2D GetTexture(string resourceName);
-        Texture2D GetTexture(string resourceName, string familyName);
-        Texture2D GetTextureFrame(string resourceName, string frame);
-        Texture2D GetTextureFrame(string resourceName, string familyName, string frame);
+        TextureInfo GetTexture(string resourceName);
+        TextureInfo GetTexture(string resourceName, string familyName);
+        TextureInfo GetTextureFrame(string resourceName, string frame);
+        TextureInfo GetTextureFrame(string resourceName, string familyName, string frame);
+    }
+
+    public class TextureInfo
+    {
+        public Texture2D Texture { get; set; }
+        public int Width { get; set; }
+        public int Heigth { get; set; }
+        public int OffsetX { get; set; }
+        public int OffsetY { get; set; }
     }
 }
