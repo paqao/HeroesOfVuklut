@@ -1,9 +1,22 @@
+using HeroesOfVuklut.Shared.Clash.MapItems;
 using System.Collections.Generic;
 
-public class ClashFaction {
-  public IList<UnitTemplate> UnitTemplates { get; protected set; }
-  
-  public ClashFaction(){
-    UnitTemplates = new List<UnitTemplate>();
-  }
+namespace HeroesOfVuklut.Shared.Clash
+{
+    public class ClashFaction
+    {
+        public IList<UnitTemplate> UnitTemplates { get; protected set; }
+
+        public ClashFactionCastle Castle { get; set; }
+
+        public FactionAspect Aspect { get; set; }
+
+        public ClashFaction()
+        {
+            UnitTemplates = new List<UnitTemplate>();
+        }
+
+       
+    }
+
 }

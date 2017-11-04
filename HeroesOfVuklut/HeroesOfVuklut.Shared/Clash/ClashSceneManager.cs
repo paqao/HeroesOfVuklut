@@ -1,4 +1,5 @@
 using HeroesOfVuklut.Shared;
+using HeroesOfVuklut.Shared.Clash.MapItems;
 using System;
 
 namespace HeroesOfVuklut.Shared.Clash
@@ -94,6 +95,7 @@ namespace HeroesOfVuklut.Shared.Clash
         {
             var cursor = InputInterface.GetCursor();
             var leftButton = InputInterface.CheckInputDown("cursorLeft");
+            var rightButton = InputInterface.CheckInputDown("cursorRight");
 
             int itemX = (cursor.PositionX - offsetX) / 32;
             int itemY = (cursor.PositionY - offsetY) / 32;
@@ -112,6 +114,16 @@ namespace HeroesOfVuklut.Shared.Clash
                         tile.Item.Selected = true;
                     }
                 }
+                
+            }
+
+            if (rightButton && _selectedTile != null)
+            {
+                if (_selectedTile.Item != null)
+                {
+                    _selectedTile.Item.Selected = false;
+                }
+                _selectedTile = null;
             }
 
             _cursor = cursor;

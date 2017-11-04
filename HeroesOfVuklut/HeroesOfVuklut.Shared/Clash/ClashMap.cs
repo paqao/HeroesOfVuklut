@@ -1,3 +1,4 @@
+using HeroesOfVuklut.Shared.Clash.MapItems;
 using System.Collections.Generic;
 
 namespace HeroesOfVuklut.Shared.Clash

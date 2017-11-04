@@ -13,13 +13,13 @@ namespace HeroesOfVuklut.Windows
         public void Draw(int x, int y, int w, int h, string resourceKey)
         {
             TextureInfo texture = ResourceProvider.GetTexture(resourceKey);
-            Batch.Draw(texture.Texture, new Rectangle(x, y, w, h), Color.White);
+            Batch.Draw(texture.Texture, new Rectangle(x, y, w, h), Microsoft.Xna.Framework.Color.White);
         }
 
         public void Draw(int x, int y, int w, int h, string resourceKey, string frame)
         {
             TextureInfo texture = ResourceProvider.GetTextureFrame(resourceKey, frame);
-            Batch.Draw(texture.Texture, new Rectangle(x, y, w, h), new Rectangle(texture.OffsetX, texture.OffsetY, texture.Width, texture.Heigth), Color.White);
+            Batch.Draw(texture.Texture, new Rectangle(x, y, w, h), new Rectangle(texture.OffsetX, texture.OffsetY, texture.Width, texture.Heigth), Microsoft.Xna.Framework.Color.White);
         }
     }
 }

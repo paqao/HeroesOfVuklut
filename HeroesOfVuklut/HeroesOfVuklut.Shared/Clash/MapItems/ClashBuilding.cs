@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HeroesOfVuklut.Shared.Clash
+namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
     public abstract class ClashBuilding : ClashTileItem
     {

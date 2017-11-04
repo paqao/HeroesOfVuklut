@@ -1,4 +1,4 @@
-namespace HeroesOfVuklut.Shared.Clash
+namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
     public class ClashTile
     {

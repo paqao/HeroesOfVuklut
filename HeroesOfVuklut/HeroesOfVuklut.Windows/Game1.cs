@@ -56,6 +56,7 @@ namespace HeroesOfVuklut.Windows
 
             _mouseProce = new MouseProcessorImpl();
             _mouseProce.Register("cursorLeft", MouseKeys.Left);
+            _mouseProce.Register("cursorRight", MouseKeys.Right);
 
             _inputInterface = new InputInterface();
             _inputInterface.AddProcessor(_inputProce);
@@ -144,7 +145,7 @@ namespace HeroesOfVuklut.Windows
         protected override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
 
             SceneNavigator.CurrentScene.Draw();
 
