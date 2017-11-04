@@ -25,6 +25,39 @@
 
     },
     {
+      "Name": "castle",
+      "Families": [
+        "clash",
+        "clash/building",
+        "clash/castle"
+      ],
+      "FrameSizeX": 32,
+      "FrameSizeY": 32,
+      "ContentPath": "Sprites/castle",
+      "Frames": [
+        {
+          "Name": "castle1-Idle",
+          "PositionX": 0,
+          "PositionY": 0
+        },
+        {
+          "Name": "castle1-Hover",
+          "PositionX": 1,
+          "PositionY": 0
+        },
+        {
+          "Name": "castle2-Idle",
+          "PositionX": 0,
+          "PositionY": 1
+        },
+        {
+          "Name": "castle2-Hover",
+          "PositionX": 1,
+          "PositionY": 1
+        }
+      ]
+    },
+    {
       "Name": "cursor",
       "Families": [
         "ui"

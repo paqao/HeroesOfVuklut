@@ -1,118 +1,139 @@
 using HeroesOfVuklut.Shared;
 using System;
 
-public class ClashSceneManager : SceneManager<ClashSceneManager> {
-    private ClashState _currentClash;
-    private IClashResourceManager clashResourceManager;
-    private CursorPosition _cursor;
-
-    private int offsetX;
-    private int offsetY;
-
-    public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface) : base(sceneNavigator, inputInterface, graphicsInterface)
+namespace HeroesOfVuklut.Shared.Clash
+{
+    public class ClashSceneManager : SceneManager<ClashSceneManager>
     {
-        clashResourceManager = new ClashResourceManager();
-    }
+        private ClashState _currentClash;
+        private IClashResourceManager clashResourceManager;
+        private CursorPosition _cursor;
 
-    public void PrepareClash(ClashState state) {
-        _currentClash = state;
+        private int offsetX;
+        private int offsetY;
+        private ClashTile _selectedTile;
 
-        offsetX = (800 - state.MapClash.Width * 32) / 2;
-        offsetY = (600 - state.MapClash.Heigth * 32) / 4;
-    }
-
-    public override void BeginScene(SceneParameter<ClashSceneManager> sceneParameter)
-    {
-        base.BeginScene(sceneParameter);
-        var parsedParam = sceneParameter as ClashSceneParameter;
-
-        var clashState = new ClashState();
-
-        PrepareClash(clashState);
-
-        ProcessInput();
-    }
-
-    public override void Update(TimeSpan step)
-    {
-    }
-
-    public override void Draw()
-    {
-        for(int i=0; i < _currentClash.MapClash.Width; i++)
+        public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface) : base(sceneNavigator, inputInterface, graphicsInterface)
         {
-            for(int j=0;j < _currentClash.MapClash.Heigth; j++)
-            {
-                var tile = _currentClash.MapClash.Tiles[j][i];
+            clashResourceManager = new ClashResourceManager();
+        }
 
-                string style = "Idle";
-                if (tile.Hover)
+        public void PrepareClash(ClashState state)
+        {
+            _currentClash = state;
+
+            offsetX = (800 - state.MapClash.Width * 32) / 2;
+            offsetY = (600 - state.MapClash.Heigth * 32) / 4;
+        }
+
+        public override void BeginScene(SceneParameter<ClashSceneManager> sceneParameter)
+        {
+            base.BeginScene(sceneParameter);
+            var parsedParam = sceneParameter as ClashSceneParameter;
+
+            var clashState = new ClashState();
+
+            PrepareClash(clashState);
+
+            ProcessInput();
+        }
+
+        public override void Update(TimeSpan step)
+        {
+        }
+
+        public override void Draw()
+        {
+            for (int i = 0; i < _currentClash.MapClash.Width; i++)
+            {
+                for (int j = 0; j < _currentClash.MapClash.Heigth; j++)
                 {
-                    style = "Hover";
+                    var tile = _currentClash.MapClash.Tiles[j][i];
+
+                    string style = "Idle";
+                    if (tile.Hover)
+                    {
+                        style = "Hover";
+                    }
+                    var resourceName = clashResourceManager.GetGroundResource(tile.GroundId);
+                    GraphicsInterface.Draw(offsetX + i * 32, offsetY + j * 32, 32, 32, resourceName, style);
+
+                    if(tile.Item != null)
+                    {
+                        var frameName = tile.Item.GetFrameName();
+                        GraphicsInterface.Draw(offsetX + i * 32, offsetY + j * 32, 32, 32, tile.Item.Resource, frameName);
+                    }
                 }
-                var resourceName = clashResourceManager.GetGroundResource(tile.GroundId);
-                GraphicsInterface.Draw(offsetX + i * 32, offsetY + j * 32, 32, 32, resourceName, style);
             }
+            
+            // ui
+
+
+            // ui controllers
+            GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
         }
 
-
-        GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
-    }
-
-    public override Type GetSceneType()
-    {
-        return typeof(ClashSceneManager);
-    }
-
-    public override void ClearScene()
-    {
-        for (int i = 0; i < _currentClash.MapClash.Width; i++)
+        public override Type GetSceneType()
         {
-            for (int j = 0; j < _currentClash.MapClash.Heigth; j++)
+            return typeof(ClashSceneManager);
+        }
+
+        public override void ClearScene()
+        {
+            for (int i = 0; i < _currentClash.MapClash.Width; i++)
             {
-                var tile = _currentClash.MapClash.Tiles[j][i];
-                tile.Hover = false;
+                for (int j = 0; j < _currentClash.MapClash.Heigth; j++)
+                {
+                    var tile = _currentClash.MapClash.Tiles[j][i];
+                    tile.Hover = false;
+                }
+            }
+        }
+
+        public override void ProcessInput()
+        {
+            var cursor = InputInterface.GetCursor();
+            var leftButton = InputInterface.CheckInputDown("cursorLeft");
+
+            int itemX = (cursor.PositionX - offsetX) / 32;
+            int itemY = (cursor.PositionY - offsetY) / 32;
+
+            if (itemX >= 0 && itemY >= 0 && itemX < _currentClash.MapClash.Width && itemY < _currentClash.MapClash.Heigth)
+            {
+                var tile = _currentClash.MapClash.Tiles[itemY][itemX];
+
+                tile.Hover = true;
+                if (leftButton)
+                {
+                    _selectedTile = tile;
+                }
+            }
+
+            _cursor = cursor;
+        }
+
+        public class ClashSceneParameter : SceneParameter<ClashSceneManager>
+        {
+            public ClashSceneParameter()
+            {
+
+            }
+
+            public static ClashSceneParameter Default { get { return null; } }
+        }
+
+        public interface IClashResourceManager
+        {
+            string GetGroundResource(int id);
+        }
+
+        public class ClashResourceManager : IClashResourceManager
+        {
+            public string GetGroundResource(int id)
+            {
+                return "grass";
             }
         }
     }
 
-    public override void ProcessInput()
-    {
-        var cursor = InputInterface.GetCursor();
-        
-        int itemX = (cursor.PositionX - offsetX) / 32;
-        int itemY = (cursor.PositionY - offsetY) / 32;
-
-        if(itemX >= 0 && itemY >= 0 && itemX < _currentClash.MapClash.Width && itemY < _currentClash.MapClash.Heigth)
-        {
-            var tile = _currentClash.MapClash.Tiles[itemY][itemX];
-
-            tile.Hover = true;
-        }
-
-        _cursor = cursor;
-    }
-
-    public class ClashSceneParameter : SceneParameter<ClashSceneManager>
-    {
-        public ClashSceneParameter()
-        {
-
-        }
-
-        public static ClashSceneParameter Default { get { return null; } }
-    }
-
-    public interface IClashResourceManager
-    {
-        string GetGroundResource(int id);
-    }
-
-    public class ClashResourceManager : IClashResourceManager
-    {
-        public string GetGroundResource(int id)
-        {
-            return "grass";
-        }
-    }
 }

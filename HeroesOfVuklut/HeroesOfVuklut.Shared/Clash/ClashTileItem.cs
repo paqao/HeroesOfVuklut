@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HeroesOfVuklut.Shared.Clash
+{
+    public abstract class ClashTileItem
+    {
+        public bool Hover { get; set; }
+        public string Resource { get; protected set; }
+        public abstract string GetFrameName();
+    }
+}

@@ -1,17 +1,12 @@
 ﻿using HeroesOfVuklut.Shared.Input;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HeroesOfVuklut.Windows.InputProcessor
 {
     public interface KeyboardProcessor : IInputProcessor
     {
-        ButtonStateValue GetButtonState(string key);
-        Shared.Input.ButtonState GetButton(string key);
         void RegisterKey(string key, Keys keyboard);
         void Refresh(KeyboardState state);
     }
@@ -28,7 +23,7 @@ namespace HeroesOfVuklut.Windows.InputProcessor
 
         public Shared.Input.ButtonState GetButton(string key)
         {
-            return buttons.First(x => x.Key == key);
+            return buttons.FirstOrDefault(x => x.Key == key);
         }
 
         public ButtonStateValue GetButtonState(string key)

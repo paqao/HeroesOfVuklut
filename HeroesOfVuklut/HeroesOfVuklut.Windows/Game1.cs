@@ -7,6 +7,7 @@ using HeroesOfVuklut.Windows.InputProcessor;
 using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Shared.Input;
 using HeroesOfVuklut.Windows.Resources;
+using HeroesOfVuklut.Shared.Clash;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -54,6 +55,7 @@ namespace HeroesOfVuklut.Windows
             _inputProce.RegisterKey("exit", Keys.Escape);
 
             _mouseProce = new MouseProcessorImpl();
+            _mouseProce.Register("cursorLeft", MouseKeys.Left);
 
             _inputInterface = new InputInterface();
             _inputInterface.AddProcessor(_inputProce);

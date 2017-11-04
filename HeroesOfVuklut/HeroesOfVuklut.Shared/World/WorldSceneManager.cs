@@ -1,4 +1,5 @@
 using HeroesOfVuklut.Shared;
+using HeroesOfVuklut.Shared.Clash;
 using System;
 
 public class WorldSceneManager : SceneManager<WorldSceneManager>

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HeroesOfVuklut.Shared.Input;
 
 namespace HeroesOfVuklut.Windows.InputProcessor
 {
     public interface IInputProcessor
     {
-        
+        ButtonStateValue GetButtonState(string key);
+        ButtonState GetButton(string key);
     }
 }
