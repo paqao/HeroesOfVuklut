@@ -81,6 +81,27 @@
         "clash"
       ],
       "ContentPath": "Sprites/clashInterface"
+    },
+    {
+      "Name": "clashInterfaceDynamic",
+      "Families": [
+        "ui"
+      ],
+      "FrameSizeX": 42,
+      "FrameSizeY": 42,
+      "ContentPath": "Sprites/clashInterfaceDynamic",
+      "Frames": [
+        {
+          "Name": "upgrade-idle",
+          "PositionX": 0,
+          "PositionY": 0
+        },
+        {
+          "Name": "upgrade-active",
+          "PositionX": 1,
+          "PositionY": 0
+        }
+      ]
     }
   ]
 }

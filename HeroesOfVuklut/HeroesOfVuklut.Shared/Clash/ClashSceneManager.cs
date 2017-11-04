@@ -70,6 +70,17 @@ namespace HeroesOfVuklut.Shared.Clash
             // ui
             GraphicsInterface.Draw(0, 520, 800, 80, "clashInterface");
 
+            if(_selectedTile != null && _selectedTile.Item != null)
+            {
+                var upgradableItem = _selectedTile.Item as IUpgradeable;
+
+                if(upgradableItem != null)
+                {
+                    var style = upgradableItem.CanUpgrade(_currentClash.Factions[0]) ? "upgrade-active" : "upgrade-idle";
+                    GraphicsInterface.Draw(8, 528, 42, 42, "clashInterfaceDynamic", style);
+                }
+            }
+
             // ui controllers
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
         }
