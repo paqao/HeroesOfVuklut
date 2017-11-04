@@ -10,12 +10,7 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
         {
             Resource = "castle";
         }
-
-        public override void Upgrade()
-        {
-            base.Upgrade();
-        }
-
+        
         public override string GetFrameName()
         {
             string frame = Hover ? "Hover" : "Idle";

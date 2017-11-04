@@ -1,4 +1,5 @@
 using HeroesOfVuklut.Shared.Clash.MapItems;
+using System;
 using System.Collections.Generic;
 
 namespace HeroesOfVuklut.Shared.Clash
@@ -6,6 +7,7 @@ namespace HeroesOfVuklut.Shared.Clash
     public class ClashFaction
     {
         public IList<UnitTemplate> UnitTemplates { get; protected set; }
+        public IList<ClashResource> ClashResources { get; protected set; }
 
         public ClashFactionCastle Castle { get; set; }
 
@@ -14,6 +16,14 @@ namespace HeroesOfVuklut.Shared.Clash
         public ClashFaction()
         {
             UnitTemplates = new List<UnitTemplate>();
+            ClashResources = new List<ClashResource>();
+            var array = Enum.GetValues(typeof(ClashResource.ClashResourceType));
+            foreach (var item  in array)
+            {
+                var resourceType = (ClashResource.ClashResourceType) item;
+
+                ClashResources.Add(ClashResource.CreateResource(0, 50, resourceType));
+            }
         }
 
        

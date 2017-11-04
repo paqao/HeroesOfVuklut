@@ -116,6 +116,28 @@ namespace HeroesOfVuklut.Shared.Clash
                 }
                 
             }
+            else
+            {
+                if (leftButton)
+                {
+                    var distanceX = cursor.PositionX - 30;
+                    var distanceY = cursor.PositionY - 550;
+
+                    var distance = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
+
+                    if(distance < 23 && _selectedTile != null && _selectedTile.Item != null)
+                    {
+                        var item = _selectedTile.Item;
+                        var upgradableItem = item as IUpgradeable;
+                        
+                        if(upgradableItem != null)
+                        {
+                            upgradableItem.Updgrade(_currentClash.Factions[0]);
+                        }
+                    }
+                }
+            }
+            
 
             if (rightButton && _selectedTile != null)
             {
