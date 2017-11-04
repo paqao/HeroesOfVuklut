@@ -65,9 +65,9 @@ namespace HeroesOfVuklut.Shared.Clash
                     }
                 }
             }
-            
-            // ui
 
+            // ui
+            GraphicsInterface.Draw(0, 520, 800, 80, "clashInterface");
 
             // ui controllers
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
@@ -106,6 +106,11 @@ namespace HeroesOfVuklut.Shared.Clash
                 if (leftButton)
                 {
                     _selectedTile = tile;
+
+                    if(tile.Item != null)
+                    {
+                        tile.Item.Selected = true;
+                    }
                 }
             }
 

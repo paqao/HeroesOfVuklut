@@ -46,6 +46,11 @@
           "PositionY": 0
         },
         {
+          "Name": "castle1-Selected",
+          "PositionX": 2,
+          "PositionY": 0
+        },
+        {
           "Name": "castle2-Idle",
           "PositionX": 0,
           "PositionY": 1
@@ -53,6 +58,11 @@
         {
           "Name": "castle2-Hover",
           "PositionX": 1,
+          "PositionY": 1
+        },
+        {
+          "Name": "castle2-Selected",
+          "PositionX": 2,
           "PositionY": 1
         }
       ]
@@ -63,6 +73,14 @@
         "ui"
       ],
       "ContentPath": "Sprites/cursor"
+    },
+    {
+      "Name": "clashInterface",
+      "Families": [
+        "ui",
+        "clash"
+      ],
+      "ContentPath": "Sprites/clashInterface"
     }
   ]
 }

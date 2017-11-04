@@ -11,7 +11,7 @@ namespace HeroesOfVuklut.Shared.Clash
         public ClashState()
         {
             Factions = new List<ClashFaction>();
-            MapClash = new ClashMap(16, 16);
+            MapClash = new ClashMap(16, 14);
 
             MapClash.Tiles[0][0].Item = new ClashFactionCastle();
         }

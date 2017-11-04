@@ -19,6 +19,11 @@ namespace HeroesOfVuklut.Shared.Clash
         public override string GetFrameName()
         {
             string frame = Hover ? "Hover" : "Idle";
+
+            if (Selected)
+            {
+                frame = "Selected";
+            }
             return $"{Resource}{Level}-{frame}";
         }
     }

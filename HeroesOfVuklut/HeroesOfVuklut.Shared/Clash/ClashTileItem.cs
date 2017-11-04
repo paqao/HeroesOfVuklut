@@ -7,6 +7,7 @@ namespace HeroesOfVuklut.Shared.Clash
     public abstract class ClashTileItem
     {
         public bool Hover { get; set; }
+        public bool Selected { get; set; }
         public string Resource { get; protected set; }
         public abstract string GetFrameName();
     }
