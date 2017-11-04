@@ -10,10 +10,15 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
 
         public bool CanUpgrade(ClashFaction faction)
         {
-            return true;
+            if(Level <= 1)
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        public void Updgrade(ClashFaction faction)
+        public void Upgrade(ClashFaction faction)
         {
             Level++;
         }

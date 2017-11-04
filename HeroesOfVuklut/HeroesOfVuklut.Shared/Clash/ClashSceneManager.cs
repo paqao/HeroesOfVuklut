@@ -130,9 +130,9 @@ namespace HeroesOfVuklut.Shared.Clash
                         var item = _selectedTile.Item;
                         var upgradableItem = item as IUpgradeable;
                         
-                        if(upgradableItem != null)
+                        if(upgradableItem != null && upgradableItem.CanUpgrade(_currentClash.Factions[0]))
                         {
-                            upgradableItem.Updgrade(_currentClash.Factions[0]);
+                            upgradableItem.Upgrade(_currentClash.Factions[0]);
                         }
                     }
                 }
