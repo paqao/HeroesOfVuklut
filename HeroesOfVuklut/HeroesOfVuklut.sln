@@ -7,9 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeroesOfVuklut.Windows", "H
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HeroesOfVuklut.Shared", "HeroesOfVuklut.Shared\HeroesOfVuklut.Shared.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HeroesOfVuklut.Engine", "HeroesOfVuklut.Engine\HeroesOfVuklut.Engine.shproj", "{6A0C184D-C91F-454A-B220-C89B8DE74510}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		HeroesOfVuklut.Engine\HeroesOfVuklut.Engine.projitems*{6106f7ae-d06c-4599-b1e7-00162f91ddf1}*SharedItemsImports = 4
 		HeroesOfVuklut.Shared\HeroesOfVuklut.Shared.projitems*{6106f7ae-d06c-4599-b1e7-00162f91ddf1}*SharedItemsImports = 4
+		HeroesOfVuklut.Engine\HeroesOfVuklut.Engine.projitems*{6a0c184d-c91f-454a-b220-c89b8de74510}*SharedItemsImports = 13
 		HeroesOfVuklut.Shared\HeroesOfVuklut.Shared.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -30,10 +30,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\IUpgradeable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitTemplate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FactionAspect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factions\FactionAspect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factions\IFactionProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IConfiguralable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IConfigurationProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IGameConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IGraphicsInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IInputInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\ButtonState.cs" />

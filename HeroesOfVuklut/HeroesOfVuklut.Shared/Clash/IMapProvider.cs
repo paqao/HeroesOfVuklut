@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace HeroesOfVuklut.Shared.Clash
 {
-    public interface IMapProvider
+    public interface IMapProvider : IConfiguralable<IGameConfiguration>
     {
         ClashMap GetMapByName(string name);
+        ClashMap GetMapById(int id);
     }
 }

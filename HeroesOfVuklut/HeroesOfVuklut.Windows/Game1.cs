@@ -8,6 +8,9 @@ using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Shared.Input;
 using HeroesOfVuklut.Windows.Resources;
 using HeroesOfVuklut.Shared.Clash;
+using HeroesOfVuklut.Windows.Maps;
+using HeroesOfVuklut.Windows.Factions;
+using HeroesOfVuklut.Engine.DI;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -26,7 +29,9 @@ namespace HeroesOfVuklut.Windows
         private InputInterface _inputInterface;
         private GraphicInterface graphInterface = new GraphicInterface();
         private IResourceProvider resourceProvider = new ResourceProvider();
+        private FactionProvider factionProvider = new FactionProvider();
         private GameConfigurationProvider gameConfigurationProvider = new GameConfigurationProvider();
+        private IContainerSystem Container = new ContainerSystem();
 
         public Game1()
         {
@@ -48,9 +53,11 @@ namespace HeroesOfVuklut.Windows
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
+            
+            Container.AddDeclaration<MapProvider, IMapProvider>();
 
+            var mapProvider = Container.Resolve<IMapProvider>();
 
             var keyState = Keyboard.GetState();
             _inputProce = new KeyboardProcessorImpl();
@@ -67,6 +74,9 @@ namespace HeroesOfVuklut.Windows
             PrepareScenes();
 
             gameConfiguration = gameConfigurationProvider.GetConfiguration();
+            mapProvider.SetConfiguration(gameConfiguration);
+
+            factionProvider.LoadConfiguration();
         }
 
         private void PrepareScenes()
@@ -78,7 +88,7 @@ namespace HeroesOfVuklut.Windows
             SceneNavigator.GotoScene(scene.GetSceneType(), scene.GetDefault());
 
             var worldMapScene = new WorldSceneManager(SceneNavigator, _inputInterface, graphInterface);
-            var clashScene = new ClashSceneManager(SceneNavigator, _inputInterface, graphInterface);
+            var clashScene = new ClashSceneManager(SceneNavigator, _inputInterface, graphInterface, Container.Resolve<IMapProvider>());
 
             SceneNavigator.Scenes.AddScene(worldMapScene);
             SceneNavigator.Scenes.AddScene(clashScene);

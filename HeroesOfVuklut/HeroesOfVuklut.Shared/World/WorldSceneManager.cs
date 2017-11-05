@@ -26,7 +26,8 @@ public class WorldSceneManager : SceneManager<WorldSceneManager>
 
     public override void Update(TimeSpan elapsedGameTime)
     {
-        SceneNavigator.GotoScene(typeof(ClashSceneManager), ClashSceneManager.ClashSceneParameter.Default);
+        var navigationParameter = new ClashSceneManager.ClashSceneParameter(1);
+        SceneNavigator.GotoScene(typeof(ClashSceneManager), navigationParameter);
     }
 
     public override void ProcessInput()

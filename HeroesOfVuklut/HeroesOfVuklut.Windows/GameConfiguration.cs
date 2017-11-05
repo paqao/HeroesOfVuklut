@@ -1,19 +1,20 @@
-﻿using System;
+﻿using HeroesOfVuklut.Shared;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HeroesOfVuklut.Windows
 {
-    public class GameConfiguration
+    public class GameConfiguration : IGameConfiguration
     {
-        public ICollection<GameMapConfiguration> Maps { get; set; }
+        public ICollection<IGameMapConfiguration> Maps { get { return MapConf.Select(m => (IGameMapConfiguration) m).ToList(); } }
+
+        public ICollection<GameMapConfiguration> MapConf { get; set; }
     }
 
-    public class GameMapConfiguration
+    public class GameMapConfiguration : IGameMapConfiguration
     {
         public string Name { get; set; }
         public string Path { get; set; }
+        public int Id { get; set; }
     }
 }

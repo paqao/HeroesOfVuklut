@@ -13,10 +13,12 @@ namespace HeroesOfVuklut.Shared.Clash
         private int offsetX;
         private int offsetY;
         private ClashTile _selectedTile;
+        private readonly IMapProvider _mapProvider;
 
-        public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface) : base(sceneNavigator, inputInterface, graphicsInterface)
+        public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IMapProvider mapProvider) : base(sceneNavigator, inputInterface, graphicsInterface)
         {
             clashResourceManager = new ClashResourceManager();
+            _mapProvider = mapProvider;
         }
 
         public void PrepareClash(ClashState state)
@@ -32,8 +34,10 @@ namespace HeroesOfVuklut.Shared.Clash
             base.BeginScene(sceneParameter);
             var parsedParam = sceneParameter as ClashSceneParameter;
 
-            var clashState = new ClashState();
 
+            var map = _mapProvider.GetMapById(parsedParam.MapId);
+            var clashState = new ClashState();
+            clashState.MapClash = map;
             PrepareClash(clashState);
 
             ProcessInput();
@@ -166,12 +170,14 @@ namespace HeroesOfVuklut.Shared.Clash
 
         public class ClashSceneParameter : SceneParameter<ClashSceneManager>
         {
-            public ClashSceneParameter()
+            public ClashSceneParameter(int mapId)
             {
-
+                MapId = mapId;
             }
 
             public static ClashSceneParameter Default { get { return null; } }
+
+            public int MapId { get; private set; }
         }
 
         public interface IClashResourceManager

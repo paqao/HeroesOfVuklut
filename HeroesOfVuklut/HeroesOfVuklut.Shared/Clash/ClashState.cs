@@ -7,7 +7,7 @@ namespace HeroesOfVuklut.Shared.Clash
     public class ClashState
     {
         public IList<ClashFaction> Factions { get; protected set; }
-        public ClashMap MapClash { get; protected set; }
+        public ClashMap MapClash { get; set; }
 
         public ClashState()
         {
@@ -28,10 +28,7 @@ namespace HeroesOfVuklut.Shared.Clash
             };
 
             Factions.Add(playerFaction);
-
-            MapClash = new ClashMap(16, 14);
-
-            MapClash.Tiles[0][0].Item = playerCastle;
+            
         }
     }
 }
