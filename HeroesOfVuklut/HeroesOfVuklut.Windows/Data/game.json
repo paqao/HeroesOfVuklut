@@ -1,0 +1,9 @@
+﻿{
+  "Maps": [
+    {
+      "Id": 1,
+      "Name": "Tutorial 1",
+      "Path": "Data/Maps/map1.json"
+    }
+  ]
+}

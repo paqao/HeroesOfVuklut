@@ -20,11 +20,13 @@ namespace HeroesOfVuklut.Windows
         SpriteBatch spriteBatch;
         ISceneNavigator SceneNavigator;
         private KeyboardProcessorImpl _inputProce;
+        private GameConfiguration gameConfiguration;
 
         private MouseProcessorImpl _mouseProce;
         private InputInterface _inputInterface;
         private GraphicInterface graphInterface = new GraphicInterface();
         private IResourceProvider resourceProvider = new ResourceProvider();
+        private GameConfigurationProvider gameConfigurationProvider = new GameConfigurationProvider();
 
         public Game1()
         {
@@ -64,6 +66,7 @@ namespace HeroesOfVuklut.Windows
 
             PrepareScenes();
 
+            gameConfiguration = gameConfigurationProvider.GetConfiguration();
         }
 
         private void PrepareScenes()

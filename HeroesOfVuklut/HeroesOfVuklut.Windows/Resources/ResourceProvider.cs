@@ -11,6 +11,12 @@ namespace HeroesOfVuklut.Windows.Resources
     public class ResourceProvider : IResourceProvider
     {
         private ResourceDictionary _resourceDictionary = new ResourceDictionary();
+        private SpriteFont _storedFont; 
+        public SpriteFont Font()
+        {
+            return _storedFont;
+        }
+
         public TextureInfo GetTexture(string resourceName)
         {
             var texture = _resourceDictionary.Textures.FirstOrDefault(x => String.Compare(resourceName.ToLower(), x.Key.Name.ToLower()) == 0);
@@ -76,6 +82,8 @@ namespace HeroesOfVuklut.Windows.Resources
                 var texture = content.Load<Texture2D>(sprite.ContentPath);
                 _resourceDictionary.Add(sprite, texture);
             }
+
+            _storedFont = content.Load<SpriteFont>("Fonts/MyFont");
         }
     }
 
@@ -123,6 +131,8 @@ namespace HeroesOfVuklut.Windows.Resources
         TextureInfo GetTexture(string resourceName, string familyName);
         TextureInfo GetTextureFrame(string resourceName, string frame);
         TextureInfo GetTextureFrame(string resourceName, string familyName, string frame);
+
+        SpriteFont Font();
     }
 
     public class TextureInfo

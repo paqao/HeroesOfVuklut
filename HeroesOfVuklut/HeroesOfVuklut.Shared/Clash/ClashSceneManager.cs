@@ -81,6 +81,8 @@ namespace HeroesOfVuklut.Shared.Clash
                 }
             }
 
+            GraphicsInterface.DrawText(40, 528, "test");
+
             // ui controllers
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
         }

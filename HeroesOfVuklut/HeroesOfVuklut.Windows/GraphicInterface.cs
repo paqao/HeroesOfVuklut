@@ -1,4 +1,5 @@
-﻿using HeroesOfVuklut.Shared;
+﻿using System;
+using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Windows.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,6 +21,11 @@ namespace HeroesOfVuklut.Windows
         {
             TextureInfo texture = ResourceProvider.GetTextureFrame(resourceKey, frame);
             Batch.Draw(texture.Texture, new Rectangle(x, y, w, h), new Rectangle(texture.OffsetX, texture.OffsetY, texture.Width, texture.Heigth), Microsoft.Xna.Framework.Color.White);
+        }
+
+        public void DrawText(int x, int y, string text)
+        {
+            Batch.DrawString( ResourceProvider.Font() , text, new Vector2(x, y), Microsoft.Xna.Framework.Color.White);
         }
     }
 }

@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Castle\Castle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Castle\CastleSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashResource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\IMapProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashBuilding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashFaction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashFactionCastle.cs" />
