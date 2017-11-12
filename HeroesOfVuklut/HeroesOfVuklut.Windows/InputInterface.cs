@@ -10,6 +10,10 @@ namespace HeroesOfVuklut.Windows
     {
         private List<IInputProcessor> _processors = new List<IInputProcessor>();
 
+        public InputInterface()
+        {
+
+        }
         internal class CursorPositionImpl : CursorPosition
         {
             internal CursorPositionImpl(int x, int y)

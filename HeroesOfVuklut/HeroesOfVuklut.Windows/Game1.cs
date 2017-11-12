@@ -47,6 +47,21 @@ namespace HeroesOfVuklut.Windows
 
             var assembly = Assembly.GetEntryAssembly();
             Container.AddAttributeDeclarations(assembly);
+
+
+            _inputInterface = Container.Resolve<IInputInterface>() as InputInterface;
+
+
+            var keyState = Keyboard.GetState();
+            _inputProce = new KeyboardProcessorImpl();
+            _inputProce.RegisterKey("exit", Keys.Escape);
+
+            _mouseProce = new MouseProcessorImpl();
+            _mouseProce.Register("cursorLeft", MouseKeys.Left);
+            _mouseProce.Register("cursorRight", MouseKeys.Right);
+            
+            _inputInterface.AddProcessor(_inputProce);
+            _inputInterface.AddProcessor(_mouseProce);
         }
 
         /// <summary>
@@ -63,19 +78,7 @@ namespace HeroesOfVuklut.Windows
             
             var mapProvider = Container.Resolve<IMapProvider>();
             SceneNavigator = Container.Resolve<ISceneNavigator>();
-            _inputInterface = Container.Resolve<IInputInterface>() as InputInterface;
             
-            var keyState = Keyboard.GetState();
-            _inputProce = new KeyboardProcessorImpl();
-            _inputProce.RegisterKey("exit", Keys.Escape);
-
-            _mouseProce = new MouseProcessorImpl();
-            _mouseProce.Register("cursorLeft", MouseKeys.Left);
-            _mouseProce.Register("cursorRight", MouseKeys.Right);
-
-            _inputInterface = new InputInterface();
-            _inputInterface.AddProcessor(_inputProce);
-            _inputInterface.AddProcessor(_mouseProce);
 
             PrepareScenes();
 
@@ -88,16 +91,14 @@ namespace HeroesOfVuklut.Windows
         private void PrepareScenes()
         {
             var menuScene = Container.AddScene<MenuSceneManager>();
-
+            var worldMapScene = Container.AddScene<WorldSceneManager>();
+            var clashScene = Container.AddScene<ClashSceneManager>();
             
             SceneNavigator.Scenes.AddScene(menuScene);
             SceneNavigator.Scenes.SetDefault(menuScene);
 
             SceneNavigator.GotoScene(menuScene.GetSceneType(), menuScene.GetDefault());
-
-            var worldMapScene = new WorldSceneManager(SceneNavigator, _inputInterface, graphInterface);
-            var clashScene = new ClashSceneManager(SceneNavigator, _inputInterface, graphInterface, Container.Resolve<IMapProvider>());
-
+            
             SceneNavigator.Scenes.AddScene(worldMapScene);
             SceneNavigator.Scenes.AddScene(clashScene);
 
