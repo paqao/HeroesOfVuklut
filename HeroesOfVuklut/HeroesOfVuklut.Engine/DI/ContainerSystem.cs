@@ -49,7 +49,7 @@ namespace HeroesOfVuklut.Engine.DI
             var containerSystemItem = new ContainerSystemItem<T, U>();
             Items.Add(containerSystemItem);
         }
-
+        
         public void AddDeclaration<T>() where T : class
         {
             throw new NotImplementedException();
@@ -75,8 +75,20 @@ namespace HeroesOfVuklut.Engine.DI
             return instance;
         }
 
-        public void AddAttributeDeclarations()
+        public void AddAttributeDeclarations(Assembly assembly)
         {
+            var types = assembly.GetTypes();
+
+            var containerItemType = typeof(ContainerSystemItem<,>);
+            foreach (var assemblyType in types.Where(t => t.GetCustomAttribute<ServiceInjectAttribute>() != null))
+            {
+                var assemblyAttribute = assemblyType.GetCustomAttribute<ServiceInjectAttribute>();
+                
+                Type[] typeArgs = { assemblyAttribute.Service, assemblyAttribute.Implementation };
+                var makeme = containerItemType.MakeGenericType(typeArgs);
+                var o = Activator.CreateInstance(makeme);
+                Items.Add(o as ContainerSystemItem);
+            }
         }
     }
 }

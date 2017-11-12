@@ -12,6 +12,7 @@ using HeroesOfVuklut.Windows.Maps;
 using HeroesOfVuklut.Windows.Factions;
 using HeroesOfVuklut.Engine.DI;
 using HeroesOfVuklut.Engine.Scenes;
+using System.Reflection;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -56,10 +57,9 @@ namespace HeroesOfVuklut.Windows
             // TODO: Add your initialization logic here
             base.Initialize();
 
-            Container.AddAttributeDeclarations();
-
-            Container.AddDeclaration<MapProvider, IMapProvider>();
-
+            var assembly = Assembly.GetEntryAssembly();
+            Container.AddAttributeDeclarations(assembly);
+            
             var mapProvider = Container.Resolve<IMapProvider>();
 
             var keyState = Keyboard.GetState();

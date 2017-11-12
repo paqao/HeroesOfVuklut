@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HeroesOfVuklut.Shared
+﻿namespace HeroesOfVuklut.Engine.Configuration
 {
     public interface IConfiguralable<in T>
     {

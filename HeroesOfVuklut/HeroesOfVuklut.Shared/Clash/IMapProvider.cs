@@ -1,4 +1,6 @@
 ﻿
+using HeroesOfVuklut.Engine.Configuration;
+
 namespace HeroesOfVuklut.Shared.Clash
 {
     public interface IMapProvider : IConfiguralable<IGameConfiguration>

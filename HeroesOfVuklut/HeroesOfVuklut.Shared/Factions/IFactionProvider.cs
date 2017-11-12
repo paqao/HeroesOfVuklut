@@ -1,7 +1,4 @@
-﻿using HeroesOfVuklut.Windows;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using HeroesOfVuklut.Engine.Configuration;
 
 namespace HeroesOfVuklut.Shared.Factions
 {

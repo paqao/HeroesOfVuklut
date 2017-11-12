@@ -15,9 +15,14 @@
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\IConfigurable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\IConfigurationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\IContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ServiceInjectAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\IGameSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicsInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneNavigator.cs" />

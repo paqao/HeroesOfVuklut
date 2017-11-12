@@ -5,9 +5,11 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Newtonsoft.Json;
 using System.IO;
+using HeroesOfVuklut.Engine.DI;
 
 namespace HeroesOfVuklut.Windows.Resources
 {
+    [ServiceInject(typeof(ResourceProvider), typeof(IResourceProvider))]
     public class ResourceProvider : IResourceProvider
     {
         private ResourceDictionary _resourceDictionary = new ResourceDictionary();

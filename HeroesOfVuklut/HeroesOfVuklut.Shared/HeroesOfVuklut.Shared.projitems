@@ -33,16 +33,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Factions\FactionAspect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factions\IFactionProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IConfiguralable.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IConfigurationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IGameConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\ButtonState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\IState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menu\MenuSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mission.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\BanditHideoutPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\MissionPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Place.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace HeroesOfVuklut.Engine.DI
@@ -10,6 +11,6 @@ namespace HeroesOfVuklut.Engine.DI
         void AddDeclaration<T>() where T : class;
 
         T Resolve<T>() where T : class;
-        void AddAttributeDeclarations();
+        void AddAttributeDeclarations(Assembly source);
     }
 }
