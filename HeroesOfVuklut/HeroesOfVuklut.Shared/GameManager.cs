@@ -1,3 +1,5 @@
+using HeroesOfVuklut.Engine.Scenes;
+
 namespace HeroesOfVuklut.Shared
 {
     public class GameManager

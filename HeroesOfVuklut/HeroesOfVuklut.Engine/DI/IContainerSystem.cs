@@ -10,5 +10,6 @@ namespace HeroesOfVuklut.Engine.DI
         void AddDeclaration<T>() where T : class;
 
         T Resolve<T>() where T : class;
+        void AddAttributeDeclarations();
     }
 }

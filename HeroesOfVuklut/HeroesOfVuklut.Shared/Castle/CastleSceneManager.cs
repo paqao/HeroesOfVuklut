@@ -1,4 +1,5 @@
-using HeroesOfVuklut.Shared;
+using HeroesOfVuklut.Engine.IO;
+using HeroesOfVuklut.Engine.Scenes;
 using System;
 
 public class CastleSceneManager : SceneManager<CastleSceneManager>

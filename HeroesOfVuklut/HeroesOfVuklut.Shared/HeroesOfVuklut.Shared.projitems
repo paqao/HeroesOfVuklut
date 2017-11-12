@@ -38,15 +38,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)IConfiguralable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IConfigurationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IGameConfiguration.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IGraphicsInterface.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IInputInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\ButtonState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\IState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ISceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menu\MenuSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mission.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SceneManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\BanditHideoutPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\MissionPlace.cs" />

@@ -1,15 +1,14 @@
 ﻿using HeroesOfVuklut.Shared.Clash;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HeroesOfVuklut.Shared;
+using HeroesOfVuklut.Engine.DI;
 
 namespace HeroesOfVuklut.Windows.Maps
 {
+    [ServiceInject(typeof(MapProvider), typeof(IMapProvider))]
     public class MapProvider : IMapProvider
     {
         private IGameConfiguration _gameConfiguration;

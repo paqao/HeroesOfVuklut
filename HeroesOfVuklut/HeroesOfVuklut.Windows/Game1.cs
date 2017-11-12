@@ -11,6 +11,7 @@ using HeroesOfVuklut.Shared.Clash;
 using HeroesOfVuklut.Windows.Maps;
 using HeroesOfVuklut.Windows.Factions;
 using HeroesOfVuklut.Engine.DI;
+using HeroesOfVuklut.Engine.Scenes;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -54,7 +55,9 @@ namespace HeroesOfVuklut.Windows
         {
             // TODO: Add your initialization logic here
             base.Initialize();
-            
+
+            Container.AddAttributeDeclarations();
+
             Container.AddDeclaration<MapProvider, IMapProvider>();
 
             var mapProvider = Container.Resolve<IMapProvider>();

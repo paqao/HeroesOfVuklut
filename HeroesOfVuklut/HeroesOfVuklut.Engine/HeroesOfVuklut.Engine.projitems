@@ -17,5 +17,12 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DI\ContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\IContainerSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DI\ServiceInjectAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicsInterface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\IInputInterface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneNavigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneNavigator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneTree.cs" />
   </ItemGroup>
 </Project>
