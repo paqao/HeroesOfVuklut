@@ -36,7 +36,7 @@ namespace HeroesOfVuklut.Windows
 
                 if(actionItem != null)
                 {
-                    down = actionItem.State == Shared.Input.ButtonStateValue.OnClick || actionItem.State == Shared.Input.ButtonStateValue.OnHold;
+                    down = actionItem.State == ButtonStateValue.OnClick || actionItem.State == ButtonStateValue.OnHold;
                 }
             }
 

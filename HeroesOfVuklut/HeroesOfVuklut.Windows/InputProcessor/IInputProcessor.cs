@@ -1,4 +1,4 @@
-﻿using HeroesOfVuklut.Shared.Input;
+﻿using HeroesOfVuklut.Engine.IO;
 
 namespace HeroesOfVuklut.Windows.InputProcessor
 {

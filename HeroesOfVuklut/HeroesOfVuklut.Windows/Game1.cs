@@ -1,11 +1,8 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using HeroesOfVuklut.Shared.Menu;
 using HeroesOfVuklut.Windows.InputProcessor;
-using HeroesOfVuklut.Shared;
-using HeroesOfVuklut.Shared.Input;
 using HeroesOfVuklut.Windows.Resources;
 using HeroesOfVuklut.Shared.Clash;
 using HeroesOfVuklut.Windows.Factions;

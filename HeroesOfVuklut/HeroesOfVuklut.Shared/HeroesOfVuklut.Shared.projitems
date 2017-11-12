@@ -36,8 +36,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IGameConfiguration.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Input\ButtonState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Input\IState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menu\MenuSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mission.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\BanditHideoutPlace.cs" />

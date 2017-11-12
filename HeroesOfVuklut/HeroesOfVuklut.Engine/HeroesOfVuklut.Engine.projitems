@@ -23,8 +23,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\IGameSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\ButtonState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicsInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputInterface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\IInputState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneNavigator.cs" />

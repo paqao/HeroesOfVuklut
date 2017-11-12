@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HeroesOfVuklut.Shared.Input
+﻿namespace HeroesOfVuklut.Engine.IO
 {
-    public class ButtonState : IState
+    public class ButtonState : IInputState
     {
         public string Key { get; }
         public ButtonStateValue State { get; set; }

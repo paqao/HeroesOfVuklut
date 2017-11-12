@@ -1,4 +1,4 @@
-﻿using HeroesOfVuklut.Shared.Input;
+﻿using HeroesOfVuklut.Engine.IO;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +15,13 @@ namespace HeroesOfVuklut.Windows.InputProcessor
     {
         public KeyboardProcessorImpl()
         {
-            buttons = new List<Shared.Input.ButtonState>();
+            buttons = new List<Engine.IO.ButtonState>();
             actions = new Dictionary<string,Keys>();
         }
-        ICollection<Shared.Input.ButtonState> buttons;
+        ICollection<Engine.IO.ButtonState> buttons;
         IDictionary<string, Keys> actions;
 
-        public Shared.Input.ButtonState GetButton(string key)
+        public Engine.IO.ButtonState GetButton(string key)
         {
             return buttons.FirstOrDefault(x => x.Key == key);
         }
@@ -75,7 +75,7 @@ namespace HeroesOfVuklut.Windows.InputProcessor
 
         public void RegisterKey(string action, Keys keyboard)
         {
-            var buttonState = new Shared.Input.ButtonState(action);
+            var buttonState = new Engine.IO.ButtonState(action);
 
             actions[action] = keyboard;
             buttons.Add(buttonState);
