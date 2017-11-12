@@ -2,9 +2,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using HeroesOfVuklut.Engine.IO;
+using HeroesOfVuklut.Engine.DI;
 
 namespace HeroesOfVuklut.Windows
 {
+    [ServiceInject(typeof(GraphicInterface), typeof(IGraphicsInterface))]
     public class GraphicInterface : IGraphicsInterface
     {
         public IResourceProvider ResourceProvider { get; set; }

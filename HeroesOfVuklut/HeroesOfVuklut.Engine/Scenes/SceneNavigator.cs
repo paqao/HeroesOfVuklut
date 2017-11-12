@@ -1,7 +1,9 @@
-﻿using System;
+﻿using HeroesOfVuklut.Engine.DI;
+using System;
 
 namespace HeroesOfVuklut.Engine.Scenes
 {
+    [ServiceInject(typeof(SceneNavigator), typeof(ISceneNavigator))]
     public class SceneNavigator : ISceneNavigator
     {
         public SceneManager CurrentScene { get; set; }

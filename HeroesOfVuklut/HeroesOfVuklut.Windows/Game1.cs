@@ -8,11 +8,11 @@ using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Shared.Input;
 using HeroesOfVuklut.Windows.Resources;
 using HeroesOfVuklut.Shared.Clash;
-using HeroesOfVuklut.Windows.Maps;
 using HeroesOfVuklut.Windows.Factions;
 using HeroesOfVuklut.Engine.DI;
 using HeroesOfVuklut.Engine.Scenes;
 using System.Reflection;
+using HeroesOfVuklut.Engine.IO;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -29,8 +29,8 @@ namespace HeroesOfVuklut.Windows
 
         private MouseProcessorImpl _mouseProce;
         private InputInterface _inputInterface;
-        private GraphicInterface graphInterface = new GraphicInterface();
-        private IResourceProvider resourceProvider = new ResourceProvider();
+        private GraphicInterface graphInterface;
+        private IResourceProvider resourceProvider;
         private FactionProvider factionProvider = new FactionProvider();
         private GameConfigurationProvider gameConfigurationProvider = new GameConfigurationProvider();
         private IContainerSystem Container = new ContainerSystem();
@@ -43,7 +43,10 @@ namespace HeroesOfVuklut.Windows
             this.graphics.PreferredBackBufferHeight = 600;
 
             Content.RootDirectory = "Content";
-            SceneNavigator = new SceneNavigator();
+
+
+            var assembly = Assembly.GetEntryAssembly();
+            Container.AddAttributeDeclarations(assembly);
         }
 
         /// <summary>
@@ -57,11 +60,11 @@ namespace HeroesOfVuklut.Windows
             // TODO: Add your initialization logic here
             base.Initialize();
 
-            var assembly = Assembly.GetEntryAssembly();
-            Container.AddAttributeDeclarations(assembly);
             
             var mapProvider = Container.Resolve<IMapProvider>();
-
+            SceneNavigator = Container.Resolve<ISceneNavigator>();
+            _inputInterface = Container.Resolve<IInputInterface>() as InputInterface;
+            
             var keyState = Keyboard.GetState();
             _inputProce = new KeyboardProcessorImpl();
             _inputProce.RegisterKey("exit", Keys.Escape);
@@ -84,11 +87,13 @@ namespace HeroesOfVuklut.Windows
 
         private void PrepareScenes()
         {
-            var scene = new MenuSceneManager(SceneNavigator, _inputInterface, graphInterface);
-            SceneNavigator.Scenes.AddScene(scene);
-            SceneNavigator.Scenes.SetDefault(scene);
+            var menuScene = Container.AddScene<MenuSceneManager>();
 
-            SceneNavigator.GotoScene(scene.GetSceneType(), scene.GetDefault());
+            
+            SceneNavigator.Scenes.AddScene(menuScene);
+            SceneNavigator.Scenes.SetDefault(menuScene);
+
+            SceneNavigator.GotoScene(menuScene.GetSceneType(), menuScene.GetDefault());
 
             var worldMapScene = new WorldSceneManager(SceneNavigator, _inputInterface, graphInterface);
             var clashScene = new ClashSceneManager(SceneNavigator, _inputInterface, graphInterface, Container.Resolve<IMapProvider>());
@@ -96,7 +101,7 @@ namespace HeroesOfVuklut.Windows
             SceneNavigator.Scenes.AddScene(worldMapScene);
             SceneNavigator.Scenes.AddScene(clashScene);
 
-            SceneNavigator.Scenes.AddSceneTransition(scene, worldMapScene);
+            SceneNavigator.Scenes.AddSceneTransition(menuScene, worldMapScene);
             SceneNavigator.Scenes.AddSceneTransition(worldMapScene, clashScene);
         }
 
@@ -108,7 +113,8 @@ namespace HeroesOfVuklut.Windows
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            graphInterface = Container.Resolve<IGraphicsInterface>() as GraphicInterface;
+            resourceProvider = Container.Resolve<IResourceProvider>();
 
             // this.graphics.IsFullScreen = true;
 

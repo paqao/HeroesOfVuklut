@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using HeroesOfVuklut.Windows.InputProcessor;
 using HeroesOfVuklut.Engine.IO;
+using HeroesOfVuklut.Engine.DI;
 
 namespace HeroesOfVuklut.Windows
 {
+    [ServiceInject(typeof(InputInterface), typeof(IInputInterface))]
     public class InputInterface : IInputInterface
     {
         private List<IInputProcessor> _processors = new List<IInputProcessor>();

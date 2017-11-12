@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using HeroesOfVuklut.Engine.Scenes;
 
 namespace HeroesOfVuklut.Engine.DI
 {
@@ -15,17 +16,34 @@ namespace HeroesOfVuklut.Engine.DI
             public T InstanceImpl { get; protected set; }
             public U InstanceInterface { get; protected set; }
 
-            public override void Create()
+            public override void Create(ContainerSystem context)
             {
-                var item = Implementation.GetConstructor(new Type[] { } );
+                var allConstructors = Implementation.GetConstructors();
+                var constructorParam = allConstructors.First();
+                var methodParameters = constructorParam.GetParameters();
 
-                var created = item.Invoke(new object[] { }) as T;
+
+                var callParameters = new List<object>{ };
+
+                foreach (var param in methodParameters)
+                {
+                    var paramType = param.ParameterType;
+
+                    var resolveMethod = typeof(ContainerSystem).GetMethod("Resolve");
+                    var method = resolveMethod.MakeGenericMethod(new Type[] { paramType });
+                    var methodResult = method.Invoke(context, new object[] { });
+
+
+                    callParameters.Add(methodResult);
+                }
+
+                var created = constructorParam.Invoke(callParameters.ToArray()) as T;
 
                 InstanceImpl = created;
                 InstanceInterface = created;
                 Instance = created;
 
-                base.Create();
+                base.Create(context);
             }
         } 
 
@@ -34,7 +52,7 @@ namespace HeroesOfVuklut.Engine.DI
             public bool HasInstance { get; protected set; } = false;
             public virtual Type Implementation { get; }
             public virtual Type Interface { get; }
-            public virtual void Create()
+            public virtual void Create(ContainerSystem context)
             {
                 HasInstance = true;
             }
@@ -43,6 +61,7 @@ namespace HeroesOfVuklut.Engine.DI
         }
 
         private IList<ContainerSystemItem> Items { get; } = new List<ContainerSystemItem>();
+        private IList<ContainerSystemItem> Scenes { get; } = new List<ContainerSystemItem>();
 
         public void AddDeclaration<T, U>() where T : class, U
         {
@@ -67,7 +86,7 @@ namespace HeroesOfVuklut.Engine.DI
 
             if (!itemDefination.HasInstance)
             {
-                itemDefination.Create();
+                itemDefination.Create(this);
             }
 
             var instance = itemDefination.Instance as T;
@@ -89,6 +108,16 @@ namespace HeroesOfVuklut.Engine.DI
                 var o = Activator.CreateInstance(makeme);
                 Items.Add(o as ContainerSystemItem);
             }
+        }
+
+        public T AddScene<T>() where T : SceneManager<T>
+        {
+            var containerSystemItem = new ContainerSystemItem<T, T>();
+            Scenes.Add(containerSystemItem);
+
+            containerSystemItem.Create(this);
+
+            return containerSystemItem.InstanceImpl;
         }
     }
 }
