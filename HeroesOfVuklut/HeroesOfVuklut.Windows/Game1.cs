@@ -150,10 +150,11 @@ namespace HeroesOfVuklut.Windows
             }
 
             SceneNavigator.CurrentScene.ProcessInput();
-            
-            // TODO: Add your update logic here
 
+            // TODO: Add your update logic here
+            SceneNavigator.CurrentScene.PreUpdate();
             SceneNavigator.CurrentScene.Update(gameTime.ElapsedGameTime);
+            SceneNavigator.CurrentScene.PostUpdate();
 
             base.Update(gameTime);
         }

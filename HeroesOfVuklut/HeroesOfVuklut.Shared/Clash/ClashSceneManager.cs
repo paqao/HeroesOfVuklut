@@ -1,14 +1,18 @@
+using HeroesOfVuklut.Engine.DI;
 using HeroesOfVuklut.Engine.IO;
 using HeroesOfVuklut.Engine.Scenes;
+using HeroesOfVuklut.Engine.AI;
+using HeroesOfVuklut.Shared.Clash.AI;
 using HeroesOfVuklut.Shared.Clash.MapItems;
 using System;
+using System.Collections.Generic;
 
 namespace HeroesOfVuklut.Shared.Clash
 {
-    public class ClashSceneManager : SceneManager<ClashSceneManager>
+    public class ClashSceneManager : SceneManager<ClashSceneManager>, ISceneIntelligence<ClashState, ClashStateArtificialDecision>
     {
         private ClashState _currentClash;
-        private IClashResourceManager clashResourceManager;
+        private IClashResourceManager _clashResourceManager;
         private CursorPosition _cursor;
 
         private int offsetX;
@@ -16,10 +20,13 @@ namespace HeroesOfVuklut.Shared.Clash
         private ClashTile _selectedTile;
         private readonly IMapProvider _mapProvider;
 
-        public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IMapProvider mapProvider) : base(sceneNavigator, inputInterface, graphicsInterface)
+        public IArtificialIntelligence<ClashState, ClashStateArtificialDecision> IAi { get;  }
+
+        public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IMapProvider mapProvider, IClashResourceManager clashResourceManager, IArtificialIntelligence<ClashState, ClashStateArtificialDecision> ai) : base(sceneNavigator, inputInterface, graphicsInterface)
         {
-            clashResourceManager = new ClashResourceManager();
+            _clashResourceManager = clashResourceManager;
             _mapProvider = mapProvider;
+            IAi = ai;
         }
 
         public void PrepareClash(ClashState state)
@@ -39,6 +46,7 @@ namespace HeroesOfVuklut.Shared.Clash
             var map = _mapProvider.GetMapById(parsedParam.MapId);
             var clashState = new ClashState();
             clashState.MapClash = map;
+            
             PrepareClash(clashState);
 
             ProcessInput();
@@ -61,7 +69,7 @@ namespace HeroesOfVuklut.Shared.Clash
                     {
                         style = "Hover";
                     }
-                    var resourceName = clashResourceManager.GetGroundResource(tile.GroundId);
+                    var resourceName = _clashResourceManager.GetGroundResource(tile.GroundId);
                     GraphicsInterface.Draw(offsetX + i * 32, offsetY + j * 32, 32, 32, resourceName, style);
 
                     if(tile.Item != null)
@@ -78,15 +86,16 @@ namespace HeroesOfVuklut.Shared.Clash
             if(_selectedTile != null && _selectedTile.Item != null)
             {
                 var upgradableItem = _selectedTile.Item as IUpgradeable;
+                var clashFaction = _selectedTile.Item as IClashFactionItem;
 
-                if(upgradableItem != null)
+                if(upgradableItem != null && clashFaction.Owner == 0)
                 {
                     var style = upgradableItem.CanUpgrade(_currentClash.Factions[0]) ? "upgrade-active" : "upgrade-idle";
                     GraphicsInterface.Draw(8, 528, 42, 42, "clashInterfaceDynamic", style);
                 }
             }
 
-            GraphicsInterface.DrawText(40, 528, "test");
+            // GraphicsInterface.DrawText(40, 528, "test");
 
             // ui controllers
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
@@ -147,8 +156,9 @@ namespace HeroesOfVuklut.Shared.Clash
                     {
                         var item = _selectedTile.Item;
                         var upgradableItem = item as IUpgradeable;
+                        var factionItem = item as IClashFactionItem;
                         
-                        if(upgradableItem != null && upgradableItem.CanUpgrade(_currentClash.Factions[0]))
+                        if(upgradableItem != null && factionItem.Owner == 0 && upgradableItem.CanUpgrade(_currentClash.Factions[0]))
                         {
                             upgradableItem.Upgrade(_currentClash.Factions[0]);
                         }
@@ -169,6 +179,25 @@ namespace HeroesOfVuklut.Shared.Clash
             _cursor = cursor;
         }
 
+        public override void PreUpdate()
+        {
+            base.PreUpdate();
+
+            var steps = Calculate();
+
+            foreach (var item in steps)
+            {
+                item.TakeAction(_currentClash);
+            }
+        }
+
+        public ICollection<ClashStateArtificialDecision> Calculate()
+        {
+            var ai = IAi.CalculateStep(_currentClash);
+
+            return ai;
+        }
+
         public class ClashSceneParameter : SceneParameter<ClashSceneManager>
         {
             public ClashSceneParameter(int mapId)
@@ -186,11 +215,19 @@ namespace HeroesOfVuklut.Shared.Clash
             string GetGroundResource(int id);
         }
 
+        [ServiceInject(typeof(ClashResourceManager), typeof(IClashResourceManager))]
         public class ClashResourceManager : IClashResourceManager
         {
+            private Dictionary<int, string> _resourceDictionary = new Dictionary<int, string>();
+
+            public ClashResourceManager()
+            {
+                _resourceDictionary[0] = "grass";
+                _resourceDictionary[1] = "forrest";
+            }
             public string GetGroundResource(int id)
             {
-                return "grass";
+                return _resourceDictionary[id];
             }
         }
     }

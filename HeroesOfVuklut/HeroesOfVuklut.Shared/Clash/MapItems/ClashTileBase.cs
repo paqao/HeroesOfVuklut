@@ -6,7 +6,7 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
         public int X { get; private set; }
         public int Y { get; private set; }
 
-        public int GroundId { get; private set; }
+        public int GroundId { get; set; }
 
         public bool Hover { get
             {

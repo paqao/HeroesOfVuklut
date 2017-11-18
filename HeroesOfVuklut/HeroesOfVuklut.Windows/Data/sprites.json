@@ -25,6 +25,30 @@
 
     },
     {
+      "Name": "forrest",
+      "Families": [
+        "overworld",
+        "forrest",
+        "overworld/forrest"
+      ],
+      "FrameSizeX": 32,
+      "FrameSizeY": 32,
+      "ContentPath": "Sprites/forrest",
+      "Frames": [
+        {
+          "Name": "Idle",
+          "PositionX": 0,
+          "PositionY": 0
+        },
+        {
+          "Name": "Hover",
+          "PositionX": 0,
+          "PositionY": 1
+        }
+      ]
+
+    },
+    {
       "Name": "castle",
       "Families": [
         "clash",

@@ -2,5 +2,42 @@
   "Name": "Tutorial 1",
   "SizeX": 16,
   "SizeY": 12,
-  "Id": 1
+  "Id": 1,
+  "Tiles": [
+    {
+      "X": 0,
+      "Y": 0,
+      "GroundId": 1
+    },
+    {
+      "X": 1,
+      "Y": 0,
+      "GroundId": 1
+    },
+    {
+      "X": 1,
+      "Y": 1,
+      "GroundId": 0,
+      "Item": {
+        "Type": 0,
+        "SubType": 0,
+        "Parameters": {
+          "Faction": "0"
+        }
+      }
+    },
+
+    {
+      "X": 13,
+      "Y": 9,
+      "GroundId": 0,
+      "Item": {
+        "Type": 0,
+        "SubType": 0,
+        "Parameters": {
+          "Faction": "1"
+        }
+      }
+    }
+  ]
 }

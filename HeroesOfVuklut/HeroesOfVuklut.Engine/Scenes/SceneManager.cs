@@ -47,7 +47,6 @@ namespace HeroesOfVuklut.Engine.Scenes
 
     public abstract class SceneManager
     {
-
         public abstract Type GetSceneType();
         public virtual SceneParameter DefaultParameter { get; } = null;
 
@@ -66,8 +65,18 @@ namespace HeroesOfVuklut.Engine.Scenes
 
         }
 
+        public virtual void PreUpdate()
+        {
+
+        }
+
         public virtual void Update(TimeSpan elapsedGameTime)
         {
+        }
+
+        public virtual void PostUpdate()
+        {
+
         }
 
         public virtual void ClearScene()

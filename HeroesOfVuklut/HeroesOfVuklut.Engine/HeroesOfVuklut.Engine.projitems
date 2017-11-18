@@ -15,6 +15,8 @@
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AI\IArtificialDecision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AI\IArtificialIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\IConfigurable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\IConfigurationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ContainerSystem.cs" />
@@ -27,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicsInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneNavigator.cs" />

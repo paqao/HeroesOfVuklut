@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using HeroesOfVuklut.Shared;
 using System.IO;
 using Newtonsoft.Json;
+using HeroesOfVuklut.Engine.DI;
 
 namespace HeroesOfVuklut.Windows.Factions
 {
+    [ServiceInject(typeof(FactionProvider), typeof(IFactionProvider))]
     public class FactionProvider : IFactionProvider
     {
         private IList<FactionAspect> _factions = new List<FactionAspect>();

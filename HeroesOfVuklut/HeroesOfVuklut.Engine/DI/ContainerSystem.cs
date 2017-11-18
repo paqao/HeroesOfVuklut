@@ -8,6 +8,17 @@ namespace HeroesOfVuklut.Engine.DI
 {
     class ContainerSystem : IContainerSystem
     {
+
+        public ContainerSystem()
+        {
+            var container = new ContainerSystemItem<ContainerSystem, IContainerSystem>();
+
+            container.Instance = this;
+            container.HasInstance = true;
+
+            Items.Add(container);
+        }
+
         protected class ContainerSystemItem<T, U> : ContainerSystemItem where T : class, U
         {
             public override Type Implementation { get; } = typeof(T);
@@ -21,8 +32,7 @@ namespace HeroesOfVuklut.Engine.DI
                 var allConstructors = Implementation.GetConstructors();
                 var constructorParam = allConstructors.First();
                 var methodParameters = constructorParam.GetParameters();
-
-
+                
                 var callParameters = new List<object>{ };
 
                 foreach (var param in methodParameters)
@@ -32,8 +42,7 @@ namespace HeroesOfVuklut.Engine.DI
                     var resolveMethod = typeof(ContainerSystem).GetMethod("Resolve");
                     var method = resolveMethod.MakeGenericMethod(new Type[] { paramType });
                     var methodResult = method.Invoke(context, new object[] { });
-
-
+                    
                     callParameters.Add(methodResult);
                 }
 
@@ -49,7 +58,7 @@ namespace HeroesOfVuklut.Engine.DI
 
         protected abstract class ContainerSystemItem
         {
-            public bool HasInstance { get; protected set; } = false;
+            public bool HasInstance { get; set; } = false;
             public virtual Type Implementation { get; }
             public virtual Type Interface { get; }
             public virtual void Create(ContainerSystem context)
@@ -57,7 +66,7 @@ namespace HeroesOfVuklut.Engine.DI
                 HasInstance = true;
             }
 
-            public virtual object Instance { get; protected set; }
+            public virtual object Instance { get; set; }
         }
 
         private IList<ContainerSystemItem> Items { get; } = new List<ContainerSystemItem>();

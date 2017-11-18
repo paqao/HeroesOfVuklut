@@ -9,11 +9,13 @@ namespace HeroesOfVuklut.Windows
     public class InputInterface : IInputInterface
     {
         private List<IInputProcessor> _processors = new List<IInputProcessor>();
+        private MouseProcessor _mouseProcessor;
 
         public InputInterface()
         {
 
         }
+
         internal class CursorPositionImpl : CursorPosition
         {
             internal CursorPositionImpl(int x, int y)
@@ -26,7 +28,7 @@ namespace HeroesOfVuklut.Windows
 
             public int PositionY { get; private set; }
         }
-        private MouseProcessor _mouseProcessor;
+
         public bool CheckInputDown(string key)
         {
             bool down = false;

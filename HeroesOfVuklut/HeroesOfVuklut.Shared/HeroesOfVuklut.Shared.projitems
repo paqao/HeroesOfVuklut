@@ -15,6 +15,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Castle\BuildingBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Castle\Castle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Castle\CastleSceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\AI\ClashStateArtificialDecision.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\AI\ClashStateArtificialIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\IMapProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashBuilding.cs" />
@@ -27,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashTileBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashTileItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\IClashFactionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\IUpgradeable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitTemplate.cs" />

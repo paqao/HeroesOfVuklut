@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Engine.DI;
+using System.Diagnostics;
+using HeroesOfVuklut.Shared.Clash.MapItems;
 
 namespace HeroesOfVuklut.Windows.Maps
 {
@@ -29,6 +31,22 @@ namespace HeroesOfVuklut.Windows.Maps
 
             var clashMap = new ClashMap(mapInfo.SizeX, mapInfo.SizeY);
 
+            foreach (var tile in mapInfo.Tiles)
+            {
+                var clashTile = clashMap.Tiles[tile.Y][tile.X];
+
+                clashTile.GroundId = tile.GroundId;
+
+                if(tile.Item != null)
+                {
+                    var item = GenerateItem(tile.Item);
+
+                    clashTile.Item = item;
+                }
+            }
+
+            Debug.WriteLine(mapInfo.Name);
+
             return clashMap;
         }
 
@@ -41,5 +59,22 @@ namespace HeroesOfVuklut.Windows.Maps
         {
             _gameConfiguration = configuration;
         }
+
+        private ClashTileItem GenerateItem(TileItem item)
+        {
+            ClashTileItem newItem = null;
+
+            if(item.Type == 0)
+            {
+                var castleItem = new ClashFactionCastle();
+                var faction = int.Parse(item.Parameters["Faction"]);
+                castleItem.Owner = faction;
+
+                newItem = castleItem;
+            }
+
+            return newItem;
+        }
+
     }
 }

@@ -22,8 +22,12 @@ namespace HeroesOfVuklut.Shared.Clash
                 for (int j = 0; j < w; j++)
                 {
                     Tiles[i][j] = new ClashTile(i, j, 0);
+
+                    
                 }
             }
+
+
         }
     }
 
