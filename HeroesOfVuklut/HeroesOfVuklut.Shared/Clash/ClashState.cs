@@ -13,12 +13,8 @@ namespace HeroesOfVuklut.Shared.Clash
         {
             Factions = new List<ClashFaction>();
 
-            var playerCastle = new ClashFactionCastle
-            {
-            };
             var playerFaction = new ClashFaction
             {
-                Castle = playerCastle,
                 Aspect = new FactionAspect
                 {
                     Color = Color.Red,

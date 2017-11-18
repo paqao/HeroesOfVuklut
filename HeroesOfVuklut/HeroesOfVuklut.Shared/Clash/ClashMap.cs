@@ -7,6 +7,7 @@ namespace HeroesOfVuklut.Shared.Clash
     {
         public ClashTile[][] Tiles { get; private set; }
         public List<ClashRegion> Regions { get; private set; }
+        public IList<ClashBuilding> Buildings { get; protected set; }
         public int Width { get; private set; }
         public int Heigth { get; private set; }
 
@@ -16,6 +17,7 @@ namespace HeroesOfVuklut.Shared.Clash
             Heigth = h;
             Tiles = new ClashTile[h][];
             Regions = new List<ClashRegion>();
+            Buildings = new List<ClashBuilding>();
             for (int i = 0; i < h; i++)
             {
                 Tiles[i] = new ClashTile[w];

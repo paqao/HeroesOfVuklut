@@ -42,6 +42,12 @@ namespace HeroesOfVuklut.Windows.Maps
                     var item = GenerateItem(tile.Item);
 
                     clashTile.Item = item;
+
+                    if(item is ClashBuilding)
+                    {
+                        var buildingItem = item as ClashBuilding;
+                        clashMap.Buildings.Add(buildingItem);
+                    }
                 }
             }
 
@@ -68,7 +74,10 @@ namespace HeroesOfVuklut.Windows.Maps
             {
                 var castleItem = new ClashFactionCastle();
                 var faction = int.Parse(item.Parameters["Faction"]);
+                var id = int.Parse(item.Parameters["Id"]);
+
                 castleItem.Owner = faction;
+                castleItem.Id = id;
 
                 newItem = castleItem;
             }

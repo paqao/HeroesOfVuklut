@@ -50,6 +50,8 @@ namespace HeroesOfVuklut.Shared.Clash
             PrepareClash(clashState);
 
             ProcessInput();
+
+            IAi.PrepareAi(clashState);
         }
 
         public override void Update(TimeSpan step)
