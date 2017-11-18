@@ -11,11 +11,11 @@ namespace HeroesOfVuklut.Engine.DI
 
         public ContainerSystem()
         {
-            var container = new ContainerSystemItem<ContainerSystem, IContainerSystem>();
-
-            container.Instance = this;
-            container.HasInstance = true;
-
+            var container = new ContainerSystemItem<ContainerSystem, IContainerSystem>()
+            {
+                Instance = this,
+                HasInstance = true
+            };
             Items.Add(container);
         }
 

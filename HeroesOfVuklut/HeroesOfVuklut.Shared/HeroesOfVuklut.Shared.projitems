@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\IClashFactionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\IUpgradeable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\Path\ClashPathNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitTemplate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factions\FactionAspect.cs" />

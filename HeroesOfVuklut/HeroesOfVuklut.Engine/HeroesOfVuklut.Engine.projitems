@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Content\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Map\HexMap\" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
@@ -22,13 +23,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)DI\ContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\IContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ServiceInjectAttribute.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\GameEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\IGameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\IGameSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\ButtonState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicsInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\MapBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\Nodes\MapNodeBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\TiledMap\TiledMapBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\TiledMap\TiledMapItemBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\TiledMap\TiledMapTileBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneManager.cs" />

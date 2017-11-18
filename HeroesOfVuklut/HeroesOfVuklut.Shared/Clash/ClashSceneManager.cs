@@ -34,7 +34,7 @@ namespace HeroesOfVuklut.Shared.Clash
             _currentClash = state;
 
             offsetX = (800 - state.MapClash.Width * 32) / 2;
-            offsetY = (600 - state.MapClash.Heigth * 32) / 4;
+            offsetY = (600 - state.MapClash.Height * 32) / 4;
         }
 
         public override void BeginScene(SceneParameter<ClashSceneManager> sceneParameter)
@@ -62,7 +62,7 @@ namespace HeroesOfVuklut.Shared.Clash
         {
             for (int i = 0; i < _currentClash.MapClash.Width; i++)
             {
-                for (int j = 0; j < _currentClash.MapClash.Heigth; j++)
+                for (int j = 0; j < _currentClash.MapClash.Height; j++)
                 {
                     var tile = _currentClash.MapClash.Tiles[j][i];
 
@@ -112,7 +112,7 @@ namespace HeroesOfVuklut.Shared.Clash
         {
             for (int i = 0; i < _currentClash.MapClash.Width; i++)
             {
-                for (int j = 0; j < _currentClash.MapClash.Heigth; j++)
+                for (int j = 0; j < _currentClash.MapClash.Height; j++)
                 {
                     var tile = _currentClash.MapClash.Tiles[j][i];
                     tile.Hover = false;
@@ -129,7 +129,7 @@ namespace HeroesOfVuklut.Shared.Clash
             int itemX = (cursor.PositionX - offsetX) / 32;
             int itemY = (cursor.PositionY - offsetY) / 32;
 
-            if (itemX >= 0 && itemY >= 0 && itemX < _currentClash.MapClash.Width && itemY < _currentClash.MapClash.Heigth)
+            if (itemX >= 0 && itemY >= 0 && itemX < _currentClash.MapClash.Width && itemY < _currentClash.MapClash.Height)
             {
                 var tile = _currentClash.MapClash.Tiles[itemY][itemX];
 

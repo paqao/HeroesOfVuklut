@@ -1,12 +1,10 @@
+using HeroesOfVuklut.Engine.Map.TiledMap;
+
 namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
-    public class ClashTile
+    public class ClashTile : TiledMapTileBase<ClashTileItem>
     {
         private bool _isHover;
-        public int X { get; private set; }
-        public int Y { get; private set; }
-
-        public int GroundId { get; set; }
 
         public bool Hover { get
             {
@@ -21,14 +19,9 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
                 _isHover = value;
             }
         }
-        public ClashTileItem Item { get;
-            set; }
-
-        public ClashTile(int x, int y, int groundId)
+        
+        public ClashTile(int x, int y, int groundId) : base(x,y,groundId)
         {
-            X = x;
-            Y = y;
-            GroundId = groundId;
         }
     }
 

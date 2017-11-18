@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HeroesOfVuklut.Shared
 {
-    public class HeroesGame : GameEntity
+    public class HeroesGame : IGameEntity
     {
         public Castle Castle { get; set; }
         public IList<Hero> Heroes { get; }

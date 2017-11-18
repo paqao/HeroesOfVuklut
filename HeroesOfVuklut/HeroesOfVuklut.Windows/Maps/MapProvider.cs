@@ -29,7 +29,7 @@ namespace HeroesOfVuklut.Windows.Maps
                 mapInfo = JsonConvert.DeserializeObject<MapInfo>(fileContent);
             }
 
-            var clashMap = new ClashMap(mapInfo.SizeX, mapInfo.SizeY);
+            var clashMap = new ClashMap(mapInfo.Name, mapInfo.SizeX, mapInfo.SizeY);
 
             foreach (var tile in mapInfo.Tiles)
             {

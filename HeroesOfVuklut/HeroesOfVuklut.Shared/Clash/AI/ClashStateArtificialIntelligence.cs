@@ -41,7 +41,7 @@ namespace HeroesOfVuklut.Shared.Clash.AI
 
             for (int i = 0; i < map.Width; i++)
             {
-                for (int j = 0; j < map.Heigth; j++)
+                for (int j = 0; j < map.Height; j++)
                 {
                     var tile = map.Tiles[j][i];
                     var item = tile.Item;
