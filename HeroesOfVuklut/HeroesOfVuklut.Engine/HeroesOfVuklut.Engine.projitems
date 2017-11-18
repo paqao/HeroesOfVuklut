@@ -40,6 +40,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Map\TiledMap\TiledMapBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\TiledMap\TiledMapItemBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\TiledMap\TiledMapTileBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Quest\IMission.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Quest\IMissionStep.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Quest\IMissionTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Quest\IMissionTaskLogic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Quest\Logic\MissionLogicAll.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Quest\MissionState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneManager.cs" />
