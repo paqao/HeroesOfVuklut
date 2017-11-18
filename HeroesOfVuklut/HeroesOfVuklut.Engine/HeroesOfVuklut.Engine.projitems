@@ -20,6 +20,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)AI\IArtificialIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\IConfigurable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\IConfigurationProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\IContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\IOwned.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\IResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\IContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ServiceInjectAttribute.cs" />
@@ -30,6 +33,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicsInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\IMapItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\IUpgradable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\MapBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Nodes\MapNodeBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\TiledMap\TiledMapBase.cs" />

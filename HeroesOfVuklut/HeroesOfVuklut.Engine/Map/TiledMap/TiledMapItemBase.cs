@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HeroesOfVuklut.Engine.Map.TiledMap
 {
-    public abstract class TiledMapItemBase
+    public abstract class TiledMapItemBase : IMapItem
     {
     }
 }

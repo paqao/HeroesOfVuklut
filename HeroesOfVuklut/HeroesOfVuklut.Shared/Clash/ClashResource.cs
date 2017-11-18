@@ -1,10 +1,13 @@
-﻿namespace HeroesOfVuklut.Shared.Clash
+﻿using HeroesOfVuklut.Engine.Context;
+
+namespace HeroesOfVuklut.Shared.Clash
 {
-    public class ClashResource
+    public class ClashResource : IResource
     {
         public int Amount { get; set; }
         public int Max { get; set; }
         public string Name { get; set; }
+
         public ClashResourceType ResourceType { get; set; }
         private ClashResource()
         {

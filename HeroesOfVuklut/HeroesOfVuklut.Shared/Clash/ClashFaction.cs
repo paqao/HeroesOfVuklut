@@ -1,10 +1,11 @@
+using HeroesOfVuklut.Engine.Context;
 using HeroesOfVuklut.Shared.Clash.MapItems;
 using System;
 using System.Collections.Generic;
 
 namespace HeroesOfVuklut.Shared.Clash
 {
-    public class ClashFaction
+    public class ClashFaction : IContext
     {
         public IList<UnitTemplate> UnitTemplates { get; protected set; }
         public IList<ClashResource> ClashResources { get; protected set; }
