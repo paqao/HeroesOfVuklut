@@ -15,6 +15,7 @@ namespace HeroesOfVuklut.Engine.Map.TiledMap
 
         public T[][] Tiles { get; }
         public ICollection<V> MapNodes { get; }
+        public ICollection<W> Connections { get; }
 
         public TiledMapBase(string name, int width, int height): base(name)
         {
@@ -23,8 +24,9 @@ namespace HeroesOfVuklut.Engine.Map.TiledMap
 
             Tiles = new T[height][];
             MapNodes = new List<V>();
+            Connections = new List<W>();
 
-            for(int j = 0;j < height; j++) 
+            for (int j = 0;j < height; j++) 
             {
                 Tiles[j] = new T[width];
             }

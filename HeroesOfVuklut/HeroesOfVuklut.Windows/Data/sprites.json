@@ -30,6 +30,11 @@
       "ContentPath": "Sprites/circle"
     },
     {
+      "Name": "dot",
+      "Families": [ "wordls" ],
+      "ContentPath": "Sprites/dot"
+    },
+    {
       "Name": "forrest",
       "Families": [
         "overworld",

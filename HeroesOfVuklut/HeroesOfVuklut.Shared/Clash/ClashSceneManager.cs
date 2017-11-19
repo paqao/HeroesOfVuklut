@@ -6,6 +6,7 @@ using HeroesOfVuklut.Shared.Clash.AI;
 using HeroesOfVuklut.Shared.Clash.MapItems;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HeroesOfVuklut.Shared.Clash
 {
@@ -86,6 +87,13 @@ namespace HeroesOfVuklut.Shared.Clash
             foreach (var node in _currentClash.MapClash.MapNodes)
             {
                 GraphicsInterface.DrawCircle(offsetX + 16 + node.X * 32, offsetY + 16 + node.Y * 32);
+            }
+
+            foreach(var connection in _currentClash.MapClash.Connections)
+            {
+                var firstCon = connection.Nodes.First();
+                var lastCon = connection.Nodes.Last();
+                GraphicsInterface.DrawLine(offsetX + 16 + firstCon.X * 32, offsetY + 16 + firstCon.Y * 32, offsetX + 16 + lastCon.X * 32, offsetY + 16 + lastCon.Y * 32);
             }
             // ui
             GraphicsInterface.Draw(0, 520, 800, 80, "clashInterface");

@@ -7,5 +7,6 @@
 
         void DrawText(int x, int y, string text);
         void DrawCircle(int x, int y);
+        void DrawLine(int x1, int y1, int x2, int y2);
     }
 }

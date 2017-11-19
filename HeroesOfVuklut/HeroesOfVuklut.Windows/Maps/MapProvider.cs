@@ -71,6 +71,10 @@ namespace HeroesOfVuklut.Windows.Maps
                 connection.Nodes.Add(node1);
                 connection.Nodes.Add(node2);
 
+
+
+                clashMap.Connections.Add(connection);
+
                 node1.Connections.Add(connection);
                 node2.Connections.Add(connection);
             }
