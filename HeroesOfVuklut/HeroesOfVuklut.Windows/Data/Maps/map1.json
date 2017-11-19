@@ -37,9 +37,28 @@
         "SubType": 0,
         "Parameters": {
           "Faction": "1",
-          "Id":  "1"
+          "Id": "1"
         }
       }
+    }
+  ],
+  "Nodes": [
+    {
+      "Id": 1,
+      "X": 1,
+      "Y": 1
+    },
+    {
+      "Id": 2,
+      "X": 3,
+      "Y": 1
+    }
+  ],
+  "Paths": [
+    {
+      "Id": 0,
+      "End1Id": 1,
+      "End2Id": 2
     }
   ]
 }

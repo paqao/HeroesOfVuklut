@@ -19,6 +19,13 @@ namespace HeroesOfVuklut.Windows.Maps
 
         public IList<MapInfoTile> Tiles { get; set; }
         = new List<MapInfoTile>();
+
+        public IList<TilePath> Paths { get; set; }
+        = new List<TilePath>();
+
+
+        public IList<TileNode> Nodes { get; set; }
+        = new List<TileNode>();
     }
 
     internal class MapInfoTile
@@ -35,5 +42,19 @@ namespace HeroesOfVuklut.Windows.Maps
         public int SubType { get; set; }
 
         public Dictionary<string,string> Parameters { get; set; }
+    }
+
+    internal class TileNode
+    {
+        public int Id { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    internal class TilePath
+    {
+        public int Id { get; set; }
+        public int End1Id { get; set; }
+        public int End2Id { get; set; }
     }
 }

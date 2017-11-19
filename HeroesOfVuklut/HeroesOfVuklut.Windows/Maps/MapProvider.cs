@@ -7,6 +7,7 @@ using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Engine.DI;
 using System.Diagnostics;
 using HeroesOfVuklut.Shared.Clash.MapItems;
+using HeroesOfVuklut.Shared.Clash.Path;
 
 namespace HeroesOfVuklut.Windows.Maps
 {
@@ -49,6 +50,29 @@ namespace HeroesOfVuklut.Windows.Maps
                         clashMap.Buildings.Add(buildingItem);
                     }
                 }
+            }
+
+            foreach (var node in mapInfo.Nodes)
+            {
+                var nodeEnt = new ClashPathNode();
+                nodeEnt.Id = node.Id;
+                nodeEnt.X = node.X;
+                nodeEnt.Y = node.Y;
+
+                clashMap.MapNodes.Add(nodeEnt);
+            }
+
+            foreach (var path in mapInfo.Paths)
+            {
+                var connection = new ClashMapNodeConnection();
+                var node1 = clashMap.MapNodes.First(nd => nd.Id == path.End1Id);
+                var node2 = clashMap.MapNodes.First(nd => nd.Id == path.End2Id);
+
+                connection.Nodes.Add(node1);
+                connection.Nodes.Add(node2);
+
+                node1.Connections.Add(connection);
+                node2.Connections.Add(connection);
             }
 
             Debug.WriteLine(mapInfo.Name);

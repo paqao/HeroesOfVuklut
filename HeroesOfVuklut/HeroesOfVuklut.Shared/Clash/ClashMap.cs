@@ -5,11 +5,10 @@ using System.Collections.Generic;
 
 namespace HeroesOfVuklut.Shared.Clash
 {
-    public class ClashMap : TiledMapBase<ClashTile, ClashTileItem>
+    public class ClashMap : TiledMapBase<ClashTile, ClashTileItem, ClashPathNode, ClashMapNodeConnection>
     {
         public List<ClashRegion> Regions { get; private set; }
         public IList<ClashBuilding> Buildings { get; protected set; }
-        public IList<ClashPathNode> Nodes { get; set; }
 
         public ClashMap(string name, int w, int h) : base(name, w,h)
         {

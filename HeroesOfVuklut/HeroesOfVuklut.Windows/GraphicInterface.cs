@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using HeroesOfVuklut.Engine.IO;
 using HeroesOfVuklut.Engine.DI;
+using System;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -22,6 +23,12 @@ namespace HeroesOfVuklut.Windows
         {
             TextureInfo texture = ResourceProvider.GetTextureFrame(resourceKey, frame);
             Batch.Draw(texture.Texture, new Rectangle(x, y, w, h), new Rectangle(texture.OffsetX, texture.OffsetY, texture.Width, texture.Heigth), Microsoft.Xna.Framework.Color.White);
+        }
+
+        public void DrawCircle(int x, int y)
+        {
+            TextureInfo texture = ResourceProvider.GetTexture("circle");
+            Batch.Draw(texture.Texture, new Vector2(x, y), Microsoft.Xna.Framework.Color.White);
         }
 
         public void DrawText(int x, int y, string text)

@@ -25,6 +25,11 @@
 
     },
     {
+      "Name": "circle",
+      "Families": [ "wordls" ],
+      "ContentPath": "Sprites/circle"
+    },
+    {
       "Name": "forrest",
       "Families": [
         "overworld",

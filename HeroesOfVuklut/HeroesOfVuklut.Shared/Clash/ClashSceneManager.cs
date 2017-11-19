@@ -82,6 +82,11 @@ namespace HeroesOfVuklut.Shared.Clash
                 }
             }
 
+
+            foreach (var node in _currentClash.MapClash.MapNodes)
+            {
+                GraphicsInterface.DrawCircle(offsetX + 16 + node.X * 32, offsetY + 16 + node.Y * 32);
+            }
             // ui
             GraphicsInterface.Draw(0, 520, 800, 80, "clashInterface");
 
