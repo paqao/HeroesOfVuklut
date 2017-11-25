@@ -47,6 +47,8 @@
     <Compile Include="GameConfiguration.cs" />
     <Compile Include="GameConfigurationProvider.cs" />
     <Compile Include="GraphicInterface.cs" />
+    <Compile Include="GraphicsElement\GraphicElementFactory.cs" />
+    <Compile Include="GraphicsElement\GraphicListElement.cs" />
     <Compile Include="InputInterface.cs" />
     <Compile Include="InputProcessor\KeyboardProcessor.cs" />
     <Compile Include="InputProcessor\IInputProcessor.cs" />

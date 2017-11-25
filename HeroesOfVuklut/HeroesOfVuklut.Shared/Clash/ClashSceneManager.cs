@@ -25,7 +25,7 @@ namespace HeroesOfVuklut.Shared.Clash
 
         public IArtificialIntelligence<ClashState, ClashStateArtificialDecision> IAi { get;  }
 
-        public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IMapProvider mapProvider, IClashResourceManager clashResourceManager, IFactionManager factionManager, IArtificialIntelligence<ClashState, ClashStateArtificialDecision> ai) : base(sceneNavigator, inputInterface, graphicsInterface)
+        public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IMapProvider mapProvider, IClashResourceManager clashResourceManager, IFactionManager factionManager, IArtificialIntelligence<ClashState, ClashStateArtificialDecision> ai, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
         {
             _clashResourceManager = clashResourceManager;
             _mapProvider = mapProvider;

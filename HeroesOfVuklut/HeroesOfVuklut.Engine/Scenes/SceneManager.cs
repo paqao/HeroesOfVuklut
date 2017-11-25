@@ -9,12 +9,14 @@ namespace HeroesOfVuklut.Engine.Scenes
         protected IInputInterface InputInterface { get; }
         protected ISceneNavigator SceneNavigator { get; }
         protected IGraphicsInterface GraphicsInterface { get; }
+        protected IGraphicElementFactory GraphicElementFactory { get; }
 
-        public SceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface)
+        public SceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IGraphicElementFactory graphicElementFactory)
         {
             SceneNavigator = sceneNavigator;
             InputInterface = inputInterface;
             GraphicsInterface = graphicsInterface;
+            GraphicElementFactory = graphicElementFactory;
         }
 
         public SceneManager(ISceneNavigator sceneNavigator)

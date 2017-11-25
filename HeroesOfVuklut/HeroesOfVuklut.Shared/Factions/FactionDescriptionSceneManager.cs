@@ -13,7 +13,9 @@ namespace HeroesOfVuklut.Shared.Factions
         private readonly IFactionManager _factionsManager;
         private CursorPosition _cursor;
 
-        public FactionDescriptionSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface , IFactionManager factions) : base(sceneNavigator, inputInterface, graphicsInterface)
+        private IListElement<FactionAspect> factionList = null;
+
+        public FactionDescriptionSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface , IFactionManager factions, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
         {
             _factionsManager = factions;
         }
@@ -28,6 +30,7 @@ namespace HeroesOfVuklut.Shared.Factions
 
             var cursor = InputInterface.GetCursor();
             var rightButton = InputInterface.CheckInputDown("cursorRight");
+            var leftButton = InputInterface.CheckInputDown("cursorLeft");
 
             if (rightButton)
             {
@@ -38,6 +41,15 @@ namespace HeroesOfVuklut.Shared.Factions
                 else
                 {
                     SceneNavigator.GotoScene(typeof(WorldSceneManager), WorldSceneManager.WorldSceneParameter.Default);
+                }
+            }
+            if (leftButton)
+            {
+                if (!_factionSelected)
+                {
+                    bool clicked = false;
+                    FactionAspect fa = null;
+                    factionList.CheckIfClick(cursor, out clicked, out fa);
                 }
             }
 
@@ -80,6 +92,9 @@ namespace HeroesOfVuklut.Shared.Factions
             var customParameter = sceneParameter as FactionDescriptionSceneParameter;
 
             _factionSelected = customParameter.FacionId != 0;
+
+            factionList = GraphicElementFactory.CreateListElement<FactionAspect>();
+
             base.BeginScene(sceneParameter);
             
             ProcessInput();
