@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitTemplate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factions\FactionAspect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factions\FactionDescriptionSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factions\FactionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factions\IFactionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factions\IFactionProvider.cs" />

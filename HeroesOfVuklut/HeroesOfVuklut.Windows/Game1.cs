@@ -109,9 +109,12 @@ namespace HeroesOfVuklut.Windows
             var menuScene = Container.AddScene<MenuSceneManager>();
             var worldMapScene = Container.AddScene<WorldSceneManager>();
             var clashScene = Container.AddScene<ClashSceneManager>();
+            var factionDescription = Container.AddScene<FactionDescriptionSceneManager>();
             
             SceneNavigator.Scenes.AddScene(menuScene);
             SceneNavigator.Scenes.SetDefault(menuScene);
+
+            SceneNavigator.Scenes.AddScene(factionDescription);
 
             SceneNavigator.GotoScene(menuScene.GetSceneType(), menuScene.GetDefault());
             

@@ -11,6 +11,16 @@ namespace HeroesOfVuklut.Shared.Units
     {
         private GameData _gameData { get; set; }
 
+        public ICollection<UnitDefinition> GetUnitDefinitionsPerFaction(string factionName)
+        {
+            return new List<UnitDefinition>();
+        }
+
+        public ICollection<UnitDefinition> GetUnitDefinitionsPerFaction(int factionId)
+        {
+            return new List<UnitDefinition>();
+        }
+
         public void SetGameData(GameData gameData)
         {
             _gameData = gameData;

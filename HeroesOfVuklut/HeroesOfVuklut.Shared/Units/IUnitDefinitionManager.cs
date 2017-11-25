@@ -6,5 +6,9 @@ namespace HeroesOfVuklut.Shared.Units
 {
     interface IUnitDefinitionManager
     {
+        ICollection<UnitDefinition> GetUnitDefinitionsPerFaction(string factionName);
+        ICollection<UnitDefinition> GetUnitDefinitionsPerFaction(int factionId);
+
+
     }
 }

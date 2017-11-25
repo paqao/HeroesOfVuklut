@@ -47,10 +47,7 @@ namespace HeroesOfVuklut.Shared.Clash
             var parsedParam = sceneParameter as ClashSceneParameter;
 
             var factions = _factionManager.GetAllFactions().Where(f => parsedParam.FactionIds.Contains(f.Id));
-
-
-
-
+            
             var map = _mapProvider.GetMapById(parsedParam.MapId);
             var clashState = new ClashState();
             clashState.MapClash = map;
