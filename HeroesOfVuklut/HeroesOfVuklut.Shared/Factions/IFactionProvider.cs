@@ -1,9 +1,10 @@
 ﻿using HeroesOfVuklut.Engine.Configuration;
+using System.Collections.Generic;
 
 namespace HeroesOfVuklut.Shared.Factions
 {
     public interface IFactionProvider : IConfigurationProvider
     {
-        FactionAspect GetFaction(int id);
+        ICollection<FactionAspect> AllFactions { get; }
     }
 }

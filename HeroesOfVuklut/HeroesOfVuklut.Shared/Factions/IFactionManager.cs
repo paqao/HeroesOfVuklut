@@ -6,5 +6,6 @@ namespace HeroesOfVuklut.Shared.Factions
 {
     public interface IFactionManager
     {
+        ICollection<FactionAspect> GetAllFactions();
     }
 }

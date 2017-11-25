@@ -28,6 +28,8 @@ public class WorldSceneManager : SceneManager<WorldSceneManager>
     public override void Update(TimeSpan elapsedGameTime)
     {
         var navigationParameter = new ClashSceneManager.ClashSceneParameter(1);
+        navigationParameter.FactionIds.Add(1);
+        navigationParameter.FactionIds.Add(2);
         SceneNavigator.GotoScene(typeof(ClashSceneManager), navigationParameter);
     }
 

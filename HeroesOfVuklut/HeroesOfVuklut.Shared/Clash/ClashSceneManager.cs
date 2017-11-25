@@ -7,6 +7,7 @@ using HeroesOfVuklut.Shared.Clash.MapItems;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HeroesOfVuklut.Shared.Factions;
 
 namespace HeroesOfVuklut.Shared.Clash
 {
@@ -15,6 +16,7 @@ namespace HeroesOfVuklut.Shared.Clash
         private ClashState _currentClash;
         private IClashResourceManager _clashResourceManager;
         private CursorPosition _cursor;
+        private IFactionManager _factionManager;
 
         private int offsetX;
         private int offsetY;
@@ -23,10 +25,11 @@ namespace HeroesOfVuklut.Shared.Clash
 
         public IArtificialIntelligence<ClashState, ClashStateArtificialDecision> IAi { get;  }
 
-        public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IMapProvider mapProvider, IClashResourceManager clashResourceManager, IArtificialIntelligence<ClashState, ClashStateArtificialDecision> ai) : base(sceneNavigator, inputInterface, graphicsInterface)
+        public ClashSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IMapProvider mapProvider, IClashResourceManager clashResourceManager, IFactionManager factionManager, IArtificialIntelligence<ClashState, ClashStateArtificialDecision> ai) : base(sceneNavigator, inputInterface, graphicsInterface)
         {
             _clashResourceManager = clashResourceManager;
             _mapProvider = mapProvider;
+            _factionManager = factionManager;
             IAi = ai;
         }
 
@@ -42,6 +45,10 @@ namespace HeroesOfVuklut.Shared.Clash
         {
             base.BeginScene(sceneParameter);
             var parsedParam = sceneParameter as ClashSceneParameter;
+
+            var factions = _factionManager.GetAllFactions().Where(f => parsedParam.FactionIds.Contains(f.Id));
+
+
 
 
             var map = _mapProvider.GetMapById(parsedParam.MapId);
@@ -223,6 +230,8 @@ namespace HeroesOfVuklut.Shared.Clash
             public static ClashSceneParameter Default { get { return null; } }
 
             public int MapId { get; private set; }
+
+            public ICollection<int> FactionIds { get; set; } = new List<int>();
         }
 
         public interface IClashResourceManager

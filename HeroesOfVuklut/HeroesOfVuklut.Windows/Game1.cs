@@ -12,6 +12,7 @@ using System.Reflection;
 using HeroesOfVuklut.Engine.IO;
 using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Engine.Game;
+using HeroesOfVuklut.Shared.Factions;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -83,6 +84,14 @@ namespace HeroesOfVuklut.Windows
 
             var gameData = new GameData();
             var settings = new GameSettings();
+
+            var factionProvider = Container.Resolve<IFactionProvider>();
+            factionProvider.LoadConfiguration();
+
+            foreach (var item in factionProvider.AllFactions)
+            {
+                gameData.Factions.Add(item);
+            }
 
             gameManager.Initialize(gameData, settings);
             Container.AddGameData(gameData, settings);

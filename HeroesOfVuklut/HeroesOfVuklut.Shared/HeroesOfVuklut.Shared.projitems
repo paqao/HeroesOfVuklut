@@ -49,6 +49,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traits\ICharacterTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\ITrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\IUnitTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Units\IUnitDefinitionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\UnitDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\UnitDefinitionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\UnitTraitBase.cs" />

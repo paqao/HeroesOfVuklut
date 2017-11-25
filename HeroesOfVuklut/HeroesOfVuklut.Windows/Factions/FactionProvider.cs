@@ -15,6 +15,9 @@ namespace HeroesOfVuklut.Windows.Factions
     public class FactionProvider : IFactionProvider
     {
         private IList<FactionAspect> _factions = new List<FactionAspect>();
+
+        public ICollection<FactionAspect> AllFactions => _factions;
+
         public void LoadConfiguration()
         {
             _factions.Clear();
@@ -35,10 +38,6 @@ namespace HeroesOfVuklut.Windows.Factions
                 });
             }
         }
-
-        public FactionAspect GetFaction(int id)
-        {
-            return _factions.FirstOrDefault(f => f.Id == id);
-        }
+        
     }
 }

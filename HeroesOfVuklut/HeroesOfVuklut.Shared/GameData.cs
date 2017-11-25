@@ -7,11 +7,13 @@ namespace HeroesOfVuklut.Shared
     {
         public Castle Castle { get; set; }
         public IList<Hero> Heroes { get; }
+        public ICollection<FactionAspect> Factions { get; }
         
 
         public GameData()
         {
             Heroes = new List<Hero>();
+            Factions = new List<FactionAspect>();
         }
 
         public void Clear()
