@@ -13,6 +13,7 @@ using HeroesOfVuklut.Engine.IO;
 using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Engine.Game;
 using HeroesOfVuklut.Shared.Factions;
+using HeroesOfVuklut.Shared.Units;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -110,6 +111,7 @@ namespace HeroesOfVuklut.Windows
             var worldMapScene = Container.AddScene<WorldSceneManager>();
             var clashScene = Container.AddScene<ClashSceneManager>();
             var factionDescription = Container.AddScene<FactionDescriptionSceneManager>();
+            var unitDefinitionScene = Container.AddScene<UnitDefinitionSceneManager>();
             
             SceneNavigator.Scenes.AddScene(menuScene);
             SceneNavigator.Scenes.SetDefault(menuScene);
@@ -120,6 +122,7 @@ namespace HeroesOfVuklut.Windows
             
             SceneNavigator.Scenes.AddScene(worldMapScene);
             SceneNavigator.Scenes.AddScene(clashScene);
+            SceneNavigator.Scenes.AddScene(unitDefinitionScene);
 
             SceneNavigator.Scenes.AddSceneTransition(menuScene, worldMapScene);
             SceneNavigator.Scenes.AddSceneTransition(worldMapScene, clashScene);

@@ -53,6 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Units\IUnitDefinitionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\UnitDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\UnitDefinitionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Units\UnitDefinitionSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\UnitTraitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\BanditHideoutPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\MissionPlace.cs" />

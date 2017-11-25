@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\IGameSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\ButtonState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicElementFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicsInterface.cs" />

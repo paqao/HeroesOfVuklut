@@ -2,19 +2,41 @@ using HeroesOfVuklut.Engine.IO;
 using HeroesOfVuklut.Engine.Scenes;
 using HeroesOfVuklut.Shared.Clash;
 using HeroesOfVuklut.Shared.Factions;
+using HeroesOfVuklut.Shared.Units;
 using System;
 
 public class WorldSceneManager : SceneManager<WorldSceneManager>
 {
     private CursorPosition _cursor;
+    private IGraphicButton _unitDefinition;
+    private IGraphicButton _factionsExplorer;
+    private IGraphicButton _clash;
 
     public WorldSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
     {
+        _unitDefinition = GraphicElementFactory.CreateButton(ButtonType.Circle);
+        _factionsExplorer = GraphicElementFactory.CreateButton(ButtonType.Circle);
+        _clash = GraphicElementFactory.CreateButton(ButtonType.Circle);
     }
 
     public override void BeginScene(SceneParameter<WorldSceneManager> sceneParameter)
     {
         var parameter = sceneParameter as WorldSceneParameter;
+
+        _factionsExplorer.ItemHeight = 21;
+        _factionsExplorer.X = 30;
+        _factionsExplorer.Y = 550;
+
+
+        _unitDefinition.ItemHeight = 21;
+        _unitDefinition.X = 80;
+        _unitDefinition.Y = 550;
+
+
+        _clash.ItemHeight = 21;
+        _clash.X = 130;
+        _clash.Y = 550;
+
         base.BeginScene(sceneParameter);
     }
 
@@ -30,11 +52,7 @@ public class WorldSceneManager : SceneManager<WorldSceneManager>
 
     public override void Update(TimeSpan elapsedGameTime)
     {
-        //  var navigationParameter = new ClashSceneManager.ClashSceneParameter(1);
-        // navigationParameter.FactionIds.Add(1);
-        //  navigationParameter.FactionIds.Add(2);
-        // var navigationParameter = new FactionDescriptionSceneManager.FactionDescriptionSceneParameter(0);
-       //  SceneNavigator.GotoScene(typeof(FactionDescriptionSceneManager), navigationParameter);
+
     }
 
 
@@ -44,6 +62,8 @@ public class WorldSceneManager : SceneManager<WorldSceneManager>
         GraphicsInterface.Draw(8, 528, 42, 42, "clashInterfaceDynamic", style);
         
         GraphicsInterface.Draw(58, 528, 42, 42, "clashInterfaceDynamic", style);
+
+        GraphicsInterface.Draw(108, 528, 42, 42, "clashInterfaceDynamic", style);
 
         GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
     }
@@ -66,24 +86,28 @@ public class WorldSceneManager : SceneManager<WorldSceneManager>
         if (leftButton)
         {
             // element 1
-            var distance1X = cursor.PositionX - 30;
-            var distance1Y = cursor.PositionY - 550;
+            bool element1IsOver = _factionsExplorer.IsOver(cursor);
 
-            var distance1 = Math.Sqrt(distance1X * distance1X + distance1Y * distance1Y);
-
-            if(distance1 <= 21)
+            if(element1IsOver)
             {
                 var navigationParameter = new FactionDescriptionSceneManager.FactionDescriptionSceneParameter(0);
                 SceneNavigator.GotoScene(typeof(FactionDescriptionSceneManager), navigationParameter);
             }
 
             // element 2
-            var distance2X = cursor.PositionX - 80;
-            var distance2Y = cursor.PositionY - 550;
+            bool element2IsOver = _unitDefinition.IsOver(cursor);
 
-            var distance2 = Math.Sqrt(distance2X * distance2X + distance2Y * distance2Y);
+            if (element2IsOver)
+            {
+                var navigationParameter = new UnitDefinitionSceneManager.UnitDefinitionSceneParameter();
+                SceneNavigator.GotoScene(typeof(UnitDefinitionSceneManager), navigationParameter);
+            }
 
-            if (distance2 <= 21)
+
+            // element 3
+            bool element3IsOver = _clash.IsOver(cursor);
+
+            if (element3IsOver)
             {
                 var navigationParameter = new ClashSceneManager.ClashSceneParameter(1);
                 navigationParameter.FactionIds.Add(1);
