@@ -14,6 +14,7 @@ namespace HeroesOfVuklut.Shared.Factions
         private CursorPosition _cursor;
 
         private IListElement<FactionAspect> factionList = null;
+        private int _factionId;
 
         public FactionDescriptionSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface , IFactionManager factions, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
         {
@@ -29,8 +30,8 @@ namespace HeroesOfVuklut.Shared.Factions
         {
 
             var cursor = InputInterface.GetCursor();
-            var rightButton = InputInterface.CheckInputDown("cursorRight");
-            var leftButton = InputInterface.CheckInputDown("cursorLeft");
+            var rightButton = InputInterface.IsClick("cursorRight");
+            var leftButton = InputInterface.IsClick("cursorLeft");
 
             if (rightButton)
             {
@@ -50,6 +51,16 @@ namespace HeroesOfVuklut.Shared.Factions
                     bool clicked = false;
                     FactionAspect fa = null;
                     factionList.CheckIfClick(cursor, out clicked, out fa);
+
+                    _factionSelected = clicked;
+                    if(fa != null)
+                    {
+                        _factionId = fa.Id;
+                    }
+                    else
+                    {
+                        _factionId = 0;
+                    }
                 }
             }
 
@@ -85,31 +96,47 @@ namespace HeroesOfVuklut.Shared.Factions
 
         private void DrawSelected()
         {
+
+            GraphicsInterface.DrawText(50, 50, "Frakcje");
+
+            var faction = _factionsManager.GetAllFactions().First(fac => fac.Id == _factionId);
+
+            
+            GraphicsInterface.DrawText(50, 80, faction.Name);
         }
 
         public override void BeginScene(SceneParameter<FactionDescriptionSceneManager> sceneParameter)
         {
             var customParameter = sceneParameter as FactionDescriptionSceneParameter;
 
-            _factionSelected = customParameter.FacionId != 0;
+            _factionSelected = customParameter.FactionId != 0;
+            _factionId = customParameter.FactionId;
 
             factionList = GraphicElementFactory.CreateListElement<FactionAspect>();
 
+            factionList.ItemHeight = 30;
+            factionList.ItemWidth = 200;
+            factionList.X = 25;
+            factionList.Y = 65;
+
+            var factions = _factionsManager.GetAllFactions();
+            factionList.InnerList = factions;
+
             base.BeginScene(sceneParameter);
-            
-            ProcessInput();
+
+            _cursor = InputInterface.GetCursor();
         }
 
         public class FactionDescriptionSceneParameter : SceneParameter<FactionDescriptionSceneManager>
         {
             public FactionDescriptionSceneParameter(int factionId)
             {
-                FacionId = factionId;
+                FactionId = factionId;
             }
 
             public static FactionDescriptionSceneParameter Default { get { return null; } }
 
-            public int FacionId { get; private set; }
+            public int FactionId { get; private set; }
         }
     }
 }

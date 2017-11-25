@@ -4,6 +4,8 @@
     {
         bool CheckInputDown(string key);
 
+        bool IsClick(string key);
+
         CursorPosition GetCursor();
 
     }

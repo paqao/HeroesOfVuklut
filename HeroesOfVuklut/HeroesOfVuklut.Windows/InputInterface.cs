@@ -60,5 +60,21 @@ namespace HeroesOfVuklut.Windows
             _mouseProcessor = mouseProcessor;
             _processors.Add(mouseProcessor);
         }
+
+        public bool IsClick(string key)
+        {
+            bool down = false;
+            foreach (var item in _processors)
+            {
+                var actionItem = item.GetButton(key);
+
+                if (actionItem != null)
+                {
+                    down = actionItem.State == ButtonStateValue.OnClick;
+                }
+            }
+
+            return down;
+        }
     }
 }
