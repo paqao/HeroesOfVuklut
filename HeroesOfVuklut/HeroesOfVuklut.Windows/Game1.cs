@@ -10,6 +10,8 @@ using HeroesOfVuklut.Engine.DI;
 using HeroesOfVuklut.Engine.Scenes;
 using System.Reflection;
 using HeroesOfVuklut.Engine.IO;
+using HeroesOfVuklut.Shared;
+using HeroesOfVuklut.Engine.Game;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -31,6 +33,7 @@ namespace HeroesOfVuklut.Windows
         private FactionProvider factionProvider = new FactionProvider();
         private GameConfigurationProvider gameConfigurationProvider = new GameConfigurationProvider();
         private IContainerSystem Container = new ContainerSystem();
+        private GameManager gameManager;
 
         public Game1()
         {
@@ -75,7 +78,14 @@ namespace HeroesOfVuklut.Windows
             
             var mapProvider = Container.Resolve<IMapProvider>();
             SceneNavigator = Container.Resolve<ISceneNavigator>();
-            
+
+            gameManager = Container.Resolve<GameManagerBase<GameData, GameSettings>>() as GameManager;
+
+            var gameData = new GameData();
+            var settings = new GameSettings();
+
+            gameManager.Initialize(gameData, settings);
+            Container.AddGameData(gameData, settings);
 
             PrepareScenes();
 

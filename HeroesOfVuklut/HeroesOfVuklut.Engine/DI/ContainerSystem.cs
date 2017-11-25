@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using HeroesOfVuklut.Engine.Game;
 using HeroesOfVuklut.Engine.Scenes;
+using HeroesOfVuklut.Engine.Context;
 
 namespace HeroesOfVuklut.Engine.DI
 {
@@ -103,6 +105,8 @@ namespace HeroesOfVuklut.Engine.DI
             return instance;
         }
 
+
+
         public void AddAttributeDeclarations(Assembly assembly)
         {
             var types = assembly.GetTypes();
@@ -127,6 +131,29 @@ namespace HeroesOfVuklut.Engine.DI
             containerSystemItem.Create(this);
 
             return containerSystemItem.InstanceImpl;
+        }
+
+        public void AddGameData<T, U>(T gameData, U gameSettings)
+            where T : IGameEntity
+            where U : IGameSettings
+        {
+            var targetType = typeof(IGameDataBased<T>);
+            var methodToResolve = GetType().GetMethod("Resolve");
+            foreach (var item in Items)
+            {
+                var interfaces = item.Implementation.GetInterfaces();
+                
+                var gameDataBased = interfaces.FirstOrDefault(inf => inf.Name == targetType.Name);
+
+                if(gameDataBased != null)
+                {
+                    var genericMethod = methodToResolve.MakeGenericMethod(item.Interface);
+
+                    var newItem = genericMethod.Invoke(this, new object[] { });
+                    var gameDataBasedItem = newItem as IGameDataBased<T>;
+                    gameDataBasedItem.SetGameData(gameData);
+                }
+            }
         }
     }
 }

@@ -35,6 +35,7 @@ namespace HeroesOfVuklut.Windows.Factions
                 });
             }
         }
+
         public FactionAspect GetFaction(int id)
         {
             return _factions.FirstOrDefault(f => f.Id == id);

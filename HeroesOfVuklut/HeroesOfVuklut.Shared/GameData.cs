@@ -3,12 +3,13 @@ using System.Collections.Generic;
 
 namespace HeroesOfVuklut.Shared
 {
-    public class HeroesGame : IGameEntity
+    public class GameData : IGameEntity
     {
         public Castle Castle { get; set; }
         public IList<Hero> Heroes { get; }
+        
 
-        public HeroesGame()
+        public GameData()
         {
             Heroes = new List<Hero>();
         }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HeroesOfVuklut.Engine.Quest
+namespace HeroesOfVuklut.Shared.Traits
 {
-    public interface IMission
+    interface IUnitTrait : ITrait
     {
     }
 }

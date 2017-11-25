@@ -1,4 +1,5 @@
-﻿using HeroesOfVuklut.Engine.Scenes;
+﻿using HeroesOfVuklut.Engine.Game;
+using HeroesOfVuklut.Engine.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -12,6 +13,8 @@ namespace HeroesOfVuklut.Engine.DI
         void AddDeclaration<T>() where T : class;
 
         T AddScene<T>() where T : SceneManager<T>;
+        void AddGameData<T, U>(T gameData, U gameSettings) where T : IGameEntity
+            where U : IGameSettings;
 
         T Resolve<T>() where T : class;
         void AddAttributeDeclarations(Assembly source);

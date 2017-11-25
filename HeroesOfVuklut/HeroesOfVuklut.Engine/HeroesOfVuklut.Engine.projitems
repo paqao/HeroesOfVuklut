@@ -21,13 +21,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\IConfigurable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\IConfigurationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\IContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\IGameDataBased.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\IOwned.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\IResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\IContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ServiceInjectAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\IGameEntity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\GameManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\IGameSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\ButtonState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicsInterface.cs" />
@@ -45,8 +46,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Quest\IMissionStep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Quest\IMissionTask.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Quest\IMissionTaskLogic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Quest\IQuestManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Quest\Logic\MissionLogicAll.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Quest\MissionState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scenes\IGraphicScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneManager.cs" />

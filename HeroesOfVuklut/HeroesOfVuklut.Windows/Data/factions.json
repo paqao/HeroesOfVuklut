@@ -1,6 +1,10 @@
 ﻿{
   "Factions": [
     {
+      "Name": "Player faction",
+      "Id": 1
+    },
+    {
       "Name": "Woods bandits",
       "Id": 2
     }

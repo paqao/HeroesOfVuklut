@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HeroesOfVuklut.Engine.Quest
+namespace HeroesOfVuklut.Engine.Scenes
 {
-    public interface IMission
+    public interface IGraphicScene
     {
     }
 }
