@@ -153,6 +153,10 @@ namespace HeroesOfVuklut.Shared.Clash
                 tile.Hover = true;
                 if (leftButton)
                 {
+                    if(_selectedTile  != null && _selectedTile.Item != null)
+                    {
+                        _selectedTile.Item.Selected = false;
+                    }
                     _selectedTile = tile;
 
                     if(tile.Item != null)
