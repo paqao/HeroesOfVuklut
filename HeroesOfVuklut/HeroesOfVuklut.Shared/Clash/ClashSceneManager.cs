@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HeroesOfVuklut.Shared.Factions;
+using HeroesOfVuklut.Windows.InputProcessor;
 
 namespace HeroesOfVuklut.Shared.Clash
 {

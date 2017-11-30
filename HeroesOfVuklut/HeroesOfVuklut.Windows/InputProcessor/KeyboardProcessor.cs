@@ -15,20 +15,20 @@ namespace HeroesOfVuklut.Windows.InputProcessor
     {
         public KeyboardProcessorImpl()
         {
-            buttons = new List<Engine.IO.ButtonState>();
+            buttons = new List<ButtonStateItem>();
             actions = new Dictionary<string,Keys>();
         }
-        ICollection<Engine.IO.ButtonState> buttons;
+        ICollection<ButtonStateItem> buttons;
         IDictionary<string, Keys> actions;
 
-        public Engine.IO.ButtonState GetButton(string key)
+        public InputStateItem GetButton(string key)
         {
             return buttons.FirstOrDefault(x => x.Key == key);
         }
 
         public ButtonStateValue GetButtonState(string key)
         {
-            return GetButton(key).State;
+            return buttons.FirstOrDefault(x => x.Key == key).ButtonState;
         }
 
         public void Refresh(KeyboardState state)
@@ -36,7 +36,7 @@ namespace HeroesOfVuklut.Windows.InputProcessor
             foreach (var button in buttons)
             {
                 var input = actions[button.Key];
-                var previous = button.State;
+                var previous = button.ButtonState;
 
                 var down = state.IsKeyDown(input);
 
@@ -69,13 +69,13 @@ namespace HeroesOfVuklut.Windows.InputProcessor
                
 
 
-                button.State = newState;
+                button.ButtonState = newState;
             }
         }
 
         public void RegisterKey(string action, Keys keyboard)
         {
-            var buttonState = new Engine.IO.ButtonState(action);
+            var buttonState = new ButtonStateItem(action);
 
             actions[action] = keyboard;
             buttons.Add(buttonState);

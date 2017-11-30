@@ -1,13 +1,25 @@
-﻿namespace HeroesOfVuklut.Engine.IO
+﻿using Microsoft.Xna.Framework.Input;
+
+namespace HeroesOfVuklut.Engine.IO
 {
-    public class ButtonState : IInputState
+    public class ButtonStateItem : InputStateItem
     {
         public string Key { get; }
-        public ButtonStateValue State { get; set; }
+        public ButtonStateValue ButtonState { get; set; }
 
-        public ButtonState(string key)
+        public ButtonStateItem(string key) : base(InputStateType.Functional, key)
         {
             Key = key;
+        }
+    }
+
+    public class KeyboardStateItem : InputStateItem
+    {
+        private readonly Keys _key;
+
+        public KeyboardStateItem(Keys key) : base(InputStateType.Character, key)
+        {
+            _key = key;
         }
     }
 

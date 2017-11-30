@@ -8,6 +8,7 @@ namespace HeroesOfVuklut.Engine.IO
     {
         IListElement<T> CreateListElement<T>() where T : class;
         IGraphicButton CreateButton(ButtonType buttonType);
+        ITextBoxElement CreateTextBox(KeyboardType keyboardType);
     }
 
 

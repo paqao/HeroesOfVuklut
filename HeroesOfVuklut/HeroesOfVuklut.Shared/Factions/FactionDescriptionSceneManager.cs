@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using HeroesOfVuklut.Engine.IO;
 using System.Linq;
+using HeroesOfVuklut.Windows.InputProcessor;
 
 namespace HeroesOfVuklut.Shared.Factions
 {

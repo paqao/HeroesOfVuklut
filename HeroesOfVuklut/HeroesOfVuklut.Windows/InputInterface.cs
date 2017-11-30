@@ -34,11 +34,11 @@ namespace HeroesOfVuklut.Windows
             bool down = false;
             foreach (var item in _processors)
             {
-                var actionItem = item.GetButton(key);
+                var actionItem = item.GetButton(key) as ButtonStateItem;
 
                 if(actionItem != null)
                 {
-                    down = actionItem.State == ButtonStateValue.OnClick || actionItem.State == ButtonStateValue.OnHold;
+                    down = actionItem.ButtonState == ButtonStateValue.OnClick || actionItem.ButtonState == ButtonStateValue.OnHold;
                 }
             }
 
@@ -66,15 +66,20 @@ namespace HeroesOfVuklut.Windows
             bool down = false;
             foreach (var item in _processors)
             {
-                var actionItem = item.GetButton(key);
+                var actionItem = item.GetButton(key) as ButtonStateItem;
 
                 if (actionItem != null)
                 {
-                    down = actionItem.State == ButtonStateValue.OnClick;
+                    down = actionItem.ButtonState == ButtonStateValue.OnClick;
                 }
             }
 
             return down;
+        }
+
+        public InputState GetState()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

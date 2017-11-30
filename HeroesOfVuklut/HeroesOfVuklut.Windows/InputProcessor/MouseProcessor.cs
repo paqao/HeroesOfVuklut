@@ -25,23 +25,23 @@ namespace HeroesOfVuklut.Windows.InputProcessor
     {
         public MouseProcessorImpl()
         {
-            buttons = new List<Engine.IO.ButtonState>();
+            buttons = new List<ButtonStateItem>();
             actions = new Dictionary<string, MouseKeys>();
         }
-        ICollection<Engine.IO.ButtonState> buttons;
+        ICollection<ButtonStateItem> buttons;
         IDictionary<string, MouseKeys> actions;
 
         public int MousePositionX { get; private set; }
         public int MousePositionY { get; private set; }
 
-        public Engine.IO.ButtonState GetButton(string key)
+        public InputStateItem GetButton(string key)
         {
             return buttons.FirstOrDefault(x => x.Key == key);
         }
 
         public ButtonStateValue GetButtonState(string key)
         {
-            return GetButton(key).State;
+            return buttons.FirstOrDefault(x => x.Key == key).ButtonState;
         }
 
         public void Refresh(MouseState state)
@@ -52,9 +52,9 @@ namespace HeroesOfVuklut.Windows.InputProcessor
             foreach (var button in buttons)
             {
                 var input = actions[button.Key];
-                var previous = button.State;
+                var previous = button.ButtonState;
 
-                Microsoft.Xna.Framework.Input.ButtonState processedButton = default(Microsoft.Xna.Framework.Input.ButtonState);
+                ButtonState processedButton = default(ButtonState);
 
                 if (input == MouseKeys.Left)
                 {
@@ -68,7 +68,7 @@ namespace HeroesOfVuklut.Windows.InputProcessor
                 var newState = ButtonStateValue.NotFound;
 
 
-                if (processedButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+                if (processedButton == ButtonState.Pressed)
                 {
                     if (previous == ButtonStateValue.OnHold || previous == ButtonStateValue.OnClick)
                     {
@@ -93,14 +93,13 @@ namespace HeroesOfVuklut.Windows.InputProcessor
                 // bothDown
 
 
-
-                button.State = newState;
+                button.ButtonState = newState;
             }
         }
 
         public void Register(string action, MouseKeys keys)
         {
-            var buttonState = new Engine.IO.ButtonState(action);
+            var buttonState = new ButtonStateItem(action);
 
             actions[action] = keys;
             buttons.Add(buttonState);

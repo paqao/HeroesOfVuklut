@@ -28,5 +28,10 @@ namespace HeroesOfVuklut.Windows.GraphicsElement
         {
             return new GraphicListElement<T>();
         }
+
+        public ITextBoxElement CreateTextBox(KeyboardType keyboardType)
+        {
+            return new GraphicTextBoxElement();
+        }
     }
 }

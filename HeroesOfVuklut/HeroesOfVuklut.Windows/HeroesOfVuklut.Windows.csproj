@@ -51,7 +51,9 @@
     <Compile Include="GraphicsElement\GraphicElementFactory.cs" />
     <Compile Include="GraphicsElement\GraphicListElement.cs" />
     <Compile Include="GraphicsElement\RoundGraphicButton.cs" />
+    <Compile Include="GraphicsElement\GraphicTextBoxElement.cs" />
     <Compile Include="InputInterface.cs" />
+    <Compile Include="InputProcessor\InputData.cs" />
     <Compile Include="InputProcessor\KeyboardProcessor.cs" />
     <Compile Include="InputProcessor\IInputProcessor.cs" />
     <Compile Include="InputProcessor\MouseProcessor.cs" />

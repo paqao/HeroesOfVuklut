@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using HeroesOfVuklut.Engine.IO;
+using HeroesOfVuklut.Windows.InputProcessor;
 
 namespace HeroesOfVuklut.Shared.Units
 {

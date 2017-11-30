@@ -8,6 +8,7 @@
 
         CursorPosition GetCursor();
 
+        InputState GetState();
     }
 
     public interface CursorPosition

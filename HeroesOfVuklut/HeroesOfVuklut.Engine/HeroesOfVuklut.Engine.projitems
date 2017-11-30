@@ -38,6 +38,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IListElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\ITextBoxElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\IMapItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\IUpgradable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\MapBase.cs" />
