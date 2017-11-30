@@ -67,6 +67,7 @@ public class WorldSceneManager : SceneManager<WorldSceneManager>
 
         GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
     }
+
     public override void BeginScene(SceneParameter sceneParameter)
     {
         base.BeginScene(sceneParameter);
@@ -81,7 +82,7 @@ public class WorldSceneManager : SceneManager<WorldSceneManager>
     {
         var cursor = InputInterface.GetCursor();
 
-        var leftButton = InputInterface.CheckInputDown("cursorLeft");
+        var leftButton = InputInterface.IsClick("cursorLeft");
 
         if (leftButton)
         {
@@ -102,8 +103,7 @@ public class WorldSceneManager : SceneManager<WorldSceneManager>
                 var navigationParameter = new UnitDefinitionSceneManager.UnitDefinitionSceneParameter();
                 SceneNavigator.GotoScene(typeof(UnitDefinitionSceneManager), navigationParameter);
             }
-
-
+            
             // element 3
             bool element3IsOver = _clash.IsOver(cursor);
 

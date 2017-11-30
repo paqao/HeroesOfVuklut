@@ -11,6 +11,9 @@ namespace HeroesOfVuklut.Engine.IO
         int ItemWidth { get; set; }
         int ItemHeight { get; set; }
 
+        int MaxShow { get; set; }
+        int Offset { get; set; }
+
         void CheckIfClick(CursorPosition cursorPosition, out bool clicked, out T seledtedItem);
     }
 }

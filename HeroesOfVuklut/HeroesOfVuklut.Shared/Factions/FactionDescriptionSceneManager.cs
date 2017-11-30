@@ -118,6 +118,8 @@ namespace HeroesOfVuklut.Shared.Factions
             factionList.ItemWidth = 200;
             factionList.X = 25;
             factionList.Y = 65;
+            factionList.MaxShow = 5;
+            factionList.Offset = 0;
 
             var factions = _factionsManager.GetAllFactions();
             factionList.InnerList = factions;

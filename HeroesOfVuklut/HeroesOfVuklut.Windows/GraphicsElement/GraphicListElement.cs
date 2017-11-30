@@ -14,16 +14,18 @@ namespace HeroesOfVuklut.Windows.GraphicsElement
         public int ItemHeight { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public int MaxShow { get; set; }
+        public int Offset { get; set; }
 
         public void CheckIfClick(CursorPosition cursorPosition, out bool clicked, out T seledtedItem)
         {
 
             bool passX = (cursorPosition.PositionX <= X + ItemWidth && cursorPosition.PositionX >= X);
-            bool passY = (cursorPosition.PositionY <= Y + ItemHeight * InnerList.Count && cursorPosition.PositionY >= Y);
+            bool passY = (cursorPosition.PositionY <= Y + ItemHeight * MaxShow && cursorPosition.PositionY >= Y);
 
             if(passX && passY)
             {
-                int itemId = (cursorPosition.PositionY - Y) / ItemHeight;
+                int itemId = Offset + (cursorPosition.PositionY - Y) / ItemHeight;
                 
                 if(itemId >= 0 && itemId < InnerList.Count)
                 {
