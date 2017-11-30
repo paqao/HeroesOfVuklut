@@ -14,8 +14,13 @@ namespace HeroesOfVuklut.Shared.Units
 
         public UnitDefinition AddDefinitionToFaction(int factionId)
         {
-            var faction = _gameData.Factions.Where(f => f.Id == factionId);
-            var factionDefinitions = _gameData.UnitDefinitions.Where(u => u.FactionId == factionId);
+            var faction = _gameData.Factions.First(f => f.Id == factionId);
+            var factionDefinitions = _gameData.UnitDefinitions.Where(u => u.FactionId == factionId).ToList();
+
+            if(faction.MaxUnitDefinitions <= factionDefinitions.Count)
+            {
+                return null;
+            }
 
             var ud = new UnitDefinition();
             ud.FactionId = factionId;

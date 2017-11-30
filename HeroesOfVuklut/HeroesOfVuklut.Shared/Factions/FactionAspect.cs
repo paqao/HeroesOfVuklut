@@ -9,6 +9,8 @@ namespace HeroesOfVuklut.Shared
         public int Id { get; set; }
         public string Name { get; set; }
         public Color Color { get; set; }
+
+        public int MaxUnitDefinitions { get; set; } = 5;
     }
 
     public enum Color

@@ -73,7 +73,11 @@ namespace HeroesOfVuklut.Shared.Units
                 }
                 else if (element2ISOver)
                 {
-                    _unitDefinitionManager.AddDefinitionToFaction(_factionId);
+                    var newCreated = _unitDefinitionManager.AddDefinitionToFaction(_factionId);
+                    if(newCreated != null)
+                    {
+                        _selected = newCreated;
+                    }
                     unitDefinitions.InnerList = _unitDefinitionManager.GetUnitDefinitionsPerFaction(_factionId);
                 }
                 
