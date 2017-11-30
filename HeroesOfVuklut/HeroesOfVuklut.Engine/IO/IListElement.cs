@@ -15,5 +15,7 @@ namespace HeroesOfVuklut.Engine.IO
         int Offset { get; set; }
 
         void CheckIfClick(CursorPosition cursorPosition, out bool clicked, out T seledtedItem);
+
+        T this[int x] { get; }
     }
 }

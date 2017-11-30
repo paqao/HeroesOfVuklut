@@ -9,6 +9,18 @@ namespace HeroesOfVuklut.Windows.GraphicsElement
 {
     public class GraphicListElement<T> : IListElement<T> where T : class
     {
+        public T this[int x]
+        {
+            get
+            {
+                if(x > InnerList.Count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                return InnerList.ElementAt(x);
+            }
+        }
         public ICollection<T> InnerList { get; set; }
         public int ItemWidth { get; set; }
         public int ItemHeight { get; set; }

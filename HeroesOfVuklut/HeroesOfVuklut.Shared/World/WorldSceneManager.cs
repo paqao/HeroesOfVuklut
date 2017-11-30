@@ -100,7 +100,7 @@ public class WorldSceneManager : SceneManager<WorldSceneManager>
 
             if (element2IsOver)
             {
-                var navigationParameter = new UnitDefinitionSceneManager.UnitDefinitionSceneParameter();
+                var navigationParameter = new UnitDefinitionSceneManager.UnitDefinitionSceneParameter(1);
                 SceneNavigator.GotoScene(typeof(UnitDefinitionSceneManager), navigationParameter);
             }
             

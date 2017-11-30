@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HeroesOfVuklut.Shared.Units
 {
-    interface IUnitDefinitionManager
+    public interface IUnitDefinitionManager
     {
         ICollection<UnitDefinition> GetUnitDefinitionsPerFaction(string factionName);
         ICollection<UnitDefinition> GetUnitDefinitionsPerFaction(int factionId);
 
-
+        UnitDefinition AddDefinitionToFaction(int factionId);
     }
 }
