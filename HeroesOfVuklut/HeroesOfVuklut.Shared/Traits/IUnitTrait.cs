@@ -1,10 +1,11 @@
-﻿using System;
+﻿using HeroesOfVuklut.Engine.Traits;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace HeroesOfVuklut.Shared.Traits
 {
-    interface IUnitTrait : ITrait
+    public interface IUnitTrait : ITrait
     {
     }
 }

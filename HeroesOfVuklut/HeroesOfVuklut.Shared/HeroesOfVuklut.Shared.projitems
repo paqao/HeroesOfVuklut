@@ -48,13 +48,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)IGameConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menu\MenuSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\ICharacterTrait.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traits\ITrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\IUnitTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traits\RaceTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\IUnitDefinitionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\UnitDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\UnitDefinitionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\UnitDefinitionSceneManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Units\UnitTraitBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\BanditHideoutPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\MissionPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)World\Place.cs" />

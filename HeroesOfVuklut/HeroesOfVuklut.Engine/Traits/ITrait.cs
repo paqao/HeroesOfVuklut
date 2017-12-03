@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HeroesOfVuklut.Shared.Traits
+namespace HeroesOfVuklut.Engine.Traits
 {
     public interface ITrait
     {
-        string Name { get; }
+        string Name { get; set; }
     }
 }

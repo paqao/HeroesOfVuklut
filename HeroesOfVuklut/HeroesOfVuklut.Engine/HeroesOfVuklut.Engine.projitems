@@ -60,5 +60,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneNavigator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\SceneTree.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traits\ITrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unit\IUnit.cs" />
   </ItemGroup>
 </Project>

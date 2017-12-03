@@ -21,10 +21,14 @@ namespace HeroesOfVuklut.Shared.Units
             {
                 return null;
             }
+            var lastId = factionDefinitions.LastOrDefault()?.DefinitionId;
+
+
 
             var ud = new UnitDefinition();
             ud.FactionId = factionId;
-            ud.DefinitionName = "definitionName";
+            ud.DefinitionId = lastId != null ? lastId.Value + 1 : 1;
+            ud.DefinitionName = $"definitionName-{ud.DefinitionId}";
             _gameData.UnitDefinitions.Add(ud);
 
             return ud;
