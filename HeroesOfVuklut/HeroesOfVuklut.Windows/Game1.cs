@@ -14,6 +14,7 @@ using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Engine.Game;
 using HeroesOfVuklut.Shared.Factions;
 using HeroesOfVuklut.Shared.Units;
+using System.IO;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -96,6 +97,9 @@ namespace HeroesOfVuklut.Windows
 
             gameManager.Initialize(gameData, settings);
             Container.AddGameData(gameData, settings);
+
+            Container.AddDeclaration<DirectoryInfo, DirectoryInfo>();
+            
 
             PrepareScenes();
 

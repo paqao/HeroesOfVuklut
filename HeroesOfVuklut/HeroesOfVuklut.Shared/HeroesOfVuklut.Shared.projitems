@@ -61,6 +61,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)World\WorldSceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Data\Localized\en_US.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\Localized\pl_PL.json" />
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

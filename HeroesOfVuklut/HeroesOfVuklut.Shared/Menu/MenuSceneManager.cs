@@ -1,5 +1,6 @@
 ﻿using HeroesOfVuklut.Engine.DI;
 using HeroesOfVuklut.Engine.IO;
+using HeroesOfVuklut.Engine.Localization;
 using HeroesOfVuklut.Engine.Scenes;
 using HeroesOfVuklut.Shared.World;
 using System;
@@ -8,6 +9,9 @@ namespace HeroesOfVuklut.Shared.Menu
 {
     public class MenuSceneManager : SceneManager<MenuSceneManager>
     {
+        [InjectParameter]
+        public ILocalizedSource LocalizedSource { get; set; }
+
         public MenuSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
         {
         }

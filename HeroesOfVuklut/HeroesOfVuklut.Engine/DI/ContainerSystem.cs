@@ -34,6 +34,7 @@ namespace HeroesOfVuklut.Engine.DI
                 var allConstructors = Implementation.GetConstructors();
                 var constructorParam = allConstructors.First();
                 var methodParameters = constructorParam.GetParameters();
+                var properties = Implementation.GetProperties();
                 
                 var callParameters = new List<object>{ };
 
@@ -47,12 +48,23 @@ namespace HeroesOfVuklut.Engine.DI
                     
                     callParameters.Add(methodResult);
                 }
-
+                
                 var created = constructorParam.Invoke(callParameters.ToArray()) as T;
 
                 InstanceImpl = created;
                 InstanceInterface = created;
                 Instance = created;
+
+                foreach (var item in properties.Where(p => p.GetCustomAttribute<InjectParameterAttribute>() != null))
+                {
+                    var paramType = item.PropertyType;
+
+                    var resolveMethod = typeof(ContainerSystem).GetMethod("Resolve");
+                    var method = resolveMethod.MakeGenericMethod(new Type[] { paramType });
+                    var methodResult = method.Invoke(context, new object[] { });
+
+                    item.SetValue(created, methodResult);
+                }
 
                 base.Create(context);
             }

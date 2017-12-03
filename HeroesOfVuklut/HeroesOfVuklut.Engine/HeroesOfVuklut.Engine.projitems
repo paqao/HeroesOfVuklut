@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Context\IResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\IContainerSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DI\InjectParameterAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\SceneInjectAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ServiceInjectAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\IGameEntity.cs" />
@@ -40,6 +41,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IListElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\ITextBoxElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\FileLocalizedSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\ILocalizedSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\LanguageData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\IMapItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\IUpgradable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\MapBase.cs" />
