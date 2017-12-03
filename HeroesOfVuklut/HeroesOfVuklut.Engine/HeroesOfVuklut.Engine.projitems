@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Context\IResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ContainerSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\IContainerSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DI\SceneInjectAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DI\ServiceInjectAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\IGameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameManagerBase.cs" />

@@ -121,6 +121,12 @@ namespace HeroesOfVuklut.Engine.DI
                 var o = Activator.CreateInstance(makeme);
                 Items.Add(o as ContainerSystemItem);
             }
+            foreach (var item in types.Where(t => t.GetCustomAttribute< SceneInjectAttribute>() != null)) 
+            {
+                var addScene = GetType().GetMethod("AddScene");
+                var genericMethod = addScene.MakeGenericMethod(new Type[] { item });
+                genericMethod.Invoke(this, new object[] { });
+            }
         }
 
         public T AddScene<T>() where T : SceneManager<T>
@@ -129,6 +135,9 @@ namespace HeroesOfVuklut.Engine.DI
             Scenes.Add(containerSystemItem);
 
             containerSystemItem.Create(this);
+
+            var sceneNavigator = Resolve<ISceneNavigator>();
+            sceneNavigator.Scenes.AddScene(containerSystemItem.InstanceImpl);
 
             return containerSystemItem.InstanceImpl;
         }
