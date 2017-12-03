@@ -4,7 +4,6 @@ using HeroesOfVuklut.Engine.Scenes;
 using HeroesOfVuklut.Shared.Clash;
 using HeroesOfVuklut.Shared.Factions;
 using HeroesOfVuklut.Shared.Units;
-using HeroesOfVuklut.Windows.InputProcessor;
 using System;
 
 namespace HeroesOfVuklut.Shared.World
