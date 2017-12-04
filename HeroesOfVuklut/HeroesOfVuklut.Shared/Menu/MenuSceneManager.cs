@@ -7,6 +7,8 @@ using System;
 
 namespace HeroesOfVuklut.Shared.Menu
 {
+    [DefaultScene]
+    [SceneInject]
     public class MenuSceneManager : SceneManager<MenuSceneManager>
     {
         [InjectParameter]

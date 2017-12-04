@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 using HeroesOfVuklut.Engine.IO;
 using HeroesOfVuklut.Shared.World;
+using HeroesOfVuklut.Engine.DI;
 
 namespace HeroesOfVuklut.Shared.Units
 {
+    [SceneInject]
     public class UnitDefinitionSceneManager : SceneManager<UnitDefinitionSceneManager>
     {
         private IGraphicButton _backButton;

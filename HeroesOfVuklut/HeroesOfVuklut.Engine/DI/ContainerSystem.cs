@@ -151,6 +151,17 @@ namespace HeroesOfVuklut.Engine.DI
             var sceneNavigator = Resolve<ISceneNavigator>();
             sceneNavigator.Scenes.AddScene(containerSystemItem.InstanceImpl);
 
+            var typeT = typeof(T);
+
+            if(typeT.GetCustomAttribute<DefaultSceneAttribute>() != null)
+            {
+                sceneNavigator.Scenes.SetDefault(containerSystemItem.InstanceImpl);
+
+                var navigator = sceneNavigator.GetType().GetMethod("GotoScene");
+
+                navigator.Invoke(sceneNavigator, new object[] { typeT, null });
+            }
+
             return containerSystemItem.InstanceImpl;
         }
 

@@ -11,4 +11,9 @@ namespace HeroesOfVuklut.Engine.DI
 
         }
     }
+
+    public class DefaultSceneAttribute : Attribute
+    {
+
+    }
 }

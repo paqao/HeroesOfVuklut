@@ -1,14 +1,13 @@
 ﻿using HeroesOfVuklut.Engine.Scenes;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using HeroesOfVuklut.Engine.IO;
 using System.Linq;
-using HeroesOfVuklut.Windows.InputProcessor;
 using HeroesOfVuklut.Shared.World;
+using HeroesOfVuklut.Engine.DI;
 
 namespace HeroesOfVuklut.Shared.Factions
 {
+    [SceneInject]
     public class FactionDescriptionSceneManager : SceneManager<FactionDescriptionSceneManager>
     {
         private bool _factionSelected = false;

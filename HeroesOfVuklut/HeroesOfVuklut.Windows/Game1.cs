@@ -97,32 +97,13 @@ namespace HeroesOfVuklut.Windows
 
             gameManager.Initialize(gameData, settings);
             Container.AddGameData(gameData, settings);
-
-            Container.AddDeclaration<DirectoryInfo, DirectoryInfo>();
             
-
-            PrepareScenes();
-
             gameConfiguration = gameConfigurationProvider.GetConfiguration();
             mapProvider.SetConfiguration(gameConfiguration);
 
             factionProvider.LoadConfiguration();
         }
-
-        private void PrepareScenes()
-        {
-            var menuScene = Container.AddScene<MenuSceneManager>();
-            var clashScene = Container.AddScene<ClashSceneManager>();
-            var factionDescription = Container.AddScene<FactionDescriptionSceneManager>();
-            var unitDefinitionScene = Container.AddScene<UnitDefinitionSceneManager>();
-            
-            SceneNavigator.Scenes.SetDefault(menuScene);
-            
-
-            SceneNavigator.GotoScene(menuScene.GetSceneType(), menuScene.GetDefault());
-            
-            
-        }
+        
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load

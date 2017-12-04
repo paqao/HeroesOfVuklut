@@ -22,9 +22,7 @@ namespace HeroesOfVuklut.Engine.Scenes
             throw new NotImplementedException();
         }
 
-        public void GotoScene<T, U>(Type scene, SceneManager<T>.SceneParameter<U> sceneParameter)
-            where T : SceneManager<T>
-            where U : T
+        public void GotoScene(Type scene, SceneManager.SceneParameter sceneParameter)
         {
             var newScene = Scenes.DefinedScenes[scene];
 
