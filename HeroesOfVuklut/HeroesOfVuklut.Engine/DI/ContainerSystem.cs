@@ -42,11 +42,9 @@ namespace HeroesOfVuklut.Engine.DI
                 {
                     var paramType = param.ParameterType;
 
-                    var resolveMethod = typeof(ContainerSystem).GetMethod("Resolve");
-                    var method = resolveMethod.MakeGenericMethod(new Type[] { paramType });
-                    var methodResult = method.Invoke(context, new object[] { });
+                    var resolved = context.ResolveType(paramType);
                     
-                    callParameters.Add(methodResult);
+                    callParameters.Add(resolved);
                 }
                 
                 var created = constructorParam.Invoke(callParameters.ToArray()) as T;
@@ -59,11 +57,9 @@ namespace HeroesOfVuklut.Engine.DI
                 {
                     var paramType = item.PropertyType;
 
-                    var resolveMethod = typeof(ContainerSystem).GetMethod("Resolve");
-                    var method = resolveMethod.MakeGenericMethod(new Type[] { paramType });
-                    var methodResult = method.Invoke(context, new object[] { });
+                    var resolved = context.ResolveType(paramType); 
 
-                    item.SetValue(created, methodResult);
+                    item.SetValue(created, resolved);
                 }
 
                 base.Create(context);
@@ -95,6 +91,16 @@ namespace HeroesOfVuklut.Engine.DI
         public void AddDeclaration<T>() where T : class
         {
             throw new NotImplementedException();
+        }
+
+        public object ResolveType(Type t)
+        {
+            var resolveMethod = GetType().GetMethod("Resolve");
+            var method = resolveMethod.MakeGenericMethod(new Type[] { t });
+
+            object resolvedObject = method.Invoke(this, new object[] { });
+
+            return resolvedObject;
         }
 
         public T Resolve<T>() where T : class
@@ -170,7 +176,6 @@ namespace HeroesOfVuklut.Engine.DI
             where U : IGameSettings
         {
             var targetType = typeof(IGameDataBased<T>);
-            var methodToResolve = GetType().GetMethod("Resolve");
             foreach (var item in Items)
             {
                 var interfaces = item.Implementation.GetInterfaces();
@@ -179,10 +184,8 @@ namespace HeroesOfVuklut.Engine.DI
 
                 if(gameDataBased != null)
                 {
-                    var genericMethod = methodToResolve.MakeGenericMethod(item.Interface);
-
-                    var newItem = genericMethod.Invoke(this, new object[] { });
-                    var gameDataBasedItem = newItem as IGameDataBased<T>;
+                    var resolved = ResolveType(item.Interface);
+                    var gameDataBasedItem = resolved as IGameDataBased<T>;
                     gameDataBasedItem.SetGameData(gameData);
                 }
             }
