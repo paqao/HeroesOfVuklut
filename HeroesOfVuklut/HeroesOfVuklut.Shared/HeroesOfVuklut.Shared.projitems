@@ -61,12 +61,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)World\WorldSceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Data\Localized\en_US.json" />
-    <Content Include="$(MSBuildThisFileDirectory)Data\Localized\pl_PL.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\Localized\en_US.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Data\Localized\pl_PL.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="$(MSBuildThisFileDirectory)Data\factions.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Data\game.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

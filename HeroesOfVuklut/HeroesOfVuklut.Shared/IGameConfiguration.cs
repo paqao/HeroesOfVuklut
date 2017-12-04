@@ -6,7 +6,15 @@ namespace HeroesOfVuklut.Shared
 {
     public interface IGameConfiguration
     {
-        ICollection<IGameMapConfiguration> Maps { get;  }
+        ICollection<IGameMapConfiguration> Maps { get; }
+        ICollection<IGameLanguageConfiguration> Languages { get; }
+    }
+
+    public interface IGameLanguageConfiguration
+    {
+        string English { get; }
+        string Origin { get; }
+        int Id { get; }
     }
 
     public interface IGameMapConfiguration

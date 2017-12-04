@@ -6,8 +6,8 @@ namespace HeroesOfVuklut.Engine.Localization
 {
     public class LanguageData
     {
-        string Code { get; set; }
-        string OriginName { get; set; }
-        string EnglishName { get; set; }
+        public string Code { get; set; }
+        public string OriginName { get; set; }
+        public string EnglishName { get; set; }
     }
 }

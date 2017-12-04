@@ -2,6 +2,9 @@
   "Origin": "Polski",
   "English": "Polish",
   "Items": [
-    { "Welcome": "Witaj" }
+    {
+      "Key": "Welcome",
+      "Value": "Witaj"
+    }
   ]
 }

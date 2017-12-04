@@ -33,9 +33,15 @@ namespace HeroesOfVuklut.Shared.Menu
 
         }
 
+        public override void Draw()
+        {
+            GraphicsInterface.DrawText(30, 30, LocalizedSource.GetLocalized("Welcome"));
+            base.Draw();
+        }
+
         public override void Update(TimeSpan elapsedGameTime)
         {
-            SceneNavigator.GotoScene(typeof(WorldSceneManager), WorldSceneManager.WorldSceneParameter.Default);
+           // SceneNavigator.GotoScene(typeof(WorldSceneManager), WorldSceneManager.WorldSceneParameter.Default);
         }
     }
 }

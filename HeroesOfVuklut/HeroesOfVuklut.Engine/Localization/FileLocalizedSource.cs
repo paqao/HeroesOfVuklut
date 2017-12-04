@@ -1,7 +1,9 @@
 ﻿using HeroesOfVuklut.Engine.DI;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace HeroesOfVuklut.Engine.Localization
@@ -10,10 +12,12 @@ namespace HeroesOfVuklut.Engine.Localization
     public class FileLocalizedSource : ILocalizedSource
     {
         private DirectoryInfo directoryInfo;
+        private InternalLanguageData content;
 
         public FileLocalizedSource()
         {
             directoryInfo = new DirectoryInfo("Data/Localized");
+            SetLanguage(new LanguageData { Code = "pl_PL" });
         }
 
         public ICollection<LanguageData> GetLanguages()
@@ -21,14 +25,31 @@ namespace HeroesOfVuklut.Engine.Localization
             throw new NotImplementedException();
         }
 
-        public string GetLocalized(string key)
+        public string GetLocalized(string itemKey)
         {
-            throw new NotImplementedException();
+            return content.Items.FirstOrDefault(i => string.CompareOrdinal(i.Key, itemKey) == 0)?.Value;
         }
 
         public void SetLanguage(LanguageData language)
         {
-            throw new NotImplementedException();
+            var file = directoryInfo.GetFiles($"{language.Code}.json", SearchOption.TopDirectoryOnly).First();
+            using (var textReader = file.OpenText())
+            {
+                string fileContent = textReader.ReadToEnd();
+                content = JsonConvert.DeserializeObject<InternalLanguageData>(fileContent);
+            }
         }
+
+        protected class InternalLanguageData
+        {
+            public ICollection<InternalLanguageItemData> Items { get; set; }
+        }
+
+        protected class InternalLanguageItemData
+        {
+            public string Key { get; set; }
+            public string Value { get; set; }
+        }
+        
     }
 }

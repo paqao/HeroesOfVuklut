@@ -2,6 +2,9 @@
   "Origin": "English",
   "English": "English",
   "Items": [
-    { "Welcome": "Welcome" }
+    {
+      "Key": "Welcome",
+      "Value": "Welcome"
+    }
   ]
 }

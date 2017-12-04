@@ -1,0 +1,21 @@
+﻿{
+  "MapConf": [
+    {
+      "Id": 1,
+      "Name": "Tutorial 1",
+      "Path": "Data/Maps/map1.json"
+    }
+  ],
+  "LangConf": [
+    {
+      "Id": 1,
+      "Origin": "English",
+      "English": "English"
+    },
+    {
+      "Id": 2,
+      "Origin": "Polski",
+      "English": "Polish"
+    }
+  ]
+}
