@@ -8,6 +8,7 @@ using HeroesOfVuklut.Engine.DI;
 using System.Diagnostics;
 using HeroesOfVuklut.Shared.Clash.MapItems;
 using HeroesOfVuklut.Shared.Clash.Path;
+using HeroesOfVuklut.Shared.Configuration;
 
 namespace HeroesOfVuklut.Windows.Maps
 {

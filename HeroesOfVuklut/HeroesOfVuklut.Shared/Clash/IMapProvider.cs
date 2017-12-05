@@ -1,5 +1,6 @@
 ﻿
 using HeroesOfVuklut.Engine.Configuration;
+using HeroesOfVuklut.Shared.Configuration;
 
 namespace HeroesOfVuklut.Shared.Clash
 {

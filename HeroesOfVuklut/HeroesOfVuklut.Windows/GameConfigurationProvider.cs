@@ -1,11 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using HeroesOfVuklut.Engine.DI;
+using HeroesOfVuklut.Shared.Configuration;
+using Newtonsoft.Json;
 using System.IO;
 
 namespace HeroesOfVuklut.Windows
 {
-    public class GameConfigurationProvider
+    [ServiceInject(typeof(GameConfigurationProvider))]
+    public class GameConfigurationProvider : IGameConfigurationProvider
     {
-        public GameConfiguration GetConfiguration()
+        public IGameConfiguration GetConfiguration()
         {
             GameConfiguration config = null;
             using (var textReader = File.OpenText(@"data/game.json"))

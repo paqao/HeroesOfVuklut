@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HeroesOfVuklut.Shared
+namespace HeroesOfVuklut.Shared.Configuration
 {
     public interface IGameConfiguration
     {

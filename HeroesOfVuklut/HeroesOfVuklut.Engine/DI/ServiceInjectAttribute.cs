@@ -12,5 +12,11 @@ namespace HeroesOfVuklut.Engine.DI
             Service = serviceInterface;
             Implementation = serviceImplementation;
         }
+
+        public ServiceInjectAttribute(Type serviceType)
+        {
+            Service = serviceType;
+            Implementation = serviceType;
+        }
     }
 }

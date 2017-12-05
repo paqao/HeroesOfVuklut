@@ -6,6 +6,7 @@ namespace HeroesOfVuklut.Engine.Game
         where T : IGameEntity
         where U : IGameSettings
     {
+
         public T Game { get; private set; }
         public U Settings { get; private set; }
 
@@ -19,5 +20,9 @@ namespace HeroesOfVuklut.Engine.Game
             Settings = settings;
         }
 
+        public virtual void LoadGameData()
+        {
+
+        }
     }
 }

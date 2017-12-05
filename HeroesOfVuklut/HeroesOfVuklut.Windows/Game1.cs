@@ -16,6 +16,7 @@ using HeroesOfVuklut.Shared.Factions;
 using HeroesOfVuklut.Shared.Units;
 using System.IO;
 using HeroesOfVuklut.Engine.Localization;
+using HeroesOfVuklut.Shared.Configuration;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -28,7 +29,7 @@ namespace HeroesOfVuklut.Windows
         SpriteBatch spriteBatch;
         ISceneNavigator SceneNavigator;
         private KeyboardProcessorImpl _inputProce;
-        private GameConfiguration gameConfiguration;
+        private IGameConfiguration gameConfiguration;
 
         private MouseProcessorImpl _mouseProce;
         private InputInterface _inputInterface;
@@ -102,12 +103,11 @@ namespace HeroesOfVuklut.Windows
 
 
             localization.SetLanguage(new LanguageData { Code = settings.Language });
-
-
-
-            gameManager.Initialize(gameData, settings);
-            Container.AddGameData(gameData, settings);
             
+            gameManager.Initialize(gameData, settings);
+
+            gameManager.LoadGameData();
+
             gameConfiguration = gameConfigurationProvider.GetConfiguration();
             mapProvider.SetConfiguration(gameConfiguration);
 
