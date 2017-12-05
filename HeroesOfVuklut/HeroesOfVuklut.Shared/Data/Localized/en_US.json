@@ -5,6 +5,10 @@
     {
       "Key": "Welcome",
       "Value": "Welcome"
+    },
+    {
+      "Key": "LoadGame",
+      "Value": "Load game"
     }
   ]
 }

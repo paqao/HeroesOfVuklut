@@ -2,6 +2,9 @@
 using HeroesOfVuklut.Engine.Game;
 using HeroesOfVuklut.Engine.Scenes;
 using HeroesOfVuklut.Shared.Configuration;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HeroesOfVuklut.Shared
 {
@@ -17,6 +20,13 @@ namespace HeroesOfVuklut.Shared
         [InjectParameter]
         public IGameConfigurationProvider GameConfigurationProvider { get; set; }
 
+        public override ICollection<string> GetSavedGames()
+        {
+            var directoryInfo = Directory.GetDirectories("saves");
+
+            return directoryInfo;
+        }
+
         public override void Initialize(GameData game, GameSettings settings)
         {
             base.Initialize(game, settings);
@@ -27,6 +37,17 @@ namespace HeroesOfVuklut.Shared
         public override void LoadGameData()
         {
             base.LoadGameData();
+        }
+
+        public override void SaveGame(string filename)
+        {
+            // save
+            var saves = Directory.Exists("saves");
+
+            if (!saves)
+            {
+                Directory.CreateDirectory("saves");
+            }
         }
     }
 }

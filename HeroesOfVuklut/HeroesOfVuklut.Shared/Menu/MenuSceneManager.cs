@@ -36,6 +36,7 @@ namespace HeroesOfVuklut.Shared.Menu
         public override void Draw()
         {
             GraphicsInterface.DrawText(30, 30, LocalizedSource.GetLocalized("Welcome"));
+            GraphicsInterface.DrawText(30, 70, LocalizedSource.GetLocalized("LoadGame"));
             base.Draw();
         }
 

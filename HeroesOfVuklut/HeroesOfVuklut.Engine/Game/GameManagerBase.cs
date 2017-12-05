@@ -1,4 +1,5 @@
 ﻿using HeroesOfVuklut.Engine.Scenes;
+using System.Collections.Generic;
 
 namespace HeroesOfVuklut.Engine.Game
 {
@@ -19,6 +20,10 @@ namespace HeroesOfVuklut.Engine.Game
             Game = game;
             Settings = settings;
         }
+
+        public abstract void SaveGame(string filename);
+
+        public abstract ICollection<string> GetSavedGames();
 
         public virtual void LoadGameData()
         {
