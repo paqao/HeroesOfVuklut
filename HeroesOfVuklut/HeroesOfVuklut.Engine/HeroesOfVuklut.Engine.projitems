@@ -33,6 +33,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\IGameEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\GameManagerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\IGameSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\ISettingsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\JSonSettingsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\ButtonState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IGraphicElement.cs" />

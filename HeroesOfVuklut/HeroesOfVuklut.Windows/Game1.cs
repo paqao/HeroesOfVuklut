@@ -15,6 +15,7 @@ using HeroesOfVuklut.Engine.Game;
 using HeroesOfVuklut.Shared.Factions;
 using HeroesOfVuklut.Shared.Units;
 using System.IO;
+using HeroesOfVuklut.Engine.Localization;
 
 namespace HeroesOfVuklut.Windows
 {
@@ -81,11 +82,12 @@ namespace HeroesOfVuklut.Windows
             
             var mapProvider = Container.Resolve<IMapProvider>();
             SceneNavigator = Container.Resolve<ISceneNavigator>();
+            var settingsManager = Container.Resolve<ISettingsManager<GameSettings>>();
+            var localization = Container.Resolve<ILocalizedSource>();
 
             gameManager = Container.Resolve<GameManagerBase<GameData, GameSettings>>() as GameManager;
 
             var gameData = new GameData();
-            var settings = new GameSettings();
 
             var factionProvider = Container.Resolve<IFactionProvider>();
             factionProvider.LoadConfiguration();
@@ -94,6 +96,14 @@ namespace HeroesOfVuklut.Windows
             {
                 gameData.Factions.Add(item);
             }
+
+
+            var settings = settingsManager.GetSettings();
+
+
+            localization.SetLanguage(new LanguageData { Code = settings.Language });
+
+
 
             gameManager.Initialize(gameData, settings);
             Container.AddGameData(gameData, settings);
@@ -119,7 +129,6 @@ namespace HeroesOfVuklut.Windows
             // this.graphics.IsFullScreen = true;
 
             graphInterface.Batch = spriteBatch;
-            graphInterface.ResourceProvider = resourceProvider;
 
             resourceProvider.LoadTextures(Content);
             // TODO: use this.Content to load your game content here

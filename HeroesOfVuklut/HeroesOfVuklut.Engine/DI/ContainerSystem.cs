@@ -90,7 +90,8 @@ namespace HeroesOfVuklut.Engine.DI
         
         public void AddDeclaration<T>() where T : class
         {
-            throw new NotImplementedException();
+            var containerSystemItem = new ContainerSystemItem<T, T>();
+            Items.Add(containerSystemItem);
         }
 
         public object ResolveType(Type t)

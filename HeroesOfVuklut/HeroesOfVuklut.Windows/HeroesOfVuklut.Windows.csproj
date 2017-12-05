@@ -90,7 +90,9 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Settings\" />
+  </ItemGroup>
   <Import Project="..\HeroesOfVuklut.Shared\HeroesOfVuklut.Shared.projitems" Label="Shared" />
   <Import Project="..\HeroesOfVuklut.Engine\HeroesOfVuklut.Engine.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

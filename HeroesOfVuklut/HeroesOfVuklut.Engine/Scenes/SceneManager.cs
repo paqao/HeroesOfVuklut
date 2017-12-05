@@ -6,6 +6,7 @@ namespace HeroesOfVuklut.Engine.Scenes
 
     public abstract class SceneManager<T> : SceneManager
     {
+
         protected IInputInterface InputInterface { get; }
         protected ISceneNavigator SceneNavigator { get; }
         protected IGraphicsInterface GraphicsInterface { get; }

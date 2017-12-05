@@ -47,6 +47,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IGameConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Menu\MenuSceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings\GameSettingsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\ICharacterTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\IUnitTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\RaceTrait.cs" />

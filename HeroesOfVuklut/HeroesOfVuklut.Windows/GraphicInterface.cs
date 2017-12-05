@@ -9,6 +9,7 @@ namespace HeroesOfVuklut.Windows
     [ServiceInject(typeof(GraphicInterface), typeof(IGraphicsInterface))]
     public class GraphicInterface : IGraphicsInterface
     {
+        [InjectParameter]
         public IResourceProvider ResourceProvider { get; set; }
         public SpriteBatch Batch { get; set; }
 
