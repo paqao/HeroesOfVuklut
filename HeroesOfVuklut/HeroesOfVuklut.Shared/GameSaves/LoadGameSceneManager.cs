@@ -48,6 +48,8 @@ namespace HeroesOfVuklut.Shared.GameSaves
 
         public override void Draw()
         {
+            var saves = GameSavesManager.GetAllSaves();
+
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
 
             base.Draw();
