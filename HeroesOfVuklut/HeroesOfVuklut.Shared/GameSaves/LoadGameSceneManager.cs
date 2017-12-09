@@ -1,6 +1,8 @@
 ﻿using HeroesOfVuklut.Engine.DI;
 using HeroesOfVuklut.Engine.IO;
+using HeroesOfVuklut.Engine.Saves;
 using HeroesOfVuklut.Engine.Scenes;
+using HeroesOfVuklut.Shared.GameSaves.Services;
 using HeroesOfVuklut.Shared.Menu;
 using System;
 
@@ -10,6 +12,9 @@ namespace HeroesOfVuklut.Shared.GameSaves
     [SceneInject]
     public class LoadGameSceneManager : SceneManager<LoadGameSceneManager>
     {
+        [InjectParameter]
+        public IGameSavesManager<VuklutSaveGameInfo> GameSavesManager { get; set; }
+
         private CursorPosition _cursor;
 
         public LoadGameSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
@@ -51,8 +56,7 @@ namespace HeroesOfVuklut.Shared.GameSaves
         public override void ProcessInput()
         {
             var cursor = InputInterface.GetCursor();
-
-
+            
             var rightButton = InputInterface.IsClick("cursorRight");
 
             if (rightButton)

@@ -62,6 +62,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Quest\IQuestManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Quest\Logic\MissionLogicAll.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Quest\MissionState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Saves\IGameSavesManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Saves\ISaveGameInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\IGraphicScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scenes\ISceneNavigator.cs" />

@@ -46,6 +46,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameSaves\LoadGameSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameSaves\SaveGameSceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameSaves\Services\GameSaveManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameSaves\Services\VuklutSaveGameInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\IGameConfiguration.cs" />
