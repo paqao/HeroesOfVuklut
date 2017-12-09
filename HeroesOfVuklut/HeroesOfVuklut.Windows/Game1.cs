@@ -97,8 +97,7 @@ namespace HeroesOfVuklut.Windows
             {
                 gameData.Factions.Add(item);
             }
-
-
+            
             var settings = settingsManager.GetSettings();
 
 
