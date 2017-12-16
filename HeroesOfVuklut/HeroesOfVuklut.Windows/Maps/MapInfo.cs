@@ -56,5 +56,6 @@ namespace HeroesOfVuklut.Windows.Maps
         public int Id { get; set; }
         public int End1Id { get; set; }
         public int End2Id { get; set; }
+        public bool Unlocked { get; set; } = true;
     }
 }

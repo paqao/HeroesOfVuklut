@@ -1,8 +1,5 @@
 ﻿using HeroesOfVuklut.Engine.Map.Nodes;
 using HeroesOfVuklut.Shared.Clash.MapItems;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HeroesOfVuklut.Shared.Clash.Path
 {

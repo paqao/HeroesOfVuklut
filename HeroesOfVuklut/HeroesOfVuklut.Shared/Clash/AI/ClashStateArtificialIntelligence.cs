@@ -60,7 +60,7 @@ namespace HeroesOfVuklut.Shared.Clash.AI
             {
                 var itemAsCastle = item as ClashFactionCastle;
 
-                if(itemAsCastle.Owner == 0)
+                if(itemAsCastle.Owner == 1)
                 {
                     _castle = itemAsCastle;
                 }

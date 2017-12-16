@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HeroesOfVuklut.Shared.Factions;
+using HeroesOfVuklut.Shared.Clash.Path;
 
 namespace HeroesOfVuklut.Shared.Clash
 {
@@ -23,6 +24,7 @@ namespace HeroesOfVuklut.Shared.Clash
         private int offsetY;
         private ClashTile _selectedTile;
         private readonly IMapProvider _mapProvider;
+        private ClashUnit _unit;
 
         public IArtificialIntelligence<ClashState, ClashStateArtificialDecision> IAi { get;  }
 
@@ -40,6 +42,25 @@ namespace HeroesOfVuklut.Shared.Clash
 
             offsetX = (800 - state.MapClash.Width * 32) / 2;
             offsetY = (600 - state.MapClash.Height * 32) / 4;
+
+            var startBuilding = state.MapClash.Buildings;
+            var mapNodes = state.MapClash.MapNodes;
+
+            foreach (var building in startBuilding)
+            {
+                var mapItem = mapNodes.FirstOrDefault(m => m.X == building.X && m.Y == building.Y);
+
+                building.ClashNode = mapItem;
+
+                if(building is ClashFactionCastle)
+                {
+                    var castle = building as ClashFactionCastle;
+
+                    var faction = state.Factions.First(f => f.Aspect.Id == castle.Owner);
+
+                    faction.Castle = castle;
+                }
+            }
         }
 
         public override void BeginScene(SceneParameter<ClashSceneManager> sceneParameter)
@@ -52,12 +73,17 @@ namespace HeroesOfVuklut.Shared.Clash
             var map = _mapProvider.GetMapById(parsedParam.MapId);
             var clashState = new ClashState();
             clashState.MapClash = map;
+            clashState.Factions = factions.Select(f => new ClashFaction() { Aspect = f }).ToList();
             
             PrepareClash(clashState);
 
             ProcessInput();
 
             IAi.PrepareAi(clashState);
+
+            _unit = new ClashUnit();
+
+            var path = ClashPathHelper.GeneratePath(_unit, clashState.Factions[0].Castle.ClashNode, clashState.Factions[1].Castle.ClashNode);
         }
 
         public override void Update(TimeSpan step)

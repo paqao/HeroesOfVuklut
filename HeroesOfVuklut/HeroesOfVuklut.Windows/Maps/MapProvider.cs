@@ -41,7 +41,7 @@ namespace HeroesOfVuklut.Windows.Maps
 
                 if(tile.Item != null)
                 {
-                    var item = GenerateItem(tile.Item);
+                    var item = GenerateItem(tile.Item, tile.X, tile.Y);
 
                     clashTile.Item = item;
 
@@ -66,6 +66,8 @@ namespace HeroesOfVuklut.Windows.Maps
             foreach (var path in mapInfo.Paths)
             {
                 var connection = new ClashMapNodeConnection();
+                connection.Unlocked = path.Unlocked;
+
                 var node1 = clashMap.MapNodes.First(nd => nd.Id == path.End1Id);
                 var node2 = clashMap.MapNodes.First(nd => nd.Id == path.End2Id);
 
@@ -95,7 +97,7 @@ namespace HeroesOfVuklut.Windows.Maps
             _gameConfiguration = configuration;
         }
 
-        private ClashTileItem GenerateItem(TileItem item)
+        private ClashTileItem GenerateItem(TileItem item,int x, int y)
         {
             ClashTileItem newItem = null;
 
@@ -107,6 +109,8 @@ namespace HeroesOfVuklut.Windows.Maps
 
                 castleItem.Owner = faction;
                 castleItem.Id = id;
+                castleItem.X = x;
+                castleItem.Y = y;
 
                 newItem = castleItem;
             }

@@ -11,8 +11,10 @@ namespace HeroesOfVuklut.Shared.Clash.AI
         public enum ClashStateDecisionType
         {
             Wait,
-            UpgradeItem
+            UpgradeItem,
+            BuildItem
         }
+
         public int Cost { get; }
 
         public ClashStateDecisionType Decision { get; set; }

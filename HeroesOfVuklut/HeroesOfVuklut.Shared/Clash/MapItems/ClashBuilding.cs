@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HeroesOfVuklut.Shared.Clash.Path;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,6 +10,8 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
         public int Owner { get; set; }
         public int Level { get; protected set; } = 1;
         public int Id { get; set; }
+
+        public ClashPathNode ClashNode { get; set; }
 
         public bool CanUpgrade(ClashFaction faction)
         {

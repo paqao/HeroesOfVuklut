@@ -22,7 +22,7 @@
         "Type": 0,
         "SubType": 0,
         "Parameters": {
-          "Faction": "0",
+          "Faction": "1",
           "Id": "0"
         }
       }
@@ -36,7 +36,7 @@
         "Type": 0,
         "SubType": 0,
         "Parameters": {
-          "Faction": "1",
+          "Faction": "2",
           "Id": "1"
         }
       }
@@ -108,7 +108,10 @@
     {
       "Id": 4,
       "End1Id": 5,
-      "End2Id": 8
+      "End2Id": 8,
+      "Unlocked" : false,
+      "Traits": [
+      ]
     },
     {
       "Id": 5,
