@@ -5,6 +5,7 @@ using HeroesOfVuklut.Engine.Scenes;
 using HeroesOfVuklut.Shared.GameSaves.Services;
 using HeroesOfVuklut.Shared.Menu;
 using System;
+using System.Linq;
 
 namespace HeroesOfVuklut.Shared.GameSaves
 {
@@ -15,11 +16,13 @@ namespace HeroesOfVuklut.Shared.GameSaves
         [InjectParameter]
         public IGameSavesManager<VuklutSaveGameInfo> GameSavesManager { get; set; }
 
+        private IListElement<VuklutSaveGameInfo> _saves = null;
+
         private CursorPosition _cursor;
 
         public LoadGameSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
         {
-
+            _saves = graphicElementFactory.CreateListElement<VuklutSaveGameInfo>();
         }
 
         public override Type GetSceneType()
@@ -44,13 +47,21 @@ namespace HeroesOfVuklut.Shared.GameSaves
         private void StartScene(SceneParameter<LoadGameSceneManager> sceneParameter)
         {
             _cursor = InputInterface.GetCursor();
+
+            _saves.InnerList = GameSavesManager.GetAllSaves();
         }
 
         public override void Draw()
         {
-            var saves = GameSavesManager.GetAllSaves();
 
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
+
+            var saves = _saves.InnerList;
+
+            for (int i = 0; i < saves.Count; i++)
+            {
+                GraphicsInterface.DrawText(30, 70 + i * 30, saves.ElementAt(i).SaveName);
+            }
 
             base.Draw();
         }

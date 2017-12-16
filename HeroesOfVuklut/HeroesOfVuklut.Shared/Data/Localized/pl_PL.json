@@ -9,6 +9,14 @@
     {
       "Key": "LoadGame",
       "Value": "Wczytaj gre"
+    },
+    {
+      "Key": "NewGame",
+      "Value": "Nowa gra"
+    },
+    {
+      "Key": "Settings",
+      "Value": "Ustawienia"
     }
   ]
 }

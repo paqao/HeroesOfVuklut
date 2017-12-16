@@ -28,7 +28,10 @@ namespace HeroesOfVuklut.Shared.GameSaves.Services
 
             foreach (var item in directoryInfo.GetDirectories())
             {
-                result.Add(new VuklutSaveGameInfo());
+                result.Add(new VuklutSaveGameInfo
+                {
+                    SaveName = item.Name
+                });
             }
 
             return result;

@@ -9,6 +9,14 @@
     {
       "Key": "LoadGame",
       "Value": "Load game"
+    },
+    {
+      "Key": "NewGame",
+      "Value": "New game"
+    },
+    {
+      "Key": "Settings",
+      "Value": "Settings"
     }
   ]
 }
