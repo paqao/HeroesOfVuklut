@@ -62,6 +62,7 @@ namespace HeroesOfVuklut.Shared.World
 
         public override void Draw()
         {
+            _cursor = InputInterface.GetCursor();
             var style = "upgrade-active";
             GraphicsInterface.Draw(8, 528, 42, 42, "clashInterfaceDynamic", style);
 
@@ -72,6 +73,7 @@ namespace HeroesOfVuklut.Shared.World
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
         }
 
+        /*
         public override void BeginScene(SceneParameter sceneParameter)
         {
             base.BeginScene(sceneParameter);
@@ -80,7 +82,7 @@ namespace HeroesOfVuklut.Shared.World
 
             _cursor = cursor;
 
-        }
+        }*/
 
         public override void ProcessInput()
         {

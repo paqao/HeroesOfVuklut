@@ -17,6 +17,10 @@
     {
       "Key": "Settings",
       "Value": "Ustawienia"
+    },
+    {
+      "Key": "Start game",
+      "Value": "Rozpocznij gre"
     }
   ]
 }

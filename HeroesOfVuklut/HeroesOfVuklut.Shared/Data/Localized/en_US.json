@@ -17,6 +17,10 @@
     {
       "Key": "Settings",
       "Value": "Settings"
+    },
+    {
+      "Key": "Start game",
+      "Value": "Begin game"
     }
   ]
 }
