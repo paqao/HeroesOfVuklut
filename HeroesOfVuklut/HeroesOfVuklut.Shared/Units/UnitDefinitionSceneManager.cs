@@ -48,9 +48,10 @@ namespace HeroesOfVuklut.Shared.Units
                     var item = unitDefinitions[i];
                     GraphicsInterface.DrawText(12, 60 + i * 30, item.DefinitionName);
                 }
-
             }
-                
+
+            GraphicsInterface.DrawText(30, 30, LocalizedSource.GetLocalized("AddUnitType"));
+            
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
 
             base.Draw();

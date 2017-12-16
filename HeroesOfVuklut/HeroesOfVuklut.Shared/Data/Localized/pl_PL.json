@@ -21,6 +21,10 @@
     {
       "Key": "Start game",
       "Value": "Rozpocznij gre"
+    },
+    {
+      "Key": "AddUnitType",
+      "Value": "Dodaj typ jednostki"
     }
   ]
 }

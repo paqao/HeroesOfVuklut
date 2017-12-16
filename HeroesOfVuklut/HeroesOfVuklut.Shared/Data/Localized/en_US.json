@@ -21,6 +21,10 @@
     {
       "Key": "Start game",
       "Value": "Begin game"
+    },
+    {
+      "Key": "AddUnitType",
+      "Value": "Add unit type"
     }
   ]
 }

@@ -1,4 +1,6 @@
-﻿using HeroesOfVuklut.Engine.IO;
+﻿using HeroesOfVuklut.Engine.DI;
+using HeroesOfVuklut.Engine.IO;
+using HeroesOfVuklut.Engine.Localization;
 using System;
 
 namespace HeroesOfVuklut.Engine.Scenes
@@ -6,6 +8,9 @@ namespace HeroesOfVuklut.Engine.Scenes
 
     public abstract class SceneManager<T> : SceneManager
     {
+
+        [InjectParameter]
+        public ILocalizedSource LocalizedSource { get; set; }
 
         protected IInputInterface InputInterface { get; }
         protected ISceneNavigator SceneNavigator { get; }

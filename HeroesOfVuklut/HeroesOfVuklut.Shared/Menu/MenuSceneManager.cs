@@ -17,10 +17,6 @@ namespace HeroesOfVuklut.Shared.Menu
     public class MenuSceneManager : SceneManager<MenuSceneManager>
     {
         [InjectParameter]
-        public ILocalizedSource LocalizedSource { get; set; }
-
-
-        [InjectParameter]
         public IGameSavesManager<VuklutSaveGameInfo> GameSavesManager { get; set; }
 
         private IGraphicButton _loadGameButton;

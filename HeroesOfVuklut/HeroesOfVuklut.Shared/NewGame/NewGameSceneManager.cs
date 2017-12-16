@@ -14,9 +14,6 @@ namespace HeroesOfVuklut.Shared.NewGame
     [SceneInject]
     public class NewGameSceneManager : SceneManager<NewGameSceneManager>
     {
-        [InjectParameter]
-        public ILocalizedSource LocalizedSource { get; set; }
-
         private IGraphicButton _startGameButton;
         private CursorPosition _cursor;
 

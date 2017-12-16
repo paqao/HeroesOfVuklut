@@ -16,11 +16,15 @@ namespace HeroesOfVuklut.Shared.World
         private IGraphicButton _factionsExplorer;
         private IGraphicButton _clash;
 
+        private IGraphicButton _optionsButton;
+
         public WorldSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
         {
             _unitDefinition = GraphicElementFactory.CreateButton(ButtonType.Circle);
             _factionsExplorer = GraphicElementFactory.CreateButton(ButtonType.Circle);
             _clash = GraphicElementFactory.CreateButton(ButtonType.Circle);
+
+            _optionsButton = GraphicElementFactory.CreateButton(ButtonType.Rectangle);
         }
 
         public override void BeginScene(SceneParameter<WorldSceneManager> sceneParameter)
@@ -30,13 +34,11 @@ namespace HeroesOfVuklut.Shared.World
             _factionsExplorer.ItemHeight = 21;
             _factionsExplorer.X = 30;
             _factionsExplorer.Y = 550;
-
-
+            
             _unitDefinition.ItemHeight = 21;
             _unitDefinition.X = 80;
             _unitDefinition.Y = 550;
-
-
+            
             _clash.ItemHeight = 21;
             _clash.X = 130;
             _clash.Y = 550;
@@ -58,8 +60,7 @@ namespace HeroesOfVuklut.Shared.World
         {
 
         }
-
-
+        
         public override void Draw()
         {
             _cursor = InputInterface.GetCursor();
@@ -72,18 +73,7 @@ namespace HeroesOfVuklut.Shared.World
 
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
         }
-
-        /*
-        public override void BeginScene(SceneParameter sceneParameter)
-        {
-            base.BeginScene(sceneParameter);
-
-            var cursor = InputInterface.GetCursor();
-
-            _cursor = cursor;
-
-        }*/
-
+        
         public override void ProcessInput()
         {
             var cursor = InputInterface.GetCursor();
