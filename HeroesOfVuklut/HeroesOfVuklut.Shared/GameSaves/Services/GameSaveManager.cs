@@ -36,5 +36,10 @@ namespace HeroesOfVuklut.Shared.GameSaves.Services
 
             return result;
         }
+
+        public bool HasSave()
+        {
+            return directoryInfo.GetDirectories().Length > 0;
+        }
     }
 }

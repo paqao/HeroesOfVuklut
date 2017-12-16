@@ -1,8 +1,10 @@
 ﻿using HeroesOfVuklut.Engine.DI;
 using HeroesOfVuklut.Engine.IO;
 using HeroesOfVuklut.Engine.Localization;
+using HeroesOfVuklut.Engine.Saves;
 using HeroesOfVuklut.Engine.Scenes;
 using HeroesOfVuklut.Shared.GameSaves;
+using HeroesOfVuklut.Shared.GameSaves.Services;
 using HeroesOfVuklut.Shared.NewGame;
 using HeroesOfVuklut.Shared.Settings;
 using HeroesOfVuklut.Shared.World;
@@ -18,10 +20,14 @@ namespace HeroesOfVuklut.Shared.Menu
         public ILocalizedSource LocalizedSource { get; set; }
 
 
+        [InjectParameter]
+        public IGameSavesManager<VuklutSaveGameInfo> GameSavesManager { get; set; }
+
         private IGraphicButton _loadGameButton;
         private IGraphicButton _newGameButton;
         private IGraphicButton _settingsButton;
         private CursorPosition _cursor;
+        private bool _hasSave;
 
         public MenuSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
         {
@@ -34,6 +40,8 @@ namespace HeroesOfVuklut.Shared.Menu
         public override void BeginScene(SceneParameter<MenuSceneManager> sceneParameter)
         {
             base.BeginScene(sceneParameter);
+
+            _hasSave = GameSavesManager.HasSave();
 
             _settingsButton.X = 30;
             _settingsButton.Y = 130;
@@ -64,7 +72,7 @@ namespace HeroesOfVuklut.Shared.Menu
 
             if (leftButton)
             {
-                if (_loadGameButton.IsOver(cursor))
+                if (_hasSave && _loadGameButton.IsOver(cursor))
                 {
                     SceneNavigator.GotoScene(typeof(LoadGameSceneManager), null);
                 }
@@ -85,7 +93,12 @@ namespace HeroesOfVuklut.Shared.Menu
         {
             GraphicsInterface.DrawText(30, 30, LocalizedSource.GetLocalized("Welcome"));
             GraphicsInterface.DrawText(30, 70, LocalizedSource.GetLocalized("NewGame"));
-            GraphicsInterface.DrawText(30, 100, LocalizedSource.GetLocalized("LoadGame"));
+
+            if (_hasSave)
+            {
+                GraphicsInterface.DrawText(30, 100, LocalizedSource.GetLocalized("LoadGame"));
+            }
+
             GraphicsInterface.DrawText(30, 130, LocalizedSource.GetLocalized("Settings"));
 
 
