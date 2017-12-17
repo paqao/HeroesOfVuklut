@@ -1,7 +1,6 @@
 ﻿using HeroesOfVuklut.Shared.Clash.Path;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
@@ -13,14 +12,35 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
 
         public ClashPathNode ClashNode { get; set; }
 
-        public bool CanUpgrade(ClashFaction faction)
+        protected abstract bool HasHigherLevel();
+        protected abstract IList<ClashResource> GetUpgradeRequirements();
+
+        private bool CanAfford(ClashFaction faction, IList<ClashResource> resources)
         {
-            if(Level <= 1)
+            bool canAfford = true;
+            foreach (var item in resources)
             {
-                return true;
+                var factionResource = faction.ClashResources.FirstOrDefault(cr => cr.ResourceType == item.ResourceType);
+
+                if(factionResource.Amount < item.Amount)
+                {
+                    canAfford = false;
+                }
             }
 
-            return false;
+            return canAfford;
+        }
+
+        public bool CanUpgrade(ClashFaction faction)
+        {
+            if (!HasHigherLevel())
+            {
+                return false;
+            }
+
+            var resources = GetUpgradeRequirements();
+
+            return CanAfford(faction, resources);
         }
 
         public void Upgrade(ClashFaction faction)

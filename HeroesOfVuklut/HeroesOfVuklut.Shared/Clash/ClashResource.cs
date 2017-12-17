@@ -4,8 +4,8 @@ namespace HeroesOfVuklut.Shared.Clash
 {
     public class ClashResource : IResource
     {
-        public int Amount { get; set; }
-        public int Max { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Max { get; set; }
         public string Name { get; set; }
 
         public ClashResourceType ResourceType { get; set; }

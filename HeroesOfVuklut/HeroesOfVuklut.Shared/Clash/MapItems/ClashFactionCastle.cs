@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using static HeroesOfVuklut.Shared.Clash.ClashResource;
 
 namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
@@ -11,6 +13,16 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
             Resource = "castle";
         }
 
+        public override void Affect(ClashState state)
+        {
+            var ownerFaction = state.Factions.First(f => f.Aspect.Id == Owner);
+
+            var data = ownerFaction.ClashResources.First(cr => cr.ResourceType == ClashResourceType.Gold);
+            var current = data.Amount;
+            var future = data.Amount + 0.05M < data.Max ? data.Amount + 0.05M : data.Max;
+
+            data.Amount = future;
+        }
 
         public override string GetFrameName()
         {
@@ -21,6 +33,19 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
                 frame = "Selected";
             }
             return $"{Resource}{Level}-{frame}";
+        }
+
+        protected override IList<ClashResource> GetUpgradeRequirements()
+        {
+            return new List<ClashResource>()
+            {
+                CreateResource(5,10, ClashResourceType.Gold)
+            };
+        }
+
+        protected override bool HasHigherLevel()
+        {
+            return Level < 2;
         }
     }
 }

@@ -141,6 +141,11 @@ namespace HeroesOfVuklut.Shared.Clash
             {
                 _currentClash.Units.Remove(item);
             }
+
+            foreach (var item in _currentClash.MapClash.Buildings)
+            {
+                item.Affect(_currentClash);
+            }
         }
 
         public override void Draw()
@@ -197,7 +202,7 @@ namespace HeroesOfVuklut.Shared.Clash
                 var upgradableItem = _selectedTile.Item as IUpgradeable;
                 var clashFaction = _selectedTile.Item as IClashFactionItem;
 
-                if(upgradableItem != null && clashFaction.Owner == 0)
+                if(upgradableItem != null && clashFaction.Owner == (int) GameEnums.PlayerVariables.PlayerId)
                 {
                     var style = upgradableItem.CanUpgrade(_currentClash.Factions[0]) ? "upgrade-active" : "upgrade-idle";
                     GraphicsInterface.Draw(8, 528, 42, 42, "clashInterfaceDynamic", style);
@@ -271,7 +276,7 @@ namespace HeroesOfVuklut.Shared.Clash
                         var upgradableItem = item as IUpgradeable;
                         var factionItem = item as IClashFactionItem;
                         
-                        if(upgradableItem != null && factionItem.Owner == 0 && upgradableItem.CanUpgrade(_currentClash.Factions[0]))
+                        if(upgradableItem != null && factionItem.Owner == (int) GameEnums.PlayerVariables.PlayerId && upgradableItem.CanUpgrade(_currentClash.Factions[0]))
                         {
                             upgradableItem.Upgrade(_currentClash.Factions[0]);
                         }

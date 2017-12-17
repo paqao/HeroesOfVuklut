@@ -11,5 +11,7 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
         public bool Selected { get; set; }
         public string Resource { get; protected set; }
         public abstract string GetFrameName();
+
+        public abstract void Affect(ClashState state);
     }
 }

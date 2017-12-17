@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Factions\IFactionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factions\IFactionProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameSaves\LoadGameSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameSaves\SaveGameSceneManager.cs" />

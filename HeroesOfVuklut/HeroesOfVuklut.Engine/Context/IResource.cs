@@ -6,8 +6,8 @@ namespace HeroesOfVuklut.Engine.Context
 {
     public interface IResource
     {
-        int Amount { get; set; }
-        int Max { get; set; }
+        decimal Amount { get; set; }
+        decimal Max { get; set; }
         string Name { get; set; }
     }
 }

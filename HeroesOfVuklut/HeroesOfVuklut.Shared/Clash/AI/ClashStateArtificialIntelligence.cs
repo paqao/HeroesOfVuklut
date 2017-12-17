@@ -20,15 +20,18 @@ namespace HeroesOfVuklut.Shared.Clash.AI
             var listOfDecisions = new List<ClashStateArtificialDecision>();
             var map = inputData.MapClash;
 
-            // upgradeCastles 
-            foreach (var item in _otherCastles)
+            var factions = inputData.Factions;
+
+            foreach (var faction in factions.Where(f => f.Aspect.Id != 1))
             {
-                if(item.Level < _castle.Level)
+                var castle = faction.Castle;
+
+                if (castle.CanUpgrade(faction))
                 {
                     ClashStateArtificialDecision newDecision = new ClashStateArtificialDecision();
-                    
+
                     newDecision.Decision = ClashStateArtificialDecision.ClashStateDecisionType.UpgradeItem;
-                    newDecision.DecisionParameter = item.Id;
+                    newDecision.DecisionParameter = castle.Id;
 
                     listOfDecisions.Add(newDecision);
                 }
@@ -42,7 +45,7 @@ namespace HeroesOfVuklut.Shared.Clash.AI
         {
             int repeat = 0;
             int maxResult = Int32.MinValue;
-            Dictionary<ClashStateArtificialDecision, bool> actionsDictionary = decisions.ToDictionary( d => d, d => false);
+            Dictionary<ClashStateArtificialDecision, bool> actionsDictionary = decisions.ToDictionary( d => d, d => true);
             while(repeat <= MaxSteps)
             {
                 int result = Int32.MinValue;
@@ -57,6 +60,13 @@ namespace HeroesOfVuklut.Shared.Clash.AI
                 {
                     repeat++;
                 }
+            }
+
+            var actionsToDo = actionsDictionary.Where(d => d.Value).Select(d => d.Key);
+
+            foreach (var item in actionsToDo)
+            {
+                item.TakeAction(state);
             }
         }
 
