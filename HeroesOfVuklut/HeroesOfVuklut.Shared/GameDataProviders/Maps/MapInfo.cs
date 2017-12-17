@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace HeroesOfVuklut.Windows.Maps
+namespace HeroesOfVuklut.Shared.GameDataProviders.Maps
 {
     internal class MapInfo
     {
@@ -17,15 +13,11 @@ namespace HeroesOfVuklut.Windows.Maps
         public int SizeX { get; set; }
         public int SizeY { get; set; }
 
-        public IList<MapInfoTile> Tiles { get; set; }
-        = new List<MapInfoTile>();
+        public IList<MapInfoTile> Tiles { get; set; } = new List<MapInfoTile>();
 
-        public IList<TilePath> Paths { get; set; }
-        = new List<TilePath>();
-
-
-        public IList<TileNode> Nodes { get; set; }
-        = new List<TileNode>();
+        public IList<TilePath> Paths { get; set; } = new List<TilePath>();
+        
+        public IList<TileNode> Nodes { get; set; } = new List<TileNode>();
     }
 
     internal class MapInfoTile

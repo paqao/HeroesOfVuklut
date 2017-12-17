@@ -3,14 +3,13 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
-using HeroesOfVuklut.Shared;
 using HeroesOfVuklut.Engine.DI;
 using System.Diagnostics;
 using HeroesOfVuklut.Shared.Clash.MapItems;
 using HeroesOfVuklut.Shared.Clash.Path;
 using HeroesOfVuklut.Shared.Configuration;
 
-namespace HeroesOfVuklut.Windows.Maps
+namespace HeroesOfVuklut.Shared.GameDataProviders.Maps
 {
     [ServiceInject(typeof(MapProvider), typeof(IMapProvider))]
     public class MapProvider : IMapProvider

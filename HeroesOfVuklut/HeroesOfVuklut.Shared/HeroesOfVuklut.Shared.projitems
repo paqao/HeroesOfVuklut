@@ -44,6 +44,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Factions\IFactionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factions\IFactionProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Maps\MapInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Maps\MapProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Traits\TraitInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Traits\TraitProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameSaves\LoadGameSceneManager.cs" />
@@ -58,6 +62,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Settings\GameSettingsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\GameSettingsSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\ICharacterTrait.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traits\ITraitProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\IUnitTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\RaceTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Units\IUnitDefinitionManager.cs" />
