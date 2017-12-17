@@ -34,6 +34,12 @@ namespace HeroesOfVuklut.Shared.Clash.AI
 
             return listOfDecisions;
         }
+        
+        
+        public void TakeActions(ClashState state, ICollection<ClashStateArtificialDecision> decisions)
+        {
+        
+        }
 
         public void PrepareAi(ClashState inputData)
         {
