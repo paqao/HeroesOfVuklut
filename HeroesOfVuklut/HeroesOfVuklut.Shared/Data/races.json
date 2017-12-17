@@ -1,0 +1,14 @@
+{
+  "Races": [
+    {
+      "Id": 1,
+      "Code": "human",
+      "Aggression": 10
+    },
+    {
+      "Id": 2,
+      "Code": "elf",
+      "Aggression": 5
+    }
+  ]
+}
