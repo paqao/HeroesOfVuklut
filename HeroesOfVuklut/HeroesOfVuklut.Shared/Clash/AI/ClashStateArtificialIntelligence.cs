@@ -10,6 +10,7 @@ namespace HeroesOfVuklut.Shared.Clash.AI
     [ServiceInject(typeof(ClashStateArtificialIntelligence), typeof(IArtificialIntelligence<ClashState, ClashStateArtificialDecision>))]
     class ClashStateArtificialIntelligence : IArtificialIntelligence<ClashState, ClashStateArtificialDecision>
     {
+        private const int MaxSteps = 5;
         private ClashFactionCastle _castle = null;
         private List<ClashFactionCastle> _otherCastles = new List<ClashFactionCastle>();
 
@@ -33,6 +34,29 @@ namespace HeroesOfVuklut.Shared.Clash.AI
             }
 
             return listOfDecisions;
+        }
+        
+        
+        public void TakeActions(ClashState state, ICollection<ClashStateArtificialDecision> decisions)
+        {
+            int repeat = 0;
+            int maxResult = Int32.MinValue;
+            Dictionary<ClashStateArtificialDecision, bool> actionsDictionary = decisions.ToDictionary(d => d, d => false);
+            while(repeat <= MaxSteps)
+            {
+                int result = Int32.MinValue;
+                var newDictionary = actionsDictionary.ToDictionary(d => d.Key, d => d.Value);
+                
+                if(result > maxResult)
+                {
+                    actionsDictionary = newDictionary;
+                    maxResult = result;
+                }
+                else
+                {
+                    repeat++;
+                }
+            }
         }
 
         public void PrepareAi(ClashState inputData)

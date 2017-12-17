@@ -17,5 +17,6 @@ namespace HeroesOfVuklut.Engine.Map.TiledMap
         public int Y { get; private set; }
         public int GroundId { get; set; }
         public T Item { get; set; }
+        public bool CanBuild { get; set; }
     }
 }

@@ -12,13 +12,17 @@ namespace HeroesOfVuklut.Shared.Clash.AI
         {
             Wait,
             UpgradeItem,
-            BuildItem
+            BuildItem,
+            CastSpell
         }
 
         public int Cost { get; }
 
         public ClashStateDecisionType Decision { get; set; }
         public int DecisionParameter { get; set; }
+        
+        public int ParameterX { get; set; }
+        public int ParameterY { get; set; }
 
         public void TakeAction(ClashState state)
         {
@@ -33,6 +37,10 @@ namespace HeroesOfVuklut.Shared.Clash.AI
 
                         item.Upgrade(faction);
 
+                        break;
+                    }
+                case ClashStateDecisionType.CastSpell:
+                    {
                         break;
                     }
                 default:
