@@ -3,6 +3,7 @@ using HeroesOfVuklut.Engine.DI;
 using HeroesOfVuklut.Shared.Clash.MapItems;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HeroesOfVuklut.Shared.Clash.AI
@@ -41,7 +42,7 @@ namespace HeroesOfVuklut.Shared.Clash.AI
         {
             int repeat = 0;
             int maxResult = Int32.MinValue;
-            Dictionary<ClashStateArtificialDecision, bool> actionsDictionary = decisions.ToDictionary(d => d, d => false);
+            Dictionary<ClashStateArtificialDecision, bool> actionsDictionary = decisions.ToDictionary( d => d, d => false);
             while(repeat <= MaxSteps)
             {
                 int result = Int32.MinValue;

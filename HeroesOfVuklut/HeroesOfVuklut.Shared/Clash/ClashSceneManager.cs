@@ -95,28 +95,51 @@ namespace HeroesOfVuklut.Shared.Clash
         public override void Update(TimeSpan step)
         {
             var nodes = _currentClash.MapClash.MapNodes;
+            var toRemove = new List<ClashUnit>();
             foreach (var item in _currentClash.Units)
             {
                 var next = item.Path.OptimumPath.IndexOf(item.Path.CurrentItem) + 1;
+
+                if(item.Path.OptimumPath.Count <= next)
+                {
+                    toRemove.Add(item);
+                    continue;
+                }
                 var nextItem = item.Path.OptimumPath[next];
 
                 var previous = nodes.First(n => n.Id == item.Path.CurrentItem.NodeId);
-                var nextItemNode = nodes.ElementAt(next);
+                var nextItemNode = nodes.First(n => n.Id == nextItem.NodeId);
 
-                if(previous.X > nextItem.X)
+                if (item.X > nextItemNode.X)
                 {
                     item.X -= 0.01M;
                 }
-                if(previous.X < nextItem.X)
+                if(item.X < nextItemNode.X)
                 {
                     item.X += 0.01M;
                 }
 
-                if(item.X == nextItem.X)
+                if(item.Y > nextItemNode.Y)
+                {
+                    item.Y -= 0.01M;
+                }
+                if(item.Y < nextItemNode.Y)
+                {
+                    item.Y += 0.01M;
+                }
+
+                int itemX = (int)item.X;
+                int itemY = (int)item.Y;
+                if(itemX == nextItemNode.X && itemY == nextItemNode.Y)
                 {
                     item.Path.CurrentItem = nextItem;
                 }
                 
+            }
+
+            foreach (var item in toRemove)
+            {
+                _currentClash.Units.Remove(item);
             }
         }
 
