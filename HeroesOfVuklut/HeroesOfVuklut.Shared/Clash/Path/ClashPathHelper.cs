@@ -82,6 +82,7 @@ namespace HeroesOfVuklut.Shared.Clash.Path
             }
 
             path.OptimumPath.Insert(0, startItem);
+            path.CurrentItem = startItem;
 
             return path ;
         }

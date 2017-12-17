@@ -84,10 +84,40 @@ namespace HeroesOfVuklut.Shared.Clash
             _unit = new ClashUnit();
 
             var path = ClashPathHelper.GeneratePath(_unit, clashState.Factions[0].Castle.ClashNode, clashState.Factions[1].Castle.ClashNode);
+            
+            _unit.Path = path;
+            _unit.X = clashState.Factions[0].Castle.X;
+            _unit.Y = clashState.Factions[0].Castle.Y;
+
+            clashState.Units.Add(_unit);
         }
 
         public override void Update(TimeSpan step)
         {
+            var nodes = _currentClash.MapClash.MapNodes;
+            foreach (var item in _currentClash.Units)
+            {
+                var next = item.Path.OptimumPath.IndexOf(item.Path.CurrentItem) + 1;
+                var nextItem = item.Path.OptimumPath[next];
+
+                var previous = nodes.First(n => n.Id == item.Path.CurrentItem.NodeId);
+                var nextItemNode = nodes.ElementAt(next);
+
+                if(previous.X > nextItem.X)
+                {
+                    item.X -= 0.01M;
+                }
+                if(previous.X < nextItem.X)
+                {
+                    item.X += 0.01M;
+                }
+
+                if(item.X == nextItem.X)
+                {
+                    item.Path.CurrentItem = nextItem;
+                }
+                
+            }
         }
 
         public override void Draw()
@@ -125,6 +155,13 @@ namespace HeroesOfVuklut.Shared.Clash
                 var firstCon = connection.Nodes.First();
                 var lastCon = connection.Nodes.Last();
                 GraphicsInterface.DrawLine(offsetX + 16 + firstCon.X * 32, offsetY + 16 + firstCon.Y * 32, offsetX + 16 + lastCon.X * 32, offsetY + 16 + lastCon.Y * 32);
+            }
+
+            foreach (var item in _currentClash.Units)
+            {
+                int x = (int) (offsetX + item.X * 32.0M);
+                int y = (int) (offsetX + item.Y * 32.0M);
+                GraphicsInterface.DrawText(x, y, "c");
             }
             // ui
             GraphicsInterface.Draw(0, 520, 800, 80, "clashInterface");
