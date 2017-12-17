@@ -235,10 +235,7 @@ namespace HeroesOfVuklut.Shared.Clash
 
             var steps = Calculate();
 
-            foreach (var item in steps)
-            {
-                item.TakeAction(_currentClash);
-            }
+            IAi.TakeActions(_currentClash, steps);
         }
 
         public ICollection<ClashStateArtificialDecision> Calculate()
