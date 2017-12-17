@@ -3,12 +3,22 @@
     {
       "Id": 1,
       "Code": "human",
-      "Aggression": 10
+      "Aggression": 10,
+      "Traits": [
+        {
+          "Id": 5
+        }
+       ]
     },
     {
       "Id": 2,
       "Code": "elf",
-      "Aggression": 5
+      "Aggression": 5,
+      "Traits": [
+        {
+          "Id": 6
+        }
+      ]
     }
   ]
 }
