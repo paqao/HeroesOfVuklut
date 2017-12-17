@@ -183,8 +183,11 @@ namespace HeroesOfVuklut.Shared.Clash
             foreach (var item in _currentClash.Units)
             {
                 int x = (int) (offsetX + item.X * 32.0M);
-                int y = (int) (offsetX + item.Y * 32.0M);
-                GraphicsInterface.DrawText(x, y, "c");
+                int y = (int) (offsetY + item.Y * 32.0M);
+
+
+                GraphicsInterface.Draw(x, y, 32, 32, "unit");
+                
             }
             // ui
             GraphicsInterface.Draw(0, 520, 800, 80, "clashInterface");

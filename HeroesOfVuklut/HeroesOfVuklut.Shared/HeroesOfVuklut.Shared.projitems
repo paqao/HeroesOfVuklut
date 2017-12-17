@@ -76,6 +76,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Data\Localized\pl_PL.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Data\races.json" />
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

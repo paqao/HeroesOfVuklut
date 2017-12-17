@@ -136,6 +136,13 @@
           "PositionY": 0
         }
       ]
+    },
+    {
+      "Name": "unit",
+      "Families": [
+        "clash"
+      ],
+      "ContentPath": "Sprites/unit"
     }
   ]
 }
