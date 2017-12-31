@@ -43,6 +43,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputInterface.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IInputState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\IListElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\ISliderElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\ITextBoxElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\FileLocalizedSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\ILocalizedSource.cs" />

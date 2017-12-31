@@ -127,10 +127,8 @@ namespace HeroesOfVuklut.Shared.Clash
                 {
                     item.Y += 0.01M;
                 }
-
-                int itemX = (int)item.X;
-                int itemY = (int)item.Y;
-                if(itemX == nextItemNode.X && itemY == nextItemNode.Y)
+                
+                if(item.X == nextItemNode.X && item.Y == nextItemNode.Y)
                 {
                     item.Path.CurrentItem = nextItem;
                 }

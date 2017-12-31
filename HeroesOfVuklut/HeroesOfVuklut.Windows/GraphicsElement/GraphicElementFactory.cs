@@ -29,6 +29,11 @@ namespace HeroesOfVuklut.Windows.GraphicsElement
             return new GraphicListElement<T>();
         }
 
+        public ISliderElement<T> CreateSliderElement<T>() where T : class
+        {
+            return new GraphicSliderElement<T>();
+        }
+
         public ITextBoxElement CreateTextBox(KeyboardType keyboardType)
         {
             return new GraphicTextBoxElement();

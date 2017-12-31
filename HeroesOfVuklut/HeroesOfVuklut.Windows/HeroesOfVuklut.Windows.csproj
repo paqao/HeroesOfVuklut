@@ -50,6 +50,7 @@
     <Compile Include="GraphicsElement\GraphicButton.cs" />
     <Compile Include="GraphicsElement\GraphicElementFactory.cs" />
     <Compile Include="GraphicsElement\GraphicListElement.cs" />
+    <Compile Include="GraphicsElement\GraphicSliderElement.cs" />
     <Compile Include="GraphicsElement\RoundGraphicButton.cs" />
     <Compile Include="GraphicsElement\GraphicTextBoxElement.cs" />
     <Compile Include="InputInterface.cs" />
