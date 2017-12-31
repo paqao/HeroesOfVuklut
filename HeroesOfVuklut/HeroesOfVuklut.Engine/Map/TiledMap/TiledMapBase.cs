@@ -1,11 +1,10 @@
 ﻿using HeroesOfVuklut.Engine.Map.Nodes;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HeroesOfVuklut.Engine.Map.TiledMap
 {
-    public class TiledMapBase<T,U, V, W> : MapBase where T : TiledMapTileBase<U>
+    public class TiledMapBase<T,U, V, W> : MapBase 
+        where T : TiledMapTileBase<U>
         where U : TiledMapItemBase
         where V : MapNodeBase<V, T, W>
         where W : MapNodeConnectionBase<V>

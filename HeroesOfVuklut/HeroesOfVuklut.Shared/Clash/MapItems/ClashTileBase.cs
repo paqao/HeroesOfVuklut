@@ -1,8 +1,9 @@
+using HeroesOfVuklut.Engine.Map;
 using HeroesOfVuklut.Engine.Map.TiledMap;
 
 namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
-    public class ClashTile : TiledMapTileBase<ClashTileItem>
+    public class ClashTile : TiledMapTileBase<ClashTileItem>, IMapItem
     {
         private bool _isHover;
 

@@ -46,6 +46,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Maps\MapInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Maps\MapProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Maps\TerrainProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Traits\TraitInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Traits\TraitProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEnums.cs" />

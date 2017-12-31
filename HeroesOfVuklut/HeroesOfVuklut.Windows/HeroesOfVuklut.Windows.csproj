@@ -90,6 +90,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="GameDataProviders\Maps\" />
     <Folder Include="Settings\" />
   </ItemGroup>
   <Import Project="..\HeroesOfVuklut.Shared\HeroesOfVuklut.Shared.projitems" Label="Shared" />
