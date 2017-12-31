@@ -7,6 +7,9 @@ namespace HeroesOfVuklut.Shared.Clash
 {
     public class ClashFaction : IContext
     {
+        public int Health { get; private set; }
+        public bool MarkedLose { get; private set; }
+
         public IList<UnitTemplate> UnitTemplates { get; protected set; }
         public IList<ClashResource> ClashResources { get; protected set; }
 
@@ -16,6 +19,8 @@ namespace HeroesOfVuklut.Shared.Clash
 
         public ClashFaction()
         {
+            Health = 1;
+            MarkedLose = false;
             UnitTemplates = new List<UnitTemplate>();
             ClashResources = new List<ClashResource>();
             var array = Enum.GetValues(typeof(ClashResource.ClashResourceType));
@@ -27,7 +32,15 @@ namespace HeroesOfVuklut.Shared.Clash
             }
         }
 
-       
+        public void DecreaseHealth(int siegePower)
+        {
+            Health -= siegePower;
+
+            if(Health <= 0)
+            {
+                MarkedLose = true;
+            }
+        }
     }
 
 }

@@ -59,6 +59,8 @@ namespace HeroesOfVuklut.Shared.GameDataProviders.Maps
                 nodeEnt.X = node.X;
                 nodeEnt.Y = node.Y;
 
+                nodeEnt.NodeItem = clashMap.Tiles[node.Y][node.X];
+
                 clashMap.MapNodes.Add(nodeEnt);
             }
 

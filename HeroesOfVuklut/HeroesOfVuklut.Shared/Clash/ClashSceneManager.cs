@@ -25,6 +25,7 @@ namespace HeroesOfVuklut.Shared.Clash
         private ClashTile _selectedTile;
         private readonly IMapProvider _mapProvider;
         private ClashUnit _unit;
+        private bool? active = null;
 
         public IArtificialIntelligence<ClashState, ClashStateArtificialDecision> IAi { get;  }
 
@@ -86,63 +87,89 @@ namespace HeroesOfVuklut.Shared.Clash
             var path = ClashPathHelper.GeneratePath(_unit, clashState.Factions[0].Castle.ClashNode, clashState.Factions[1].Castle.ClashNode);
             
             _unit.Path = path;
+            _unit.SiegePower = 2;
             _unit.X = clashState.Factions[0].Castle.X;
             _unit.Y = clashState.Factions[0].Castle.Y;
 
             clashState.Units.Add(_unit);
+
+            active = true;
         }
 
         public override void Update(TimeSpan step)
         {
-            var nodes = _currentClash.MapClash.MapNodes;
-            var toRemove = new List<ClashUnit>();
-            foreach (var item in _currentClash.Units)
+            if(active == null)
             {
-                var next = item.Path.OptimumPath.IndexOf(item.Path.CurrentItem) + 1;
 
-                if(item.Path.OptimumPath.Count <= next)
-                {
-                    toRemove.Add(item);
-                    continue;
-                }
-                var nextItem = item.Path.OptimumPath[next];
-
-                var previous = nodes.First(n => n.Id == item.Path.CurrentItem.NodeId);
-                var nextItemNode = nodes.First(n => n.Id == nextItem.NodeId);
-
-                if (item.X > nextItemNode.X)
-                {
-                    item.X -= 0.01M;
-                }
-                if(item.X < nextItemNode.X)
-                {
-                    item.X += 0.01M;
-                }
-
-                if(item.Y > nextItemNode.Y)
-                {
-                    item.Y -= 0.01M;
-                }
-                if(item.Y < nextItemNode.Y)
-                {
-                    item.Y += 0.01M;
-                }
-                
-                if(item.X == nextItemNode.X && item.Y == nextItemNode.Y)
-                {
-                    item.Path.CurrentItem = nextItem;
-                }
-                
             }
-
-            foreach (var item in toRemove)
+            else if (active.HasValue && active.Value)
             {
-                _currentClash.Units.Remove(item);
+                var nodes = _currentClash.MapClash.MapNodes;
+                var toRemove = new List<ClashUnit>();
+                foreach (var item in _currentClash.Units)
+                {
+                    var next = item.Path.OptimumPath.IndexOf(item.Path.CurrentItem) + 1;
+
+                    if (item.Path.OptimumPath.Count <= next)
+                    {
+                        toRemove.Add(item);
+                        continue;
+                    }
+                    var nextItem = item.Path.OptimumPath[next];
+
+                    var previous = nodes.First(n => n.Id == item.Path.CurrentItem.NodeId);
+                    var nextItemNode = nodes.First(n => n.Id == nextItem.NodeId);
+
+                    if (item.X > nextItemNode.X)
+                    {
+                        item.X -= 0.01M;
+                    }
+                    if (item.X < nextItemNode.X)
+                    {
+                        item.X += 0.01M;
+                    }
+
+                    if (item.Y > nextItemNode.Y)
+                    {
+                        item.Y -= 0.01M;
+                    }
+                    if (item.Y < nextItemNode.Y)
+                    {
+                        item.Y += 0.01M;
+                    }
+
+                    if (item.X == nextItemNode.X && item.Y == nextItemNode.Y)
+                    {
+                        item.Path.CurrentItem = nextItem;
+                    }
+
+                }
+
+                foreach (var item in toRemove)
+                {
+                    var pathNode = nodes.First(n => n.Id == item.Path.CurrentItem.NodeId);
+
+                    pathNode.NodeItem.Item.Affect(item, _currentClash);
+
+                    _currentClash.Units.Remove(item);
+                }
+
+                foreach (var item in _currentClash.MapClash.Buildings)
+                {
+                    item.Affect(_currentClash);
+                }
+
+                foreach (var faction in _currentClash.Factions)
+                {
+                    if (faction.MarkedLose)
+                    {
+                        active = false;
+                    }
+                }
             }
-
-            foreach (var item in _currentClash.MapClash.Buildings)
+            else if (!active.Value)
             {
-                item.Affect(_currentClash);
+
             }
         }
 
@@ -209,6 +236,11 @@ namespace HeroesOfVuklut.Shared.Clash
 
             // GraphicsInterface.DrawText(40, 528, "test");
 
+            if(active.HasValue && !active.Value)
+            {
+                GraphicsInterface.DrawText(60, 300, "Koniec gry");
+            }
+
             // ui controllers
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
         }
@@ -236,60 +268,68 @@ namespace HeroesOfVuklut.Shared.Clash
             var leftButton = InputInterface.CheckInputDown("cursorLeft");
             var rightButton = InputInterface.CheckInputDown("cursorRight");
 
-            int itemX = (cursor.PositionX - offsetX) / 32;
-            int itemY = (cursor.PositionY - offsetY) / 32;
-
-            if (itemX >= 0 && itemY >= 0 && itemX < _currentClash.MapClash.Width && itemY < _currentClash.MapClash.Height)
+            if(active.HasValue && active.Value)
             {
-                var tile = _currentClash.MapClash.Tiles[itemY][itemX];
+                int itemX = (cursor.PositionX - offsetX) / 32;
+                int itemY = (cursor.PositionY - offsetY) / 32;
 
-                tile.Hover = true;
-                if (leftButton)
+                if (itemX >= 0 && itemY >= 0 && itemX < _currentClash.MapClash.Width && itemY < _currentClash.MapClash.Height)
                 {
-                    if(_selectedTile  != null && _selectedTile.Item != null)
-                    {
-                        _selectedTile.Item.Selected = false;
-                    }
-                    _selectedTile = tile;
+                    var tile = _currentClash.MapClash.Tiles[itemY][itemX];
 
-                    if(tile.Item != null)
+                    tile.Hover = true;
+                    if (leftButton)
                     {
-                        tile.Item.Selected = true;
-                    }
-                }
-                
-            }
-            else
-            {
-                if (leftButton)
-                {
-                    var distanceX = cursor.PositionX - 30;
-                    var distanceY = cursor.PositionY - 550;
-
-                    var distance = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
-
-                    if(distance < 23 && _selectedTile != null && _selectedTile.Item != null)
-                    {
-                        var item = _selectedTile.Item;
-                        var upgradableItem = item as IUpgradeable;
-                        var factionItem = item as IClashFactionItem;
-                        
-                        if(upgradableItem != null && factionItem.Owner == (int) GameEnums.PlayerVariables.PlayerId && upgradableItem.CanUpgrade(_currentClash.Factions[0]))
+                        if (_selectedTile != null && _selectedTile.Item != null)
                         {
-                            upgradableItem.Upgrade(_currentClash.Factions[0]);
+                            _selectedTile.Item.Selected = false;
+                        }
+                        _selectedTile = tile;
+
+                        if (tile.Item != null)
+                        {
+                            tile.Item.Selected = true;
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (leftButton)
+                    {
+                        var distanceX = cursor.PositionX - 30;
+                        var distanceY = cursor.PositionY - 550;
+
+                        var distance = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
+
+                        if (distance < 23 && _selectedTile != null && _selectedTile.Item != null)
+                        {
+                            var item = _selectedTile.Item;
+                            var upgradableItem = item as IUpgradeable;
+                            var factionItem = item as IClashFactionItem;
+
+                            if (upgradableItem != null && factionItem.Owner == (int)GameEnums.PlayerVariables.PlayerId && upgradableItem.CanUpgrade(_currentClash.Factions[0]))
+                            {
+                                upgradableItem.Upgrade(_currentClash.Factions[0]);
+                            }
                         }
                     }
                 }
-            }
-            
 
-            if (rightButton && _selectedTile != null)
-            {
-                if (_selectedTile.Item != null)
+
+                if (rightButton && _selectedTile != null)
                 {
-                    _selectedTile.Item.Selected = false;
+                    if (_selectedTile.Item != null)
+                    {
+                        _selectedTile.Item.Selected = false;
+                    }
+                    _selectedTile = null;
                 }
-                _selectedTile = null;
+
+            }
+            else if(active.HasValue && !active.Value)
+            {
+
             }
 
             _cursor = cursor;
@@ -299,9 +339,12 @@ namespace HeroesOfVuklut.Shared.Clash
         {
             base.PreUpdate();
 
-            var steps = Calculate();
+            if(active.HasValue && active.Value)
+            {
+                var steps = Calculate();
 
-            IAi.TakeActions(_currentClash, steps);
+                IAi.TakeActions(_currentClash, steps);
+            }
         }
 
         public ICollection<ClashStateArtificialDecision> Calculate()

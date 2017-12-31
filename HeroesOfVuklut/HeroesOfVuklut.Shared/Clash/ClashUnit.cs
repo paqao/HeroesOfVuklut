@@ -21,6 +21,8 @@ namespace HeroesOfVuklut.Shared.Clash
 
         public decimal X { get; set; }
         public decimal Y { get; set; }
+
+        public int SiegePower { get; set; }
     }
 
 }

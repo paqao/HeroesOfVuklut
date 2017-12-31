@@ -24,6 +24,13 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
             data.Amount = future;
         }
 
+        public override void Affect(ClashUnit passedObject, ClashState state)
+        {
+            var myFaction = state.Factions.First(f => f.Aspect.Id == Owner);
+
+            myFaction.DecreaseHealth(passedObject.SiegePower);
+        }
+
         public override string GetFrameName()
         {
             string frame = Hover ? "Hover" : "Idle";
