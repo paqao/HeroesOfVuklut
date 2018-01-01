@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Clash\AI\ClashStateArtificialDecision.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\AI\ClashStateArtificialIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashResource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\Helpers\ClashFactionBuildingHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\IMapProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashBuilding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashFaction.cs" />
@@ -29,9 +30,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashTileBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashTileItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashTower.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\IClashFactionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\IClashUpgradeable.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Clash\Path\ClashPathHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\Helpers\ClashPathHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\Path\ClashPathNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\Path\UnitPath.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\Path\UnitPathNode.cs" />

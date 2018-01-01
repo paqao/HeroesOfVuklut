@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HeroesOfVuklut.Shared.Factions;
 using HeroesOfVuklut.Shared.Clash.Path;
+using HeroesOfVuklut.Shared.Clash.Helper;
 
 namespace HeroesOfVuklut.Shared.Clash
 {
@@ -26,6 +27,7 @@ namespace HeroesOfVuklut.Shared.Clash
         private readonly IMapProvider _mapProvider;
         private ClashUnit _unit;
         private bool? active = null;
+        private ClashFaction playerFaction;
 
         public IArtificialIntelligence<ClashState, ClashStateArtificialDecision> IAi { get;  }
 
@@ -75,7 +77,9 @@ namespace HeroesOfVuklut.Shared.Clash
             var clashState = new ClashState();
             clashState.MapClash = map;
             clashState.Factions = factions.Select(f => new ClashFaction() { Aspect = f }).ToList();
-            
+
+            playerFaction = clashState.Factions.First(f => f.Aspect.Id == (int) GameEnums.PlayerVariables.PlayerId);
+
             PrepareClash(clashState);
 
             ProcessInput();
@@ -234,9 +238,19 @@ namespace HeroesOfVuklut.Shared.Clash
                 }
             }
 
+            var buildTowerStyle = playerFaction.CanBuild<ClashTower>() ? "tower-active" : "tower-idle";
+            GraphicsInterface.Draw(50, 568, 42, 42, "clashInterfaceDynamic", buildTowerStyle );
+            
+
+            // resources
+            GraphicsInterface.DrawText(60, 450, playerFaction[ClashResource.ClashResourceType.Gold].Amount.ToString());
+            GraphicsInterface.DrawText(60, 470, playerFaction[ClashResource.ClashResourceType.Mana].Amount.ToString());
+            GraphicsInterface.DrawText(60, 490, playerFaction[ClashResource.ClashResourceType.Engineering].Amount.ToString());
+            GraphicsInterface.DrawText(60, 510, playerFaction[ClashResource.ClashResourceType.Morale].Amount.ToString());
+
             // GraphicsInterface.DrawText(40, 528, "test");
 
-            if(active.HasValue && !active.Value)
+            if (active.HasValue && !active.Value)
             {
                 GraphicsInterface.DrawText(60, 300, "Koniec gry");
             }

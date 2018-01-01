@@ -1,7 +1,10 @@
 using HeroesOfVuklut.Engine.Context;
+using HeroesOfVuklut.Shared.Clash.Helpers;
 using HeroesOfVuklut.Shared.Clash.MapItems;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using static HeroesOfVuklut.Shared.Clash.ClashResource;
 
 namespace HeroesOfVuklut.Shared.Clash
 {
@@ -31,6 +34,21 @@ namespace HeroesOfVuklut.Shared.Clash
                 ClashResources.Add(ClashResource.CreateResource(0, 50, resourceType));
             }
         }
+
+        public ClashResource this[ClashResourceType key]
+        {
+            get
+            {
+                return ClashResources.First(cr => cr.ResourceType == key);
+            }
+        }
+
+        public bool CanBuild<T>() where T : ClashBuilding
+        {
+            return false;
+        }
+
+
 
         public void DecreaseHealth(int siegePower)
         {

@@ -21,7 +21,7 @@ namespace HeroesOfVuklut.Shared.Clash
             Morale,
             Engineering
         }
-
+        
         public static ClashResource CreateResource(int amount, int max, ClashResourceType resourceType)
         {
             return new ClashResource

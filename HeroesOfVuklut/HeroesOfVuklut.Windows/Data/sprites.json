@@ -134,6 +134,16 @@
           "Name": "upgrade-active",
           "PositionX": 1,
           "PositionY": 0
+        },
+        {
+          "Name": "tower-idle",
+          "PositionX": 0,
+          "PositionY": 1
+        },
+        {
+          "Name": "tower-active",
+          "PositionX": 1,
+          "PositionY": 1
         }
       ]
     },

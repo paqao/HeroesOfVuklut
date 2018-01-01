@@ -1,7 +1,8 @@
+using HeroesOfVuklut.Shared.Clash.Path;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HeroesOfVuklut.Shared.Clash.Path
+namespace HeroesOfVuklut.Shared.Clash.Helper
 {
     public class ClashPathHelper {
 
