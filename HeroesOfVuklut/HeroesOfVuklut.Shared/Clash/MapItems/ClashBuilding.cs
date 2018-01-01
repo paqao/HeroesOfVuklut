@@ -6,6 +6,19 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
     public abstract class ClashBuilding : ClashTileItem, IUpgradeable, IClashFactionItem
     {
+        protected BuildingType Building;
+
+        public ClashBuilding(BuildingType buildingType)
+        {
+            this.Building = buildingType;
+        }
+
+        public enum BuildingType
+        {
+            Castle,
+            Tower
+        }
+
         public int Owner { get; set; }
         public int Level { get; protected set; } = 1;
         public int Id { get; set; }

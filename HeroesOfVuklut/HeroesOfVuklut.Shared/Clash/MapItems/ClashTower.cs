@@ -6,14 +6,14 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
     public class ClashTower : ClashBuilding
     {
-        public ClashTower()
+        public ClashTower() : base(BuildingType.Tower)
         {
             Resource = "Tower"; 
         }
 
         public override void Affect(ClashState state)
         {
-            throw new NotImplementedException();
+
         }
 
         public override void Affect(ClashUnit passedObject, ClashState state)

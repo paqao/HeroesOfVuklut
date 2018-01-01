@@ -28,6 +28,12 @@ namespace HeroesOfVuklut.Shared.Clash
         private ClashUnit _unit;
         private bool? active = null;
         private ClashFaction playerFaction;
+        private ClashBuilding.BuildingType? buildMode = null;
+
+        #region ui elements
+        public IGraphicButton buildTowerButton;
+        public IGraphicButton upgradeItemButton;
+#endregion
 
         public IArtificialIntelligence<ClashState, ClashStateArtificialDecision> IAi { get;  }
 
@@ -37,6 +43,9 @@ namespace HeroesOfVuklut.Shared.Clash
             _mapProvider = mapProvider;
             _factionManager = factionManager;
             IAi = ai;
+
+            buildTowerButton = graphicElementFactory.CreateButton(ButtonType.Circle);
+            upgradeItemButton = graphicElementFactory.CreateButton(ButtonType.Circle);
         }
 
         public void PrepareClash(ClashState state)
@@ -78,6 +87,11 @@ namespace HeroesOfVuklut.Shared.Clash
             clashState.MapClash = map;
             clashState.Factions = factions.Select(f => new ClashFaction() { Aspect = f }).ToList();
 
+            foreach (var item in clashState.Factions)
+            {
+                item.BuildingBuild += Faction_BuildingBuild;
+            }
+
             playerFaction = clashState.Factions.First(f => f.Aspect.Id == (int) GameEnums.PlayerVariables.PlayerId);
 
             PrepareClash(clashState);
@@ -98,6 +112,23 @@ namespace HeroesOfVuklut.Shared.Clash
             clashState.Units.Add(_unit);
 
             active = true;
+
+
+            upgradeItemButton.ItemHeight = 23;
+            upgradeItemButton.X = 30;
+            upgradeItemButton.Y = 550;
+
+
+            buildTowerButton.ItemHeight = 23;
+            buildTowerButton.X = 72;
+            buildTowerButton.Y = 590;
+        }
+
+        private void Faction_BuildingBuild(object sender, BuildingActionEventArgs e)
+        {
+            var building = e.Building;
+
+            this._currentClash.MapClash.Buildings.Add(building);
         }
 
         public override void Update(TimeSpan step)
@@ -238,7 +269,7 @@ namespace HeroesOfVuklut.Shared.Clash
                 }
             }
 
-            var buildTowerStyle = playerFaction.CanBuild<ClashTower>() ? "tower-active" : "tower-idle";
+            var buildTowerStyle = playerFaction.CanBuild(ClashBuilding.BuildingType.Tower) ? "tower-active" : "tower-idle";
             GraphicsInterface.Draw(50, 568, 42, 42, "clashInterfaceDynamic", buildTowerStyle );
             
 
@@ -284,15 +315,15 @@ namespace HeroesOfVuklut.Shared.Clash
 
             if(active.HasValue && active.Value)
             {
-                int itemX = (cursor.PositionX - offsetX) / 32;
-                int itemY = (cursor.PositionY - offsetY) / 32;
+                var located = GetLocation(cursor.PositionX, cursor.PositionY, out int itemX, out int itemY);
 
-                if (itemX >= 0 && itemY >= 0 && itemX < _currentClash.MapClash.Width && itemY < _currentClash.MapClash.Height)
+                if (located)
                 {
                     var tile = _currentClash.MapClash.Tiles[itemY][itemX];
 
                     tile.Hover = true;
-                    if (leftButton)
+
+                    if (leftButton && buildMode == null)
                     {
                         if (_selectedTile != null && _selectedTile.Item != null)
                         {
@@ -305,18 +336,19 @@ namespace HeroesOfVuklut.Shared.Clash
                             tile.Item.Selected = true;
                         }
                     }
-
+                    else if(leftButton && buildMode != null)
+                    {
+                        if (tile.CanBuild)
+                        {
+                            playerFaction.Build(buildMode.Value, tile);
+                        }
+                    }
                 }
                 else
                 {
                     if (leftButton)
                     {
-                        var distanceX = cursor.PositionX - 30;
-                        var distanceY = cursor.PositionY - 550;
-
-                        var distance = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
-
-                        if (distance < 23 && _selectedTile != null && _selectedTile.Item != null)
+                        if (upgradeItemButton.IsOver(cursor))
                         {
                             var item = _selectedTile.Item;
                             var upgradableItem = item as IUpgradeable;
@@ -326,6 +358,15 @@ namespace HeroesOfVuklut.Shared.Clash
                             {
                                 upgradableItem.Upgrade(_currentClash.Factions[0]);
                             }
+                        }
+
+                        if (buildTowerButton.IsOver(cursor))
+                        {
+                            buildMode = ClashBuilding.BuildingType.Tower;
+                        }
+                        else
+                        {
+                            buildMode = null;
                         }
                     }
                 }
@@ -339,7 +380,10 @@ namespace HeroesOfVuklut.Shared.Clash
                     }
                     _selectedTile = null;
                 }
-
+                else if (rightButton)
+                {
+                    buildMode = null;
+                }
             }
             else if(active.HasValue && !active.Value)
             {
@@ -347,6 +391,25 @@ namespace HeroesOfVuklut.Shared.Clash
             }
 
             _cursor = cursor;
+        }
+        
+        private bool GetLocation(int cursorX, int cursorY, out int itemX, out int itemY)
+        {
+            int tmpX = (cursorX - offsetX) / 32;
+            int tmpY = (cursorY - offsetY) / 32;
+
+            if (tmpX >= 0 && tmpY >= 0 && tmpX < _currentClash.MapClash.Width && tmpY < _currentClash.MapClash.Height)
+            {
+                itemX = tmpX;
+                itemY = tmpY;
+                return true;
+            }
+            else
+            {
+                itemX = -1;
+                itemY = -1;
+                return false;
+            }
         }
 
         public override void PreUpdate()

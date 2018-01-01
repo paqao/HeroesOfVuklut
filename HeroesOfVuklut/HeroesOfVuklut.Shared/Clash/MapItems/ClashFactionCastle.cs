@@ -8,7 +8,7 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
     public class ClashFactionCastle : ClashBuilding
     {
-        public ClashFactionCastle()
+        public ClashFactionCastle() : base(BuildingType.Castle)
         {
             Resource = "castle";
         }

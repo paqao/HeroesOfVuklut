@@ -10,6 +10,8 @@ namespace HeroesOfVuklut.Shared.Clash
 {
     public class ClashFaction : IContext
     {
+        public event EventHandler<BuildingActionEventArgs> BuildingBuild;
+
         public int Health { get; private set; }
         public bool MarkedLose { get; private set; }
 
@@ -43,12 +45,32 @@ namespace HeroesOfVuklut.Shared.Clash
             }
         }
 
-        public bool CanBuild<T>() where T : ClashBuilding
+        public bool CanBuild(ClashBuilding.BuildingType buildingType)
         {
-            return false;
+            var isAvailable = ClashFactionBuildingHelper.HasBuildingAvailable(this, buildingType);
+
+            if (!isAvailable)
+            {
+                return false;
+            }
+
+            return ClashFactionBuildingHelper.HasEnoughResources(this, buildingType);
         }
 
+        public void Build(ClashBuilding.BuildingType buildingType, ClashTile tile)
+        {
+            if(buildingType == ClashBuilding.BuildingType.Tower)
+            {
+                var newTower = new ClashTower();
+                tile.Item = newTower;
+                
 
+                if(BuildingBuild != null)
+                {
+                    BuildingBuild.Invoke(this, new BuildingActionEventArgs(newTower, this));
+                }
+            }
+        }
 
         public void DecreaseHealth(int siegePower)
         {

@@ -1,11 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using HeroesOfVuklut.Shared.Clash.MapItems;
+using System;
 
 namespace HeroesOfVuklut.Shared.Clash.Helpers
 {
-    public class ClashFactionBuildingHelper
+    public static class ClashFactionBuildingHelper
     {
+        public static bool HasBuildingAvailable(ClashFaction faction, ClashBuilding.BuildingType buildingType)
+        {
+            return true;
+        }
 
+        public static bool HasEnoughResources(ClashFaction clashFaction, ClashBuilding.BuildingType buildingType)
+        {
+            return true;
+        }
     }
 }
