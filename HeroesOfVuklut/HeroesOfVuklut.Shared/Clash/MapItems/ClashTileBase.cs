@@ -23,9 +23,12 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
         
         public ClashTile(int x, int y, int groundId) : base(x,y,groundId)
         {
+            FreeTile = true;
         }
 
-        public override bool CanBuild { get { return Item == null; } }
+        public override bool CanBuild { get { return Item == null && FreeTile; } }
+
+        public bool FreeTile { get; set; }
     }
 
 }

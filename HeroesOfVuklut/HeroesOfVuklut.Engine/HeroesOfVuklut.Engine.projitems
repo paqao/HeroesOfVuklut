@@ -52,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Context\IUpgradable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\ITerrainProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\MapBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map\MapPoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Nodes\MapNodeBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\Nodes\MapNodeConnectionBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Map\TiledMap\TiledMapBase.cs" />

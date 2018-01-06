@@ -102,6 +102,34 @@
       ]
     },
     {
+      "Name": "tower",
+      "Families": [
+        "clash",
+        "clash/building",
+        "clash/tower"
+      ],
+      "FrameSizeX": 32,
+      "FrameSizeY": 32,
+      "ContentPath": "Sprites/tower",
+      "Frames": [
+        {
+          "Name": "tower1-Idle",
+          "PositionX": 0,
+          "PositionY": 0
+        },
+        {
+          "Name": "tower1-Hover",
+          "PositionX": 1,
+          "PositionY": 0
+        },
+        {
+          "Name": "tower1-Selected",
+          "PositionX": 2,
+          "PositionY": 0
+        }
+      ]
+    },
+    {
       "Name": "cursor",
       "Families": [
         "ui"

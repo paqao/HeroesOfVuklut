@@ -17,6 +17,7 @@ namespace HeroesOfVuklut.Shared.Clash
 
         public IList<UnitTemplate> UnitTemplates { get; protected set; }
         public IList<ClashResource> ClashResources { get; protected set; }
+        public IList<ClashBuilding> Buildings { get; protected set; }
 
         public ClashFactionCastle Castle { get; set; }
 
@@ -28,6 +29,8 @@ namespace HeroesOfVuklut.Shared.Clash
             MarkedLose = false;
             UnitTemplates = new List<UnitTemplate>();
             ClashResources = new List<ClashResource>();
+            Buildings = new List<ClashBuilding>();
+
             var array = Enum.GetValues(typeof(ClashResource.ClashResourceType));
             foreach (var item  in array)
             {
@@ -59,16 +62,20 @@ namespace HeroesOfVuklut.Shared.Clash
 
         public void Build(ClashBuilding.BuildingType buildingType, ClashTile tile)
         {
-            if(buildingType == ClashBuilding.BuildingType.Tower)
+            if(buildingType == ClashBuilding.BuildingType.Tower && CanBuild(buildingType))
             {
+                ClashFactionBuildingHelper.ReduceResources(this, buildingType);
+
                 var newTower = new ClashTower();
                 tile.Item = newTower;
-                
 
-                if(BuildingBuild != null)
+
+                if (BuildingBuild != null)
                 {
                     BuildingBuild.Invoke(this, new BuildingActionEventArgs(newTower, this));
                 }
+
+                Buildings.Add(newTower);
             }
         }
 

@@ -116,6 +116,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/grass.png
 
+#begin Sprites/tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/tower.png
+
 #begin Sprites/unit.png
 /importer:TextureImporter
 /processor:TextureProcessor

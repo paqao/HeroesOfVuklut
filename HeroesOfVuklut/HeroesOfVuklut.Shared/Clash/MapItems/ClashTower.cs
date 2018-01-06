@@ -8,7 +8,7 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
     {
         public ClashTower() : base(BuildingType.Tower)
         {
-            Resource = "Tower"; 
+            Resource = "tower"; 
         }
 
         public override void Affect(ClashState state)
@@ -23,7 +23,13 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
 
         public override string GetFrameName()
         {
-            throw new NotImplementedException();
+            string frame = Hover ? "Hover" : "Idle";
+
+            if (Selected)
+            {
+                frame = "Selected";
+            }
+            return $"{Resource}{Level}-{frame}";
         }
 
         protected override IList<ClashResource> GetUpgradeRequirements()
@@ -33,7 +39,7 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
 
         protected override bool HasHigherLevel()
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }

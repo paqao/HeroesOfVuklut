@@ -8,6 +8,7 @@ using System.Diagnostics;
 using HeroesOfVuklut.Shared.Clash.MapItems;
 using HeroesOfVuklut.Shared.Clash.Path;
 using HeroesOfVuklut.Shared.Configuration;
+using HeroesOfVuklut.Shared.Clash.Helpers;
 
 namespace HeroesOfVuklut.Shared.GameDataProviders.Maps
 {
@@ -60,7 +61,7 @@ namespace HeroesOfVuklut.Shared.GameDataProviders.Maps
                 nodeEnt.Y = node.Y;
 
                 nodeEnt.NodeItem = clashMap.Tiles[node.Y][node.X];
-
+                
                 clashMap.MapNodes.Add(nodeEnt);
             }
 
@@ -74,13 +75,18 @@ namespace HeroesOfVuklut.Shared.GameDataProviders.Maps
 
                 connection.Nodes.Add(node1);
                 connection.Nodes.Add(node2);
-
-
-
+                
                 clashMap.Connections.Add(connection);
 
                 node1.Connections.Add(connection);
                 node2.Connections.Add(connection);
+
+                var pathItems = ClashPathFollower.TrackPoints(connection);
+
+                foreach (var item in pathItems)
+                {
+                    clashMap.Tiles[item.Y][item.X].FreeTile = false;
+                }
             }
 
             Debug.WriteLine(mapInfo.Name);

@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Clash\AI\ClashStateArtificialIntelligence.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\ClashResource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\Helpers\ClashFactionBuildingHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\Helpers\ClashPathFollower.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\IMapProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\BuildingActionEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\MapItems\ClashBuilding.cs" />
