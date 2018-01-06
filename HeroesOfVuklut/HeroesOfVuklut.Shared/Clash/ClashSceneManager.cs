@@ -233,7 +233,7 @@ namespace HeroesOfVuklut.Shared.Clash
             }
 
 
-            foreach (var node in _currentClash.MapClash.MapNodes)
+           /* foreach (var node in _currentClash.MapClash.MapNodes)
             {
                 GraphicsInterface.DrawCircle(offsetX + 16 + node.X * 32, offsetY + 16 + node.Y * 32);
             }
@@ -244,7 +244,7 @@ namespace HeroesOfVuklut.Shared.Clash
                 var lastCon = connection.Nodes.Last();
                 GraphicsInterface.DrawLine(offsetX + 16 + firstCon.X * 32, offsetY + 16 + firstCon.Y * 32, offsetX + 16 + lastCon.X * 32, offsetY + 16 + lastCon.Y * 32);
             }
-
+            */ 
             foreach (var item in _currentClash.Units)
             {
                 int x = (int) (offsetX + item.X * 32.0M);
@@ -459,6 +459,8 @@ namespace HeroesOfVuklut.Shared.Clash
             {
                 _resourceDictionary[0] = "grass";
                 _resourceDictionary[1] = "forrest";
+                _resourceDictionary[2] = "road";
+                _resourceDictionary[3] = "water";
             }
             public string GetGroundResource(int id)
             {

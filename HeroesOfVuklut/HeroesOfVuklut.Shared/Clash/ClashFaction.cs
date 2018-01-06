@@ -31,12 +31,12 @@ namespace HeroesOfVuklut.Shared.Clash
             ClashResources = new List<ClashResource>();
             Buildings = new List<ClashBuilding>();
 
-            var array = Enum.GetValues(typeof(ClashResource.ClashResourceType));
+            var array = Enum.GetValues(typeof(ClashResourceType));
             foreach (var item  in array)
             {
-                var resourceType = (ClashResource.ClashResourceType) item;
+                var resourceType = (ClashResourceType) item;
 
-                ClashResources.Add(ClashResource.CreateResource(0, 50, resourceType));
+                ClashResources.Add(CreateResource(0, 50, resourceType));
             }
         }
 

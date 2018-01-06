@@ -59,6 +59,54 @@
 
     },
     {
+      "Name": "road",
+      "Families": [
+        "overworld",
+        "road",
+        "overworld/road"
+      ],
+      "FrameSizeX": 32,
+      "FrameSizeY": 32,
+      "ContentPath": "Sprites/road",
+      "Frames": [
+        {
+          "Name": "Idle",
+          "PositionX": 0,
+          "PositionY": 0
+        },
+        {
+          "Name": "Hover",
+          "PositionX": 0,
+          "PositionY": 1
+        }
+      ]
+
+    },
+    {
+      "Name": "water",
+      "Families": [
+        "overworld",
+        "water",
+        "overworld/water"
+      ],
+      "FrameSizeX": 32,
+      "FrameSizeY": 32,
+      "ContentPath": "Sprites/water",
+      "Frames": [
+        {
+          "Name": "Idle",
+          "PositionX": 0,
+          "PositionY": 0
+        },
+        {
+          "Name": "Hover",
+          "PositionX": 0,
+          "PositionY": 1
+        }
+      ]
+
+    },
+    {
       "Name": "castle",
       "Families": [
         "clash",
