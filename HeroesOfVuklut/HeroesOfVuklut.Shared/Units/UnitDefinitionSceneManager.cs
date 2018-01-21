@@ -78,9 +78,7 @@ namespace HeroesOfVuklut.Shared.Units
         {
             GraphicsInterface.DrawText(252, 32, _selected.DefinitionName);
             GraphicsInterface.DrawText(252, 52, LocalizedSource.GetLocalized("Class"));
-
-
-
+            
             GraphicsInterface.Draw(knightButton.X, knightButton.Y, knightButton.ItemWidth, knightButton.ItemHeight, "classes", _selected.CharacterClass?.Name == "Knight" ? "Knight-Active" : "Knight-Idle");
             GraphicsInterface.Draw(warriorButton.X, warriorButton.Y, warriorButton.ItemWidth, warriorButton.ItemHeight, "classes", _selected.CharacterClass?.Name ==  "Warrior" ? "Warrior-Active" : "Warrior-Idle");
         }

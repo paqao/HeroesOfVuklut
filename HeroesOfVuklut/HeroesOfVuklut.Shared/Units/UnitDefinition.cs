@@ -16,6 +16,11 @@ namespace HeroesOfVuklut.Shared.Units
         public RaceTrait Race { get; set; }
         public ClassTrait CharacterClass { get; set; }
         public string Name { get; set; }
+        public bool CanBeUsed { get
+            {
+                return CharacterClass != null;
+            }
+        }
         public ICollection<ITrait> Traits { get; set; }
     }
 }

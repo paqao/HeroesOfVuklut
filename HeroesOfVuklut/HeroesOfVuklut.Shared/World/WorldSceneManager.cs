@@ -5,6 +5,7 @@ using HeroesOfVuklut.Shared.Clash;
 using HeroesOfVuklut.Shared.Factions;
 using HeroesOfVuklut.Shared.Units;
 using System;
+using System.Linq;
 
 namespace HeroesOfVuklut.Shared.World
 {
@@ -17,6 +18,9 @@ namespace HeroesOfVuklut.Shared.World
         private IGraphicButton _clash;
 
         private IGraphicButton _optionsButton;
+
+        [InjectParameter]
+        public IUnitDefinitionManager UnitDefinitionsManager { get; set; }
 
         public WorldSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IGraphicElementFactory graphicElementFactory) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
         {
@@ -102,13 +106,17 @@ namespace HeroesOfVuklut.Shared.World
 
                 // element 3
                 bool element3IsOver = _clash.IsOver(cursor);
+                var unitDefinitions = UnitDefinitionsManager.GetUnitDefinitionsPerFaction(1);
 
-                if (element3IsOver)
+                if(unitDefinitions.Any(ud => ud.CanBeUsed))
                 {
-                    var navigationParameter = new ClashSceneManager.ClashSceneParameter(1);
-                    navigationParameter.FactionIds.Add(1);
-                    navigationParameter.FactionIds.Add(2);
-                    SceneNavigator.GotoScene(typeof(ClashSceneManager), navigationParameter);
+                    if (element3IsOver)
+                    {
+                        var navigationParameter = new ClashSceneManager.ClashSceneParameter(1);
+                        navigationParameter.FactionIds.Add(1);
+                        navigationParameter.FactionIds.Add(2);
+                        SceneNavigator.GotoScene(typeof(ClashSceneManager), navigationParameter);
+                    }
                 }
             }
 
