@@ -229,6 +229,38 @@
         "clash"
       ],
       "ContentPath": "Sprites/unit"
+    },
+    {
+      "Name": "classes",
+      "Families": [
+        "unit"
+      ],
+      "FrameSizeX": 32,
+      "FrameSizeY": 32,
+      "ContentPath": "Sprites/classes",
+      "Frames": [
+        {
+          "Name": "Knight-Active",
+          "PositionX": 0,
+          "PositionY": 0
+        },
+        {
+          "Name": "Knight-Idle",
+          "PositionX": 0,
+          "PositionY": 1
+        },
+        {
+          "Name": "Warrior-Active",
+          "PositionX": 1,
+          "PositionY": 0
+        },
+        {
+          "Name": "Warrior-Idle",
+          "PositionX": 1,
+          "PositionY": 1
+        }
+      ]
+
     }
   ]
 }

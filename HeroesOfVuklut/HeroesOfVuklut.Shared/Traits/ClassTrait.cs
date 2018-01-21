@@ -4,8 +4,9 @@ using System.Text;
 
 namespace HeroesOfVuklut.Shared.Traits
 {
-    public interface ITraitProvider
+    public class ClassTrait : ICharacterTrait, IUnitTrait
     {
-        ClassTrait GetClassTrait(string name);
+        public string Name { get; set; }
+        
     }
 }

@@ -17,7 +17,7 @@ namespace HeroesOfVuklut.Engine.Localization
         public FileLocalizedSource()
         {
             directoryInfo = new DirectoryInfo("Data/Localized");
-            SetLanguage(new LanguageData { Code = "pl_PL" });
+            SetLanguage(new LanguageData { Code = "en_US" });
         }
 
         public ICollection<LanguageData> GetLanguages()

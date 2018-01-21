@@ -1,0 +1,22 @@
+﻿{
+  "classes": [
+    {
+      "name": "Knight",
+      "id": 1,
+      "code": "cl_knight",
+      "color": "Blue",
+      "traits": [
+
+      ]
+    },
+    {
+      "name": "Warrior",
+      "id": 2,
+      "code": "cl_warrior",
+      "color": "Red",
+      "traits": [
+
+      ]
+    }
+  ]
+}

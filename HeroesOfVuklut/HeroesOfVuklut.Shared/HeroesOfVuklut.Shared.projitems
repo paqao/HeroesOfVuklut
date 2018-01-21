@@ -51,6 +51,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Maps\MapInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Maps\MapProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Maps\TerrainProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Traits\ClassTraitInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Traits\TraitInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameDataProviders\Traits\TraitProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEnums.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)NewGame\NewGameSceneManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\GameSettingsManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings\GameSettingsSceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traits\ClassTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\ICharacterTrait.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\ITraitProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traits\IUnitTrait.cs" />
@@ -81,6 +83,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)World\WorldSceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Data\classes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)Data\Localized\en_US.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

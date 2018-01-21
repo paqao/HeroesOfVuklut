@@ -1,10 +1,9 @@
 ﻿using HeroesOfVuklut.Engine.Scenes;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using HeroesOfVuklut.Engine.IO;
 using HeroesOfVuklut.Shared.World;
 using HeroesOfVuklut.Engine.DI;
+using HeroesOfVuklut.Shared.Traits;
 
 namespace HeroesOfVuklut.Shared.Units
 {
@@ -20,12 +19,23 @@ namespace HeroesOfVuklut.Shared.Units
         private UnitDefinition _selected = null;
         private int _factionId;
 
+        #region class buttons
+        private IGraphicButton warriorButton;
+        private IGraphicButton knightButton;
+
+        [InjectParameter]
+        public ITraitProvider TraitProvider { get; set; }
+
+        #endregion
+
         public UnitDefinitionSceneManager(ISceneNavigator sceneNavigator, IInputInterface inputInterface, IGraphicsInterface graphicsInterface, IGraphicElementFactory graphicElementFactory, IUnitDefinitionManager unitDefinitionManager) : base(sceneNavigator, inputInterface, graphicsInterface, graphicElementFactory)
         {
             _backButton = GraphicElementFactory.CreateButton(ButtonType.Circle);
             _addNewDefinitionButton = GraphicElementFactory.CreateButton(ButtonType.Rectangle);
             unitDefinitions = GraphicElementFactory.CreateListElement<UnitDefinition>();
-            
+
+            warriorButton = GraphicElementFactory.CreateButton(ButtonType.Rectangle);
+            knightButton = GraphicElementFactory.CreateButton(ButtonType.Rectangle);
 
             _unitDefinitionManager = unitDefinitionManager;
         }
@@ -51,10 +61,28 @@ namespace HeroesOfVuklut.Shared.Units
             }
 
             GraphicsInterface.DrawText(30, 30, LocalizedSource.GetLocalized("AddUnitType"));
-            
+
+            if (_selected != null)
+            {
+                DrawSelected();
+            }
+
             GraphicsInterface.Draw(_cursor.PositionX, _cursor.PositionY, 16, 16, "cursor");
 
+
+
             base.Draw();
+        }
+
+        private void DrawSelected()
+        {
+            GraphicsInterface.DrawText(252, 32, _selected.DefinitionName);
+            GraphicsInterface.DrawText(252, 52, LocalizedSource.GetLocalized("Class"));
+
+
+
+            GraphicsInterface.Draw(knightButton.X, knightButton.Y, knightButton.ItemWidth, knightButton.ItemHeight, "classes", _selected.CharacterClass?.Name == "Knight" ? "Knight-Active" : "Knight-Idle");
+            GraphicsInterface.Draw(warriorButton.X, warriorButton.Y, warriorButton.ItemWidth, warriorButton.ItemHeight, "classes", _selected.CharacterClass?.Name ==  "Warrior" ? "Warrior-Active" : "Warrior-Idle");
         }
 
         public override void ProcessInput()
@@ -93,6 +121,19 @@ namespace HeroesOfVuklut.Shared.Units
                 {
                     _selected = ud;
                 }
+
+                if(_selected != null)
+                {
+                    if (warriorButton.IsOver(cursor))
+                    {
+                        _selected.CharacterClass = TraitProvider.GetClassTrait("Warrior");
+                    }
+                    else if (knightButton.IsOver(cursor))
+                    {
+                        _selected.CharacterClass = TraitProvider.GetClassTrait("Knight");
+                    }
+
+                }
             }
 
             if (rightButton)
@@ -120,6 +161,16 @@ namespace HeroesOfVuklut.Shared.Units
             _addNewDefinitionButton.ItemWidth = 200;
             _addNewDefinitionButton.X = 30;
             _addNewDefinitionButton.Y = 30;
+
+            knightButton.ItemHeight = 32;
+            knightButton.ItemWidth = 32;
+            knightButton.X = 252;
+            knightButton.Y = 72;
+            
+            warriorButton.ItemHeight = 32;
+            warriorButton.ItemWidth = 32;
+            warriorButton.X = 292;
+            warriorButton.Y = 72;
 
             _factionId = parameter.FactionId;
             unitDefinitions.InnerList = _unitDefinitionManager.GetUnitDefinitionsPerFaction(_factionId);

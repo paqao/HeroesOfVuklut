@@ -25,6 +25,10 @@
     {
       "Key": "AddUnitType",
       "Value": "Add unit type"
+    },
+    {
+      "Key": "Class",
+      "Value": "Class"
     }
   ]
 }

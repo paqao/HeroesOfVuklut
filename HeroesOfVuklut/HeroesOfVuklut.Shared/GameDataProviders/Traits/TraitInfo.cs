@@ -4,7 +4,10 @@ using System.Text;
 
 namespace HeroesOfVuklut.Shared.GameDataProviders.Traits
 {
-    class TraitInfo
+    public class TraitInfo
     {
+        public string Name { get; set; }
+        public int Id { get; set; }
+        public string Code { get; set; }
     }
 }
