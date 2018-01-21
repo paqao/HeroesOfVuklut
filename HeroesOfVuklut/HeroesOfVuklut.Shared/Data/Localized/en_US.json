@@ -37,6 +37,10 @@
     {
       "Key": "END",
       "Value": "Endurance"
+    },
+    {
+      "Key": "UnitQuantity",
+      "Value": "Quantity of unit this type:"
     }
   ]
 }

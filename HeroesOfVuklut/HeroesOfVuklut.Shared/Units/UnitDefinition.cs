@@ -13,6 +13,8 @@ namespace HeroesOfVuklut.Shared.Units
         public int FactionId { get; set; }
         public int DefinitionId { get; set; }
 
+        public int Quantity { get; set; }
+
         public RaceTrait Race { get; set; }
         public ClassTrait CharacterClass { get; set; }
         public string Name { get; set; }

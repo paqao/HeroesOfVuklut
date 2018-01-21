@@ -89,6 +89,8 @@ namespace HeroesOfVuklut.Shared.Units
             GraphicsInterface.DrawText(252, 132, LocalizedSource.GetLocalized("END"));
             GraphicsInterface.DrawText(332, 132, _selected.Endurance.ToString());
 
+            GraphicsInterface.DrawText(252, 500, LocalizedSource.GetLocalized("UnitQuantity") + _selected.Quantity.ToString());
+
         }
 
         public override void ProcessInput()

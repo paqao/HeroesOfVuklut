@@ -37,6 +37,10 @@
     {
       "Key": "END",
       "Value": "Wytrzymalosc"
+    },
+    {
+      "Key": "UnitQuantity",
+      "Value": "Ilosc jednostek tego typu:"
     }
   ]
 }
