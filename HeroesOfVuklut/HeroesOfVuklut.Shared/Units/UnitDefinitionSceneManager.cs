@@ -81,6 +81,14 @@ namespace HeroesOfVuklut.Shared.Units
             
             GraphicsInterface.Draw(knightButton.X, knightButton.Y, knightButton.ItemWidth, knightButton.ItemHeight, "classes", _selected.CharacterClass?.Name == "Knight" ? "Knight-Active" : "Knight-Idle");
             GraphicsInterface.Draw(warriorButton.X, warriorButton.Y, warriorButton.ItemWidth, warriorButton.ItemHeight, "classes", _selected.CharacterClass?.Name ==  "Warrior" ? "Warrior-Active" : "Warrior-Idle");
+
+            GraphicsInterface.DrawText(252, 112, LocalizedSource.GetLocalized("STR"));
+            GraphicsInterface.DrawText(332, 112, _selected.Strength.ToString());
+
+
+            GraphicsInterface.DrawText(252, 132, LocalizedSource.GetLocalized("END"));
+            GraphicsInterface.DrawText(332, 132, _selected.Endurance.ToString());
+
         }
 
         public override void ProcessInput()

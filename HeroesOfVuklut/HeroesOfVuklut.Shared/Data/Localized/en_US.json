@@ -29,6 +29,14 @@
     {
       "Key": "Class",
       "Value": "Class"
+    },
+    {
+      "Key": "STR",
+      "Value": "Strength"
+    },
+    {
+      "Key": "END",
+      "Value": "Endurance"
     }
   ]
 }

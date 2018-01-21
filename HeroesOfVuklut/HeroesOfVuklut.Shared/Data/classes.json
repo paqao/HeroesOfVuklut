@@ -5,6 +5,11 @@
       "id": 1,
       "code": "cl_knight",
       "color": "Blue",
+      "Str": 7,
+      "End": 11,
+      "Agi": 3,
+      "Wis": 5,
+      "HP": 30,
       "traits": [
 
       ]
@@ -14,6 +19,11 @@
       "id": 2,
       "code": "cl_warrior",
       "color": "Red",
+      "Str": 9,
+      "End": 8,
+      "Agi": 6,
+      "Wis": 5,
+      "HP": 20,
       "traits": [
 
       ]

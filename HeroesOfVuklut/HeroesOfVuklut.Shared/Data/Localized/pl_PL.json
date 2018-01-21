@@ -29,6 +29,14 @@
     {
       "Key": "Class",
       "Value": "Klasa"
+    },
+    {
+      "Key": "STR",
+      "Value": "Sila"
+    },
+    {
+      "Key": "END",
+      "Value": "Wytrzymalosc"
     }
   ]
 }

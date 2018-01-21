@@ -41,6 +41,11 @@ namespace HeroesOfVuklut.Shared.GameDataProviders.Traits
                 ClassTrait trait = new ClassTrait();
 
                 trait.Name = classTrait.Name;
+                trait.Agility = classTrait.Agi;
+                trait.Endurance = classTrait.End;
+                trait.HealthPoints = classTrait.HP;
+                trait.Strength = classTrait.Str;
+                trait.Wisdom = classTrait.Wis;
 
                 classesTraitsInfo.Add(trait);
             }

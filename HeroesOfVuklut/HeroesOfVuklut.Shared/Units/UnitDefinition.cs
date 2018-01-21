@@ -22,5 +22,46 @@ namespace HeroesOfVuklut.Shared.Units
             }
         }
         public ICollection<ITrait> Traits { get; set; }
+
+        public int Strength
+        {
+            get
+            {
+                int sum = 0;
+
+                if(CharacterClass != null)
+                {
+                    sum += CharacterClass.Strength;
+                }
+
+                if(sum < 0)
+                {
+                    sum = 0;
+                }
+
+                return sum;
+            }
+        }
+
+
+        public int Endurance
+        {
+            get
+            {
+                int sum = 0;
+
+                if (CharacterClass != null)
+                {
+                    sum += CharacterClass.Endurance;
+                }
+
+                if (sum < 0)
+                {
+                    sum = 0;
+                }
+
+                return sum;
+            }
+        }
     }
 }
