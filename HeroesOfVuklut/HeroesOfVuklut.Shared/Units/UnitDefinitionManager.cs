@@ -29,6 +29,7 @@ namespace HeroesOfVuklut.Shared.Units
             ud.FactionId = factionId;
             ud.DefinitionId = lastId != null ? lastId.Value + 1 : 1;
             ud.DefinitionName = $"definitionName-{ud.DefinitionId}";
+            ud.Quantity = 5;
             _gameData.UnitDefinitions.Add(ud);
 
             return ud;
@@ -36,7 +37,8 @@ namespace HeroesOfVuklut.Shared.Units
 
         public ICollection<UnitDefinition> GetUnitDefinitionsPerFaction(string factionName)
         {
-            return new List<UnitDefinition>();
+            var faction = _gameData.Factions.First(f => f.Name == factionName);
+            return _gameData.UnitDefinitions.Where(ud => ud.FactionId == faction.Id).ToList();
         }
 
         public ICollection<UnitDefinition> GetUnitDefinitionsPerFaction(int factionId)

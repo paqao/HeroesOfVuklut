@@ -8,6 +8,8 @@ namespace HeroesOfVuklut.Shared.Clash.MapItems
 {
     public class ClashFactionCastle : ClashBuilding
     {
+        public double RefreshTime = 3.0f;
+        public double FromLastRefresh = 0.0f;
         public ClashFactionCastle() : base(BuildingType.Castle)
         {
             Resource = "castle";

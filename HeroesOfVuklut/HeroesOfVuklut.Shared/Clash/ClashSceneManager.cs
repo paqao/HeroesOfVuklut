@@ -8,8 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using HeroesOfVuklut.Shared.Factions;
-using HeroesOfVuklut.Shared.Clash.Path;
 using HeroesOfVuklut.Shared.Clash.Helper;
+using HeroesOfVuklut.Shared.Clash.Units;
+using HeroesOfVuklut.Shared.Units;
 
 namespace HeroesOfVuklut.Shared.Clash
 {
@@ -29,6 +30,13 @@ namespace HeroesOfVuklut.Shared.Clash
         private bool? active = null;
         private ClashFaction playerFaction;
         private ClashBuilding.BuildingType? buildMode = null;
+
+        [InjectParameter]
+        public IClashUnitFactory ClashUnitFactory { get; set; }
+
+
+        [InjectParameter]
+        public IUnitDefinitionManager UnitDefinitionManager { get; set; }
 
         #region ui elements
         public IGraphicButton buildTowerButton;
@@ -100,6 +108,14 @@ namespace HeroesOfVuklut.Shared.Clash
 
             IAi.PrepareAi(clashState);
 
+            ClashUnitFactory.PrepareForScene();
+
+            foreach (var faction in clashState.Factions)
+            {
+                var factionUnits = UnitDefinitionManager.GetUnitDefinitionsPerFaction(faction.Aspect.Name);
+
+                ClashUnitFactory.AddForScene(faction, factionUnits);
+            }
             _unit = new ClashUnit();
 
             var path = ClashPathHelper.GeneratePath(_unit, clashState.Factions[0].Castle.ClashNode, clashState.Factions[1].Castle.ClashNode);
@@ -139,6 +155,37 @@ namespace HeroesOfVuklut.Shared.Clash
             }
             else if (active.HasValue && active.Value)
             {
+                foreach (var item in _currentClash.Factions)
+                {
+                    item.Castle.FromLastRefresh += step.TotalSeconds;
+
+                    if(item.Castle.FromLastRefresh > item.Castle.RefreshTime)
+                    {
+                        item.Castle.FromLastRefresh = 0;
+
+                        var template = ClashUnitFactory.GetTemplates(item).FirstOrDefault();
+
+                        if(template != null)
+                        {
+                            var unit = ClashUnitFactory.GetUnit(item, template);
+
+                            if(unit != null)
+                            {
+
+                                var path = ClashPathHelper.GeneratePath(unit, item.Castle.ClashNode, _currentClash.Factions[1].Castle.ClashNode);
+
+                                unit.Path = path;
+                                unit.SiegePower = 2;
+                                unit.X = item.Castle.X;
+                                unit.Y = item.Castle.Y;
+
+                                _currentClash.Units.Add(unit);
+                            }
+
+                        }
+                    }
+                }
+
                 var nodes = _currentClash.MapClash.MapNodes;
                 var toRemove = new List<ClashUnit>();
                 foreach (var item in _currentClash.Units)
@@ -193,7 +240,6 @@ namespace HeroesOfVuklut.Shared.Clash
                 {
                     item.Affect(_currentClash);
                 }
-
                 foreach (var faction in _currentClash.Factions)
                 {
                     if (faction.MarkedLose)
@@ -231,20 +277,7 @@ namespace HeroesOfVuklut.Shared.Clash
                     }
                 }
             }
-
-
-           /* foreach (var node in _currentClash.MapClash.MapNodes)
-            {
-                GraphicsInterface.DrawCircle(offsetX + 16 + node.X * 32, offsetY + 16 + node.Y * 32);
-            }
-
-            foreach(var connection in _currentClash.MapClash.Connections)
-            {
-                var firstCon = connection.Nodes.First();
-                var lastCon = connection.Nodes.Last();
-                GraphicsInterface.DrawLine(offsetX + 16 + firstCon.X * 32, offsetY + 16 + firstCon.Y * 32, offsetX + 16 + lastCon.X * 32, offsetY + 16 + lastCon.Y * 32);
-            }
-            */ 
+            
             foreach (var item in _currentClash.Units)
             {
                 int x = (int) (offsetX + item.X * 32.0M);

@@ -40,6 +40,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Clash\Path\UnitPath.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\Path\UnitPathNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\Units\ClashUnitFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clash\Units\IClashUnitFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Clash\UnitTemplate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\IGameConfigurationProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Factions\FactionAspect.cs" />
@@ -104,7 +106,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Clash\Units\" />
     <Folder Include="$(MSBuildThisFileDirectory)Character\" />
   </ItemGroup>
 </Project>
